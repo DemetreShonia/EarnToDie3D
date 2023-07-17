@@ -4,150 +4,109 @@ using System.Collections.Generic;
 
 namespace DumbRide
 {
+    public enum Axel
+    {
+        Front,
+        Rear
+    }
+
+    [Serializable]
+    public struct Wheel
+    {
+        public GameObject wheelModel;
+        public WheelCollider wheelCollider;
+        public Axel axel;
+    }
+
     public class CarController : MonoBehaviour
     {
-        public enum ControlMode
-        {
-            Keyboard,
-            Buttons
-        };
+        [Header("Acceleration Properties")]
+        [SerializeField] float _maxAcceleration = 30.0f;
+        [SerializeField] float _brakeAcceleration = 50.0f;
 
-        public enum Axel
-        {
-            Front,
-            Rear
-        }
+        [Header("Steering Properties")]
+        [SerializeField] float _turnSensitivity = 1.0f;
+        [SerializeField] float _steerLerpSpeed = 200.0f;
+        [SerializeField] float _maxSteerAngle = 30.0f;
 
-        [Serializable]
-        public struct Wheel
-        {
-            public GameObject wheelModel;
-            public WheelCollider wheelCollider;
-            public GameObject wheelEffectObj;
-            public ParticleSystem smokeParticle;
-            public Axel axel;
-        }
+        [Header("Car Properties")]
+        [SerializeField]
+        [Tooltip("Percent of velocity")]
+        [Range(0.1f, 0.5f)] float _downPressurePercent = 0.2f; 
+        [SerializeField] Vector3 _centerOfMass;
+        [SerializeField] List<Wheel> _wheels;
 
-        public ControlMode control;
 
-        public float maxAcceleration = 30.0f;
-        public float brakeAcceleration = 50.0f;
+        const string VERTICAL_AXIS = "Vertical";
+        const string HORIZONTAL_AXIS = "Horizontal";
 
-        public float turnSensitivity = 1.0f;
-        public float maxSteerAngle = 30.0f;
-
-        public Vector3 _centerOfMass;
-
-        public List<Wheel> wheels;
-
-        float moveInput;
-        float steerInput;
-
-        private Rigidbody carRb;
+        float _moveInput;
+        float _steerInput;
+        float _downPressure; // not to turn upside down car when reaching high velocities
+        Rigidbody _carRb;
 
 
         void Start()
         {
-            carRb = GetComponent<Rigidbody>();
-            carRb.centerOfMass = _centerOfMass;
+            _carRb = GetComponent<Rigidbody>();
+            _carRb.centerOfMass = _centerOfMass;
         }
 
         void Update()
         {
-            GetInputs();
+            CheckInputs();
             AnimateWheels();
-            //WheelEffects();
         }
         void FixedUpdate()
         {
-            Move();
-            Steer();
-            Brake();
+            ApplyForces();
+            SteerFrontWheels();
+            TryBrake();
         }
-        public void MoveInput(float input)
+        void CheckInputs()
         {
-            moveInput = input;
-        }
-
-        public void SteerInput(float input)
-        {
-            steerInput = input;
+            _moveInput = Input.GetAxis(VERTICAL_AXIS);
+            _steerInput = Input.GetAxis(HORIZONTAL_AXIS);
         }
 
-        void GetInputs()
+        void ApplyForces()
         {
-            if (control == ControlMode.Keyboard)
+            // make down pressure 20% of the velocity
+            _downPressure = Mathf.Lerp(_downPressure, _carRb.velocity.magnitude * _downPressurePercent, Time.fixedDeltaTime);
+            _carRb.AddForce(-transform.up * _downPressure, ForceMode.Force);
+            foreach (var wheel in _wheels)
             {
-                moveInput = Input.GetAxis("Vertical");
-                steerInput = Input.GetAxis("Horizontal");
+                wheel.wheelCollider.motorTorque = _moveInput * _maxAcceleration;
             }
         }
 
-        void Move()
+        void SteerFrontWheels()
         {
-            foreach (var wheel in wheels)
-            {
-                wheel.wheelCollider.motorTorque = moveInput * 600 * maxAcceleration * Time.deltaTime;
-            }
-        }
-
-        void Steer()
-        {
-            foreach (var wheel in wheels)
+            foreach (var wheel in _wheels)
             {
                 if (wheel.axel == Axel.Front)
                 {
-                    var _steerAngle = steerInput * turnSensitivity * maxSteerAngle;
-                    wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, _steerAngle, 0.6f);
+                    var _steerAngle = _steerInput * _turnSensitivity * _maxSteerAngle;
+                    wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, _steerAngle, Time.deltaTime * _steerLerpSpeed);
                 }
             }
         }
 
-        void Brake()
+        void TryBrake()
         {
-            if (Input.GetKey(KeyCode.Space) || moveInput == 0)
-            {
-                foreach (var wheel in wheels)
-                {
-                    wheel.wheelCollider.brakeTorque = 300 * brakeAcceleration * Time.deltaTime;
-                }
-            }
-            else
-            {
-                foreach (var wheel in wheels)
-                {
-                    wheel.wheelCollider.brakeTorque = 0;
-                }
-            }
+            foreach (var wheel in _wheels)
+                wheel.wheelCollider.brakeTorque = (Input.GetKey(KeyCode.Space) || _moveInput == 0f) ? _brakeAcceleration : 0;
         }
 
         void AnimateWheels()
         {
-            foreach (var wheel in wheels)
+            foreach (var wheel in _wheels)
             {
                 Quaternion rot;
                 Vector3 pos;
                 wheel.wheelCollider.GetWorldPose(out pos, out rot);
                 wheel.wheelModel.transform.position = pos;
                 wheel.wheelModel.transform.rotation = rot;
-            }
-        }
-
-        void WheelEffects()
-        {
-            foreach (var wheel in wheels)
-            {
-                //var dirtParticleMainSettings = wheel.smokeParticle.main;
-
-                if (Input.GetKey(KeyCode.Space) && wheel.axel == Axel.Rear && wheel.wheelCollider.isGrounded == true && carRb.velocity.magnitude >= 10.0f)
-                {
-                    wheel.wheelEffectObj.GetComponentInChildren<TrailRenderer>().emitting = true;
-                    wheel.smokeParticle.Emit(1);
-                }
-                else
-                {
-                    wheel.wheelEffectObj.GetComponentInChildren<TrailRenderer>().emitting = false;
-                }
             }
         }
     }
