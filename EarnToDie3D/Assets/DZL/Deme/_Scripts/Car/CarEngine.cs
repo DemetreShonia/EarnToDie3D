@@ -11,6 +11,7 @@ namespace DumbRide
         // for speedometer
         public float CurrentSpeed => _rb.velocity.magnitude * 3.6f;
         Rigidbody _rb;
+        [SerializeField] float _breakTorque = 1000f;
 
         float _totalPower;
         bool _isInitialized = false;
@@ -37,7 +38,7 @@ namespace DumbRide
 
             _gearBox.TryApplyMotorTorque(power);
 
-            _gearBox.TryBrake(_carInput.IsBrakePressed ? _totalPower : 0);
+            _gearBox.TryBrake(_carInput.IsBrakePressed ? _breakTorque : 0);
         }
 
         // for UI
