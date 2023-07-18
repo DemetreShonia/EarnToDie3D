@@ -1,5 +1,4 @@
 using UnityEngine;
-
 public class CameraOrbit : MonoBehaviour
 {
     [SerializeField] float _acceleration = 10f;
