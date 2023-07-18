@@ -1,110 +1,93 @@
 using UnityEngine;
 using System;
-using System.Collections.Generic;
-using System.Xml.Serialization;
 
 namespace DumbRide
 {
-
+    [RequireComponent(typeof(Rigidbody), typeof(CarGearBox), typeof(CarInput))]
     public class CarController : MonoBehaviour
     {
-        [SerializeField] GearBox _gearBox; 
+        #region Fields
+        
+        
         [Header("Car Properties")]
-        [SerializeField]
-        [Tooltip("Percent of velocity")]
-        [Range(0.1f, 0.5f)] float _downPressurePercent = 0.2f;
-        [SerializeField] Vector3 _centerOfMass;
-        [SerializeField] List<Wheel> _wheels;
-
+        [SerializeField] Transform _centerOfMass;
+        [SerializeField] CarWheel[] _wheels;
 
         [Header("Acceleration Properties")]
         [SerializeField] float _maxAcceleration = 30.0f;
         [SerializeField] float _brakeAcceleration = 50.0f;
 
         [Header("Steering Properties")]
-        [SerializeField] float _turnSensitivity = 1.0f;
-        [SerializeField] float _steerLerpSpeed = 200.0f;
-        [SerializeField] float _maxSteerAngle = 30.0f;
-
-        const string VERTICAL_AXIS = "Vertical";
-        const string HORIZONTAL_AXIS = "Horizontal";
-
-        float _moveInput;
-        float _steerInput;
-        float _downPressure; // not to turn upside down car when reaching high velocities
+        [SerializeField] float _wheelBase = 4f;
+        [SerializeField] float _rearTrack = 2.5f;
+        [SerializeField] float _turnRadius = 5.0f;
+        
         Rigidbody _carRb;
-
+        CarGearBox _gearBox;
+        CarInput _carInput;
+        #endregion
 
         void Start()
         {
             _carRb = GetComponent<Rigidbody>();
-            _carRb.centerOfMass = _centerOfMass;
+            _gearBox = GetComponent<CarGearBox>();
+            _carInput = GetComponent<CarInput>();
+
+            _carRb.centerOfMass = _centerOfMass.localPosition;
+            _gearBox.Initialize(_wheels);
         }
 
         void Update()
         {
-            CheckInputs();
+            _carInput.UpdateInputs();
             AnimateWheels();
         }
         void FixedUpdate()
         {
             SteerAckerman();
-            TryBrake();
-            _gearBox.ApplyMotorTorque(_maxAcceleration, _moveInput);
+            UpdateTorques();
         }
-        void CheckInputs()
-        {
-            _moveInput = Input.GetAxis(VERTICAL_AXIS);
-            _steerInput = Input.GetAxis(HORIZONTAL_AXIS);
-        }
-
-
-        // steer properties
-        [SerializeField] float _wheelBase = 4f;
-        [SerializeField] float _rearTrack = 2.5f;
-        [SerializeField] float _turnRadius = 5.0f;
+        
         void SteerAckerman()
         {
             float ackermanLeft = 0f;
             float ackermanRight = 0f;
+            float steerInput = _carInput.SteerInput;
 
-            if (_steerInput > 0f)
+            if (steerInput > 0f)
             {
-                ackermanLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius + (_rearTrack / 2))) * _steerInput;
-                ackermanRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius - (_rearTrack / 2))) * _steerInput;
+                ackermanLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius + (_rearTrack / 2))) * steerInput;
+                ackermanRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius - (_rearTrack / 2))) * steerInput;
             }
-            else if (_steerInput < 0f)
+            else if (steerInput < 0f)
             {
-                ackermanLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius - (_rearTrack / 2))) * _steerInput;
-                ackermanRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius + (_rearTrack / 2))) * _steerInput;
+                ackermanLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius - (_rearTrack / 2))) * steerInput;
+                ackermanRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius + (_rearTrack / 2))) * steerInput;
             }
 
             foreach (var wheel in _wheels)
             {
                 switch (wheel.CarWheelType)
                 {
-                    case Wheel.WheelType.FrontLeft:
+                    case CarWheel.WheelType.FrontLeft:
                         wheel.ApplySteerAngle(ackermanLeft);
                         break;
-                    case Wheel.WheelType.FrontRight:
+                    case CarWheel.WheelType.FrontRight:
                         wheel.ApplySteerAngle(ackermanRight);
                         break;
                 }
             }
         }
 
-        void TryBrake()
+        void UpdateTorques()
         {
-            foreach (var wheel in _wheels)
-                wheel.ApplyBrakeTorque((Input.GetKey(KeyCode.Space) || _moveInput == 0f) ? _brakeAcceleration : 0);
+            _gearBox.TryApplyMotorTorque(_maxAcceleration, _carInput.MoveInput);
+            _gearBox.TryBrake(_carInput.IsBrakePressed ? _brakeAcceleration : 0);
         }
-
         void AnimateWheels()
         {
             foreach (var wheel in _wheels)
-            {
                 wheel.AnimateWheel();
-            }
         }
     }
 

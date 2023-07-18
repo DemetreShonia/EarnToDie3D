@@ -11,7 +11,7 @@ namespace DumbRide
         Front,
         Rear
     }
-    public class GearBox : MonoBehaviour
+    public class CarGearBox : MonoBehaviour
     {
         public enum DriveType
         {
@@ -21,10 +21,29 @@ namespace DumbRide
         }
 
         [SerializeField] DriveType _driveType = DriveType.AllWheelDrive;
-        [SerializeField] Wheel[] _wheels;
-
-        public void ApplyMotorTorque(float _maxAcceleration, float _moveInput)
+        CarWheel[] _wheels;
+        bool _isInitialized = false;
+        public void Initialize(CarWheel[] wheels)
         {
+            _wheels = wheels;
+            _isInitialized = true;
+        }
+        public void TryBrake(float brakeTorque)
+        {
+            if (!_isInitialized) return;
+
+            int wheelCount = _wheels.Length;
+            float currentTorque = brakeTorque / wheelCount; // distribute torque to wheels
+
+            foreach (var wheel in _wheels)
+            {
+                wheel.ApplyBrakeTorque(currentTorque);
+            }
+        }
+        public void TryApplyMotorTorque(float _maxAcceleration, float _moveInput)
+        {
+            if (!_isInitialized) return;
+
             float maxTorq = _maxAcceleration * _moveInput;
             int wheelCount = _wheels.Length;
 

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace DumbRide
 {
     [RequireComponent(typeof(WheelCollider))]
-    public class Wheel : MonoBehaviour
+    public class CarWheel : MonoBehaviour
     {
         #region Properties
         public enum WheelType
