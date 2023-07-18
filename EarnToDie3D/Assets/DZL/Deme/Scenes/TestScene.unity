@@ -2163,6 +2163,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4505141374280356654, guid: 02cabdd2ce112724d9dcba5048d71e61,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4764811092901645246, guid: 02cabdd2ce112724d9dcba5048d71e61,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106293962871897614, guid: 02cabdd2ce112724d9dcba5048d71e61,
+        type: 3}
+      propertyPath: _driveType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106293962871897614, guid: 02cabdd2ce112724d9dcba5048d71e61,
+        type: 3}
+      propertyPath: _maxAcceleration
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 6106293962871897614, guid: 02cabdd2ce112724d9dcba5048d71e61,
+        type: 3}
+      propertyPath: _brakeAcceleration
+      value: 1500
+      objectReference: {fileID: 0}
+    - target: {fileID: 6325544601723646380, guid: 02cabdd2ce112724d9dcba5048d71e61,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7685757518460353313, guid: 02cabdd2ce112724d9dcba5048d71e61,
+        type: 3}
+      propertyPath: m_SidewaysFriction.m_Stiffness
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8202545766242031063, guid: 02cabdd2ce112724d9dcba5048d71e61,
         type: 3}
       propertyPath: m_Name

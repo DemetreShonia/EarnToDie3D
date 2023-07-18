@@ -1,13 +1,20 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace DumbRide
 {
-    public enum Axel
+    public enum Axle
     {
         Front,
         Rear
+    }
+    public enum DriveType
+    {
+        FrontWheelDrive,
+        RearWheelDrive,
+        AllWheelDrive
     }
 
     [Serializable]
@@ -15,11 +22,20 @@ namespace DumbRide
     {
         public GameObject wheelModel;
         public WheelCollider wheelCollider;
-        public Axel axel;
+        public Axle axel;
     }
 
     public class CarController : MonoBehaviour
     {
+        [Header("Car Properties")]
+        [SerializeField] DriveType _driveType = DriveType.RearWheelDrive;
+        [SerializeField]
+        [Tooltip("Percent of velocity")]
+        [Range(0.1f, 0.5f)] float _downPressurePercent = 0.2f;
+        [SerializeField] Vector3 _centerOfMass;
+        [SerializeField] List<Wheel> _wheels;
+
+
         [Header("Acceleration Properties")]
         [SerializeField] float _maxAcceleration = 30.0f;
         [SerializeField] float _brakeAcceleration = 50.0f;
@@ -28,14 +44,6 @@ namespace DumbRide
         [SerializeField] float _turnSensitivity = 1.0f;
         [SerializeField] float _steerLerpSpeed = 200.0f;
         [SerializeField] float _maxSteerAngle = 30.0f;
-
-        [Header("Car Properties")]
-        [SerializeField]
-        [Tooltip("Percent of velocity")]
-        [Range(0.1f, 0.5f)] float _downPressurePercent = 0.2f; 
-        [SerializeField] Vector3 _centerOfMass;
-        [SerializeField] List<Wheel> _wheels;
-
 
         const string VERTICAL_AXIS = "Vertical";
         const string HORIZONTAL_AXIS = "Horizontal";
@@ -69,25 +77,87 @@ namespace DumbRide
             _steerInput = Input.GetAxis(HORIZONTAL_AXIS);
         }
 
+
+        // MOVE THIS TO GearBox Script
         void ApplyForces()
         {
             // make down pressure 20% of the velocity
-            _downPressure = Mathf.Lerp(_downPressure, _carRb.velocity.magnitude * _downPressurePercent, Time.fixedDeltaTime);
-            _carRb.AddForce(-transform.up * _downPressure, ForceMode.Force);
-            foreach (var wheel in _wheels)
+            //_downPressure = Mathf.Lerp(_downPressure, _carRb.velocity.magnitude * _downPressurePercent, Time.fixedDeltaTime);
+            //_carRb.AddForce(-transform.up * _downPressure, ForceMode.Force);
+            float _currentTorque = _maxAcceleration * _moveInput;
+
+            void ApplyBothAxles()
             {
-                wheel.wheelCollider.motorTorque = _moveInput * _maxAcceleration;
+                _currentTorque /= 4; // distribute to 4 wheels
+
+                foreach (var wheel in _wheels)
+                {
+                    wheel.wheelCollider.motorTorque = _currentTorque;
+                }
+            }
+
+            void ApplySingleAxle(Axle axel)
+            {
+                _currentTorque /= 2; // distribute to 2 wheels
+
+                foreach (var wheel in _wheels)
+                {
+                    if(wheel.axel == axel)
+                        wheel.wheelCollider.motorTorque = _currentTorque;
+                }
+            }
+            switch (_driveType)
+            {
+                case DriveType.AllWheelDrive:
+                    ApplyBothAxles();
+                    break;
+                case DriveType.FrontWheelDrive:
+                    ApplySingleAxle(Axle.Front);
+                    break;
+                case DriveType.RearWheelDrive:
+                    ApplySingleAxle(Axle.Rear);
+                    break;
             }
         }
-
+        // steer properties
+        [SerializeField] float _wheelBase = 4f;
+        [SerializeField] float _rearTrack = 2.5f;
+        [SerializeField] float _turnRadius = 5.0f;
         void SteerFrontWheels()
         {
+            // ackerman steer formula
+            // Wheelbase = distance between front and rear axles
+            // Reartrack = distance between rear wheels
+            // TurnRadius = radius of the turn
+            //var steerAngle = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius + (_rearTrack / 2))) * _steerInput;
+            
+            float ackermanLeft = 0f;
+            float ackermanRight = 0f;
+
+            if(_steerInput > 0f)
+            {
+                ackermanLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius + (_rearTrack / 2))) * _steerInput;
+                ackermanRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius - (_rearTrack / 2))) * _steerInput;
+            }
+            else if (_steerInput < 0f)
+            {
+                ackermanLeft = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius - (_rearTrack / 2))) * _steerInput;
+                ackermanRight = Mathf.Rad2Deg * Mathf.Atan(_wheelBase / (_turnRadius + (_rearTrack / 2))) * _steerInput;
+            }
+
+            // refactor this!
+            int id = 0;
             foreach (var wheel in _wheels)
             {
-                if (wheel.axel == Axel.Front)
+                if(id == 2)
+                    break;
+                if (wheel.axel == Axle.Front)
                 {
-                    var _steerAngle = _steerInput * _turnSensitivity * _maxSteerAngle;
-                    wheel.wheelCollider.steerAngle = Mathf.Lerp(wheel.wheelCollider.steerAngle, _steerAngle, Time.deltaTime * _steerLerpSpeed);
+                    if (id == 0)
+                        wheel.wheelCollider.steerAngle = ackermanLeft;
+                    else if (id == 1)
+                        wheel.wheelCollider.steerAngle = ackermanRight;
+                    id++;
                 }
             }
         }
