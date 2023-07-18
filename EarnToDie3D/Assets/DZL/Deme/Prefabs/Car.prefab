@@ -890,6 +890,7 @@ GameObject:
   - component: {fileID: 6106293962871897614}
   - component: {fileID: 6919178287477049076}
   - component: {fileID: 6220560487608437426}
+  - component: {fileID: 5388257297027132280}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -991,6 +992,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _brakeKey: 32
+--- !u!114 &5388257297027132280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8202545766242031063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029385d59e5837b4bb86b84a54f4bb02, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _horsePowerCurve:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8485261666396869473
 GameObject:
   m_ObjectHideFlags: 0

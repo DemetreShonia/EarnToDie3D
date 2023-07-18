@@ -8,7 +8,6 @@ namespace DumbRide
     {
         #region Fields
         
-        
         [Header("Car Properties")]
         [SerializeField] Transform _centerOfMass;
         [SerializeField] CarWheel[] _wheels;
@@ -25,6 +24,7 @@ namespace DumbRide
         Rigidbody _carRb;
         CarGearBox _gearBox;
         CarInput _carInput;
+        CarEngine _carEngine;
         #endregion
 
         void Start()
@@ -32,9 +32,11 @@ namespace DumbRide
             _carRb = GetComponent<Rigidbody>();
             _gearBox = GetComponent<CarGearBox>();
             _carInput = GetComponent<CarInput>();
+            _carEngine = GetComponent<CarEngine>();
 
             _carRb.centerOfMass = _centerOfMass.localPosition;
             _gearBox.Initialize(_wheels);
+            _carEngine.Initialize(_wheels, _gearBox, _carInput);
         }
 
         void Update()
@@ -44,8 +46,8 @@ namespace DumbRide
         }
         void FixedUpdate()
         {
+            _carEngine.Move();
             SteerAckerman();
-            UpdateTorques();
         }
         
         void SteerAckerman()
@@ -79,15 +81,11 @@ namespace DumbRide
             }
         }
 
-        void UpdateTorques()
-        {
-            _gearBox.TryApplyMotorTorque(_maxAcceleration, _carInput.MoveInput);
-            _gearBox.TryBrake(_carInput.IsBrakePressed ? _brakeAcceleration : 0);
-        }
         void AnimateWheels()
         {
             foreach (var wheel in _wheels)
                 wheel.AnimateWheel();
+
         }
     }
 

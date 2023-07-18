@@ -22,6 +22,8 @@ namespace DumbRide
         public WheelType CarWheelType => _wheelType;
 
         public Axle WheelAxle { get; private set; } = Axle.None;
+        
+        public float RPM => _wheelCollider.rpm;
         #endregion
 
         [SerializeField] GameObject _wheelMesh; // visual

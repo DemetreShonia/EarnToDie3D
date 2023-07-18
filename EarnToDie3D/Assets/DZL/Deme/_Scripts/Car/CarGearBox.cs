@@ -21,35 +21,49 @@ namespace DumbRide
         }
 
         [SerializeField] DriveType _driveType = DriveType.AllWheelDrive;
+        [SerializeField] float[] _gears;
         CarWheel[] _wheels;
         bool _isInitialized = false;
+
+        int _currentGearID = 0;
+
+        public float CurrentGear => _currentGearID >= 0 && _currentGearID < _gears.Length ? _gears[_currentGearID] : 0f;
+        public void NextGear()
+        {
+            _currentGearID++;
+            _currentGearID %= _gears.Length;
+        }
+        public void PrevGear()
+        {
+            _currentGearID--;
+            _currentGearID = _currentGearID < 0 ? _gears.Length - 1 : _currentGearID;
+        }
         public void Initialize(CarWheel[] wheels)
         {
             _wheels = wheels;
             _isInitialized = true;
         }
-        public void TryBrake(float brakeTorque)
+        public void TryBrake(float curHP)
         {
             if (!_isInitialized) return;
 
             int wheelCount = _wheels.Length;
-            float currentTorque = brakeTorque / wheelCount; // distribute torque to wheels
+            float currentTorque = curHP / wheelCount; // distribute torque to wheels
 
             foreach (var wheel in _wheels)
             {
                 wheel.ApplyBrakeTorque(currentTorque);
             }
         }
-        public void TryApplyMotorTorque(float _maxAcceleration, float _moveInput)
+        public void TryApplyMotorTorque(float curHP)
         {
             if (!_isInitialized) return;
 
-            float maxTorq = _maxAcceleration * _moveInput;
+            float maxTorq = curHP;
             int wheelCount = _wheels.Length;
 
             // distribute torque to wheels, case 4 or case 2
             float currentTorque = _driveType == DriveType.AllWheelDrive ? maxTorq / wheelCount : maxTorq * 0.5f;
-
             foreach (var wheel in _wheels)
             {
                 switch (_driveType)
