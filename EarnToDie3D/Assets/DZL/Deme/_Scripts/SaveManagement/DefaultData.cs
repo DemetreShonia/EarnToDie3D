@@ -28,6 +28,22 @@ namespace DumbRide
             }
             return carDataList.ToArray();
         }
+        public static CurrentCarData MyCurrentCarData
+        {
+            get
+            {
+                return new CurrentCarData
+                {
+                    bladeData = new DecoratorData { isUnlocked = false, power = 0 },
+                    enginePower = 0,
+                    fuelLiter = 0,
+                    gearPower = 0,
+                    gunData = new DecoratorData { isUnlocked = false, power = 0 },
+                    turboData = new DecoratorData { isUnlocked = false, power = 0 },
+                    wheelData = new WheelData { friction = 0, power = 0 }
+                };
+            }
+        }
         public static GameData MyGameData
         {
             get
