@@ -1,33 +1,35 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace DumbRide
 {
-    public class CarDataWrapper
-    {
-        public CarData[] carData;
-    }
-
     public class SaveManager : MonoBehaviourSingleton<SaveManager>
     {
         string _savePath;
-        CarData[] _carData;
+        StoredData _storedData;
 
-        public event Action<CarData[]> onDataLoaded;
+        public event Action<StoredData> onDataLoaded;
 
         protected override void Awake()
         {
             base.Awake();
             _savePath = Application.persistentDataPath + "/garageData.json";
-            //SaveGarageData();
             LoadGarageData();
         }
 
-        public void SaveGarageData()
+        public void SaveData(CarData newCarData)
         {
-            string json = JsonUtility.ToJson(new CarDataWrapper { carData = _carData });
+            _storedData.carData[newCarData.carID] = newCarData; // might throw error if indexes are not correctly assigned
+            SaveData(_storedData);
+        }
+        public void SaveData(GameData gameData)
+        {
+            _storedData.gameData = gameData;
+            SaveData(_storedData);
+        }
+        public void SaveData(StoredData storedData)
+        {
+            string json = JsonUtility.ToJson(storedData);
             System.IO.File.WriteAllText(_savePath, json);
         }
 
@@ -36,13 +38,15 @@ namespace DumbRide
             if (System.IO.File.Exists(_savePath))
             {
                 string json = System.IO.File.ReadAllText(_savePath);
-                _carData = JsonUtility.FromJson<CarDataWrapper>(json).carData;
-                onDataLoaded?.Invoke(_carData);
+                _storedData = JsonUtility.FromJson<StoredData>(json);
+                onDataLoaded?.Invoke(_storedData);
             }
             else
             {
-                System.IO.File.Create(_savePath); // TODO: Check if this works
+                System.IO.File.Create(_savePath); 
+                SaveData(DefaultData.GetStoredData(2)); // we have only two cars in game
             }
         }
+        
     }
 }

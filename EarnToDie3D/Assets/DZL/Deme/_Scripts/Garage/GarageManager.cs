@@ -5,26 +5,7 @@ using UnityEngine;
 
 namespace DumbRide
 {
-    public struct WheelData
-    {
-        public float friction;
-        public float power;
-    }
-    public struct DecoratorData
-    {
-        public bool isUnlocked;
-        public float power;
-    }
-    public struct CurrentCarData
-    {
-        public float enginePower;
-        public float gearPower;
-        public WheelData wheelData;
-        public DecoratorData bladeData;
-        public DecoratorData gunData;
-        public DecoratorData turboData;
-        public float fuelLiter;
-    }
+    
     public class GarageManager : MonoBehaviour
     {
         [SerializeField] GarageDataSO[] _garageDataSO;
@@ -46,9 +27,9 @@ namespace DumbRide
             SaveManager.Instance.onDataLoaded -= OnDataLoaded;
         }
 
-        void OnDataLoaded(CarData[] loadedData)
+        void OnDataLoaded(StoredData loadedData)
         {
-            _carData = loadedData;
+            _carData = loadedData.carData;
             TryBuildCurrentCarData();
         }
         void TryBuildCurrentCarData()
