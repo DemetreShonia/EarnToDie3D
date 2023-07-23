@@ -63,7 +63,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _GroundColor: {r: 0.33962256, g: 0.33962256, b: 0.33962256, a: 0}
+    - _GroundColor: {r: 0.4056604, g: 0.38000268, b: 0.3229975, a: 0}
     - _LineColor: {r: 0.6792453, g: 0.6271088, b: 0.22684222, a: 0}
     - _MiddleDashedColor: {r: 0.6792453, g: 0.6271088, b: 0.22684222, a: 0}
   m_BuildTextureStacks: []
