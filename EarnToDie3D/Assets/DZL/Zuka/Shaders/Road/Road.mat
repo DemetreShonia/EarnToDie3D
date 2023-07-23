@@ -33,7 +33,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _NoiseScale
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -51,6 +51,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _LerpNormal: 1
+    - _LerpNormalNoiseScale: 24.75
+    - _LerpPosToNoise: 0.5
     - _MiddleDashHoriAmount: 2
     - _MiddleDashVertAmount: 4
     - _MiddleDashedOffset: 0.4
@@ -58,6 +61,9 @@ Material:
     - _MiddleDashedWidth: 0.018
     - _MiddleWidth: 0.02
     - _NoiseScale: 30
+    - _NormalNoiseScale: 15
+    - _NormalStrength: 0.1
+    - _NormalVoronoiScale: 23
     - _OuterLineOffset: 0.36
     - _OuterLineWidth: 0.02
     - _QueueControl: 0
