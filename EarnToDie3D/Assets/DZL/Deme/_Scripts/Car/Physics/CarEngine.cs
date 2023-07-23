@@ -34,7 +34,7 @@ namespace DumbRide
 
             _totalPower = _powerCurve.Evaluate(Mathf.Abs(_carInput.MoveInput)) * _maxHorsePower * gear; // * GearNum
 
-            float power = Mathf.Sign(_carInput.MoveInput) * _totalPower;
+            float power = _carInput.MoveInput * _maxHorsePower;
 
             _gearBox.TryApplyMotorTorque(power);
 
