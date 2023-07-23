@@ -51,7 +51,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _MiddleDashHoriAmount: 2
+    - _MiddleDashVertAmount: 4
+    - _MiddleDashedOffset: 0.4
+    - _MiddleDashedSpacing: 0.14
+    - _MiddleDashedWidth: 0.018
+    - _MiddleWidth: 0.02
+    - _NoiseScale: 30
+    - _OuterLineOffset: 0.36
+    - _OuterLineWidth: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _GroundColor: {r: 0.33962256, g: 0.33962256, b: 0.33962256, a: 0}
+    - _LineColor: {r: 0.6792453, g: 0.6271088, b: 0.22684222, a: 0}
+    - _MiddleDashedColor: {r: 0.6792453, g: 0.6271088, b: 0.22684222, a: 0}
   m_BuildTextureStacks: []
