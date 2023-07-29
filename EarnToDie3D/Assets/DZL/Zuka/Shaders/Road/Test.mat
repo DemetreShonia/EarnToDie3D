@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3737734207475735379
+--- !u!114 &-1331142617352092987
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Road
-  m_Shader: {fileID: -6465566751694194690, guid: 8374aa9f43633b8409f2df0eb1de38c8,
+  m_Name: Test
+  m_Shader: {fileID: -6465566751694194690, guid: d54cb8e02d893724db33ce333a03ee36,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -33,7 +33,7 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _NoiseScale
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -51,30 +51,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DepthDistance: 1
-    - _DepthDiv: 1.8
-    - _DepthOffset: 0.36
-    - _FresnelPower: 1
-    - _LerpNormal: 1
-    - _LerpNormalNoiseScale: 24.75
-    - _LerpPosToNoise: 0.5
-    - _MiddleDashHoriAmount: 2
-    - _MiddleDashVertAmount: 4
-    - _MiddleDashedOffset: 0.4
-    - _MiddleDashedSpacing: 0.14
-    - _MiddleDashedWidth: 0.018
-    - _MiddleWidth: 0.02
-    - _NoiseScale: 30
-    - _NormalNoiseScale: 15
-    - _NormalStrength: 0.1
-    - _NormalVoronoiScale: 23
-    - _OuterLineOffset: 0.36
-    - _OuterLineWidth: 0.02
+    - _Distance: 1.43
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _BlendColor: {r: 0.39607844, g: 0.30980393, b: 0.17254902, a: 1}
-    - _GroundColor: {r: 0.4056604, g: 0.38000268, b: 0.3229975, a: 0}
-    - _LineColor: {r: 0.6792453, g: 0.6271088, b: 0.22684222, a: 0}
-    - _MiddleDashedColor: {r: 0.6792453, g: 0.6271088, b: 0.22684222, a: 0}
+    - _Color1: {r: 1, g: 0.9, b: 0.9, a: 0}
+    - _Color2: {r: 0.398, g: 0.30903533, b: 0.17324707, a: 1}
   m_BuildTextureStacks: []
