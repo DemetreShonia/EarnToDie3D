@@ -39,7 +39,7 @@ namespace DumbRide
             _carEngine.Initialize(_gearBox, _carInput);
 
             CurrentCarData _selectedCarData = DefaultData.MyCurrentCarData;
-
+            _selectedCarData.turboData.isUnlocked = true;
             foreach (var decorator in _decorators)
             {
                 decorator.Initialize(_selectedCarData);

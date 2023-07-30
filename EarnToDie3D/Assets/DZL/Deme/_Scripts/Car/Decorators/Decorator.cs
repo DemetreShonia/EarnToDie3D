@@ -19,10 +19,10 @@ namespace DumbRide
                     _data = carData.bladeData;
                     break;
                 case DecoratorType.Gun:
-                    _data = carData.bladeData;
+                    _data = carData.gunData;
                     break;
                 case DecoratorType.Turbo:
-                    _data = carData.bladeData;
+                    _data = carData.turboData;
                     break;
             }
             SetActive(_data.isUnlocked);
