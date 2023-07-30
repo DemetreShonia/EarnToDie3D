@@ -37,6 +37,13 @@ namespace DumbRide
     {
         public bool isUnlocked;
         public float power;
+        public DecoratorType type;
+    }
+    public enum DecoratorType
+    {
+        Blade,
+        Gun,
+        Turbo
     }
     public struct CurrentCarData
     {

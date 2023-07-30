@@ -12,9 +12,9 @@ namespace DumbRide
         [SerializeField] Transform _centerOfMass;
         [SerializeField] CarWheel[] _wheels;
 
-        [Header("Acceleration Properties")]
-        [SerializeField] float _maxAcceleration = 30.0f;
-        [SerializeField] float _brakeAcceleration = 50.0f;
+        [Header("Decorators")]
+        [SerializeField]
+        Decorator[] _decorators;
 
         [Header("Steering Properties")]
         [SerializeField] float _wheelBase = 4f;
@@ -37,6 +37,13 @@ namespace DumbRide
             _carRb.centerOfMass = _centerOfMass.localPosition;
             _gearBox.Initialize(_wheels);
             _carEngine.Initialize(_gearBox, _carInput);
+
+            CurrentCarData _selectedCarData = DefaultData.MyCurrentCarData;
+
+            foreach (var decorator in _decorators)
+            {
+                decorator.Initialize(_selectedCarData);
+            }
         }
 
         void Update()

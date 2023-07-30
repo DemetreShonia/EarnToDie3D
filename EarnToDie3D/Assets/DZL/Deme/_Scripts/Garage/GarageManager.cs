@@ -75,17 +75,21 @@ namespace DumbRide
                     bladeData = new DecoratorData
                     {
                         isUnlocked = loadedCarData.isBladeBought,
-                        power = _garageDataSO[id].blade[0] // it is only one blade (Overkill to use FirstOrDefault)
+                        power = _garageDataSO[id].blade[0], // it is only one blade (Overkill to use FirstOrDefault),
+                        type = DecoratorType.Blade
                     },
                     gunData = new DecoratorData
                     {
                         isUnlocked = loadedCarData.isBladeBought,
-                        power = _garageDataSO[id].gun[loadedCarData.gunLevel]
+                        power = _garageDataSO[id].gun[loadedCarData.gunLevel],
+                        type = DecoratorType.Gun
+
                     },
                     turboData = new DecoratorData
                     {
                         isUnlocked = loadedCarData.isBladeBought,
-                        power = _garageDataSO[id].turbo[loadedCarData.turboLevel]
+                        power = _garageDataSO[id].turbo[loadedCarData.turboLevel],
+                        type = DecoratorType.Turbo
                     },
                     fuelLiter = _garageDataSO[id].fuel[loadedCarData.fuelLevel]
                 };
