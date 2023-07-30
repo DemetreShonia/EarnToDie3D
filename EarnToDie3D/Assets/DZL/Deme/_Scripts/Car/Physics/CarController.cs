@@ -36,7 +36,7 @@ namespace DumbRide
 
             _carRb.centerOfMass = _centerOfMass.localPosition;
             _gearBox.Initialize(_wheels);
-            _carEngine.Initialize(_wheels, _gearBox, _carInput);
+            _carEngine.Initialize(_gearBox, _carInput);
         }
 
         void Update()
