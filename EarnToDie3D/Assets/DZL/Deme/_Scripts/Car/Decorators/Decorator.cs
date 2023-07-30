@@ -9,22 +9,13 @@ namespace DumbRide
         [SerializeField] protected DecoratorData _data;
         [SerializeField] protected GameObject _visual;
         [SerializeField] protected AudioClip _soundClip;
-        public DecoratorType Type => _data.type;
+        [SerializeField] protected DecoratorType _type;
 
-        public virtual void Initialize(CurrentCarData carData)
+        public DecoratorType Type => _type;
+
+        public virtual void Initialize(DecoratorData data)
         {
-            switch (Type)
-            {
-                case DecoratorType.Blade:
-                    _data = carData.bladeData;
-                    break;
-                case DecoratorType.Gun:
-                    _data = carData.gunData;
-                    break;
-                case DecoratorType.Turbo:
-                    _data = carData.turboData;
-                    break;
-            }
+            _data = data;
             SetActive(_data.isUnlocked);
         }
 
@@ -34,5 +25,6 @@ namespace DumbRide
         {
             _visual.SetActive(activeSelf);
         }
+        public virtual void CheckForInputs() { }
     }
 }

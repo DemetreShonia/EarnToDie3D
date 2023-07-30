@@ -43,23 +43,23 @@ namespace DumbRide
             _wheels = wheels;
             _isInitialized = true;
         }
-        public void TryBrake(float curHP)
+        public void TryBrake(float curTorque)
         {
             if (!_isInitialized) return;
 
             int wheelCount = _wheels.Length;
-            float currentTorque = curHP / wheelCount; // distribute torque to wheels
+            float currentTorque = curTorque / wheelCount; // distribute torque to wheels
 
             foreach (var wheel in _wheels)
             {
                 wheel.ApplyBrakeTorque(currentTorque);
             }
         }
-        public void TryApplyMotorTorque(float curHP)
+        public void TryApplyMotorTorque(float torque)
         {
             if (!_isInitialized) return;
 
-            float maxTorq = curHP;
+            float maxTorq = torque;
             int wheelCount = _wheels.Length;
 
             // distribute torque to wheels, case 4 or case 2

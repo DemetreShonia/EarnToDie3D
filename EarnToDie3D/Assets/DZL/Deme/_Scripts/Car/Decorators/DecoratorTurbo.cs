@@ -6,6 +6,7 @@ namespace DumbRide
 {
     public class DecoratorTurbo : Decorator
     {
+        CarEngine _engine;
         public override void Animate()
         {
         }
@@ -14,5 +15,10 @@ namespace DumbRide
         {
 
         }
+        public override void CheckForInputs()
+        {
+            _engine.SetIsCarTurboEnabled(Input.GetKey(GlobalInputs.TURBO_KEY));
+        }
+        public void SetCarEngine(CarEngine engine) => _engine = engine;
     }
 }

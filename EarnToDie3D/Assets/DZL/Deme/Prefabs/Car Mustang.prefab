@@ -1607,9 +1607,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfd54b84d569411489d4830b72fe3612, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
   _visual: {fileID: 5102116650021219380}
   _soundClip: {fileID: 0}
+  _type: 0
 --- !u!1 &1631426784291717145
 GameObject:
   m_ObjectHideFlags: 0
@@ -4981,9 +4981,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 086595b877ca06040908509d8757399f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
   _visual: {fileID: 6582882405238833054}
   _soundClip: {fileID: 0}
+  _type: 2
 --- !u!1 &5892569557484933641
 GameObject:
   m_ObjectHideFlags: 0

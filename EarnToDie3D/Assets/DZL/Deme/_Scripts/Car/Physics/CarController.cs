@@ -42,13 +42,32 @@ namespace DumbRide
             _selectedCarData.turboData.isUnlocked = true;
             foreach (var decorator in _decorators)
             {
-                decorator.Initialize(_selectedCarData);
+                switch (decorator.Type)
+                {
+                    case DecoratorType.Blade:
+                        decorator.Initialize(_selectedCarData.bladeData);
+                        break;
+                    case DecoratorType.Gun:
+                        decorator.Initialize(_selectedCarData.bladeData);
+
+                        break;
+                    case DecoratorType.Turbo:
+                        decorator.Initialize(_selectedCarData.bladeData);
+                        (decorator as DecoratorTurbo).SetCarEngine(_carEngine);
+                        break;
+                }
             }
         }
 
         void Update()
         {
             _carInput.UpdateInputs();
+
+            foreach (var decorator in _decorators)
+            {
+                decorator.CheckForInputs();
+            }
+
             AnimateWheels();
         }
         void FixedUpdate()
