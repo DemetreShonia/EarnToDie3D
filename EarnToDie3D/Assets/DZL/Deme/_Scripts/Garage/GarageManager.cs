@@ -11,42 +11,48 @@ namespace DumbRide
         [SerializeField] GarageDataSO[] _garageDataSO;
 
         #region Images
-        [Header("Car Part Images")]
-        [SerializeField] Image _imgEngine;
-        [SerializeField] Image _imgGear;
-        [SerializeField] Image _imgWheel;
-        [SerializeField] Image _imgKnife;
-        [SerializeField] Image _imgGun;
-        [SerializeField] Image _imgTurbo;
-        [SerializeField] Image _imgFuel;
+        // Here array would not work because we chosen the way to work like this (because sprites are not serializable)
+        [Header("Car Part Slots")]
+        [SerializeField] GarageSlot _slotEngine;
+        [SerializeField] GarageSlot _slotGear;
+        [SerializeField] GarageSlot _slotWheel;
+        [SerializeField] GarageSlot _slotKnife;
+        [SerializeField] GarageSlot _slotGun;
+        [SerializeField] GarageSlot _slotTurbo;
+        [SerializeField] GarageSlot _slotFuel;
         #endregion
-        
+
         CarData[] _carData;
         CurrentCarData _selectedCarData; // this should be passed to car's controller to be used in car's movement
         int _selectedCarId;
-        
+
         void OnEnable()
         {
             print("FIRST");
             _selectedCarData = DefaultData.MyCurrentCarData;
             SaveManager.Instance.onDataLoaded += OnDataLoaded;
-            LoadSprites();
+
+            InitializeSlots();
         }
         void OnDisable()
         {
             SaveManager.Instance.onDataLoaded -= OnDataLoaded;
         }
 
-        void LoadSprites()
+        void InitializeSlots()
         {
             var data = _garageDataSO[_selectedCarId];
-            _imgEngine.sprite = data.engineSprite;
-            _imgGear.sprite = data.gearSprite;
-            _imgWheel.sprite = data.wheelSprite;
-            _imgKnife.sprite = data.bladeSprite;
-            _imgGun.sprite = data.gunSprite;
-            _imgTurbo.sprite = data.turboSprite;
-            _imgFuel.sprite = data.fuelSprite;
+            //var carLvlsData = _carData[_selectedCarId];
+            var carLvlsData = DefaultData.MyCarData;
+
+            // max lvl's never change, it is taken from EarnToDie game original
+            _slotEngine.Initialize(data.engineSprite, carLvlsData.engineLevel, 3);
+            _slotGear.Initialize(data.gearSprite, carLvlsData.gearLevel, 3);
+            _slotWheel.Initialize(data.wheelSprite, carLvlsData.wheelLevel, 3);
+            _slotKnife.Initialize(data.bladeSprite, carLvlsData.isBladeBought? 1 : 0, 1);
+            _slotGun.Initialize(data.gunSprite, carLvlsData.gunLevel, 10);
+            _slotTurbo.Initialize(data.turboSprite, carLvlsData.turboLevel, 10);
+            _slotFuel.Initialize(data.fuelSprite, carLvlsData.fuelLevel, 10);
         }
 
         public void SelectCar(int id)
@@ -110,7 +116,7 @@ namespace DumbRide
                     fuelLiter = _garageDataSO[id].fuel[loadedCarData.fuelLevel]
                 };
 
-                 return curCarData;
+                return curCarData;
             }
             catch (Exception e)
             {
