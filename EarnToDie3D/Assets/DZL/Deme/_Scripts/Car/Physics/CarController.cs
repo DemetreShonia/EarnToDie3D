@@ -36,9 +36,16 @@ namespace DumbRide
 
             _carRb.centerOfMass = _centerOfMass.localPosition;
             _gearBox.Initialize(_wheels);
-            _carEngine.Initialize(_gearBox, _carInput);
 
             CurrentCarData _selectedCarData = DefaultData.MyCurrentCarData;
+            float fuelLiter = _selectedCarData.fuelLiter;
+            float turboLiter = _selectedCarData.turboData.power; // by default 0...
+
+            fuelLiter = 10000;
+            turboLiter = 100f;
+
+            _carEngine.Initialize(_gearBox, _carInput, fuelLiter, turboLiter);
+
             _selectedCarData.turboData.isUnlocked = true;
             foreach (var decorator in _decorators)
             {
