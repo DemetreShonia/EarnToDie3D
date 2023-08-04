@@ -10,7 +10,17 @@ namespace DumbRide
     {
         [SerializeField] GarageDataSO[] _garageDataSO;
 
-        [SerializeField] Image _imageTest;
+        #region Images
+        [Header("Car Part Images")]
+        [SerializeField] Image _imgEngine;
+        [SerializeField] Image _imgGear;
+        [SerializeField] Image _imgWheel;
+        [SerializeField] Image _imgKnife;
+        [SerializeField] Image _imgGun;
+        [SerializeField] Image _imgTurbo;
+        [SerializeField] Image _imgFuel;
+        #endregion
+        
         CarData[] _carData;
         CurrentCarData _selectedCarData; // this should be passed to car's controller to be used in car's movement
         int _selectedCarId;
@@ -30,7 +40,13 @@ namespace DumbRide
         void LoadSprites()
         {
             var data = _garageDataSO[_selectedCarId];
-            _imageTest.sprite = data.engineSprite;  
+            _imgEngine.sprite = data.engineSprite;
+            _imgGear.sprite = data.gearSprite;
+            _imgWheel.sprite = data.wheelSprite;
+            _imgKnife.sprite = data.bladeSprite;
+            _imgGun.sprite = data.gunSprite;
+            _imgTurbo.sprite = data.turboSprite;
+            _imgFuel.sprite = data.fuelSprite;
         }
 
         public void SelectCar(int id)
