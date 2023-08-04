@@ -47,6 +47,7 @@ namespace DumbRide
             _carEngine.Initialize(_gearBox, _carInput, fuelLiter, turboLiter);
 
             _selectedCarData.turboData.isUnlocked = true;
+            _selectedCarData.gunData.isUnlocked = true;
             foreach (var decorator in _decorators)
             {
                 switch (decorator.Type)
@@ -55,11 +56,10 @@ namespace DumbRide
                         decorator.Initialize(_selectedCarData.bladeData);
                         break;
                     case DecoratorType.Gun:
-                        decorator.Initialize(_selectedCarData.bladeData);
-
+                        decorator.Initialize(_selectedCarData.gunData);
                         break;
                     case DecoratorType.Turbo:
-                        decorator.Initialize(_selectedCarData.bladeData);
+                        decorator.Initialize(_selectedCarData.turboData);
                         (decorator as DecoratorTurbo).SetCarEngine(_carEngine);
                         break;
                 }

@@ -26,7 +26,6 @@ namespace DumbRide
         {
             _currentFuel -= distanceTraveled * _fuelConsumptionRate;
             _currentFuel = Mathf.Clamp(_currentFuel, 0f, _maxFuelCapacity);
-            Debug.Log($"CONSUMING FUEL{_currentFuel}");
         }
 
         public void RefillFuel()
