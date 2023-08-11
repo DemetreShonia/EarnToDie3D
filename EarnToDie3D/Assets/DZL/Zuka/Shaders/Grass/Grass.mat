@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BlendWithTerrain
-  m_Shader: {fileID: -6465566751694194690, guid: ee0bd7c452e77a0439476bffd539e87e,
+  m_Name: Grass
+  m_Shader: {fileID: -6465566751694194690, guid: 9193677327c8674498714c471b11ce0a,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -20,10 +20,14 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
-  m_LockedProperties: _DitherSize
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: f4cd5e2eb1f3e814fb29196c06feb6b7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -38,16 +42,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DepthDistance: 1
-    - _DitherSize: 1
-    - _NoiseMult: 0.4
-    - _NoiseScale: 1000
-    - _Power: 0.52
+    - _Dither: 1
+    - _Mult: 4
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    - _WindDensity: 0.5
+    - _WindStrength: 0.38
+    m_Colors:
+    - _ColorBottom: {r: 0.8396226, g: 0.6355918, b: 0.1695087, a: 0}
+    - _ColorTop: {r: 1, g: 0.8393336, b: 0.5226415, a: 0}
+    - _WindSpeed: {r: 2, g: 2, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &2623152351049859061
+--- !u!114 &2068630166119922794
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
