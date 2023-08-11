@@ -6,15 +6,19 @@ namespace DumbRide
 {
     public class SaveManager : MonoBehaviourSingleton<SaveManager>
     {
-        string _savePath;
-        LoadData _storedData;
+        string _loadDataPath;
 
-        public event Action<LoadData> onDataLoaded;
+        LoadData _storedData;
+        GarageShopData _shopData;
+
+        [SerializeField] TextAsset _shopDataTxt; 
+
+        public event Action<LoadData, GarageShopData> onDataLoaded;
 
         protected override void Awake()
         {
             base.Awake();
-            _savePath = Application.persistentDataPath + "/garageData.json";
+            _loadDataPath = Application.persistentDataPath + "/garageData.json";
             LoadData();
             print(Instance);
         }
@@ -38,21 +42,30 @@ namespace DumbRide
         {
             string json = JsonUtility.ToJson(storedData);
             print(json);
-            File.WriteAllText(_savePath, json);
+            File.WriteAllText(_loadDataPath, json);
         }
         public void LoadData()
         {
-            if (File.Exists(_savePath))
+            if(string.IsNullOrEmpty(_shopDataTxt.text))
             {
-                string json = File.ReadAllText(_savePath).Replace("\n", "");
-                print(json);
-                _storedData = JsonUtility.FromJson<LoadData>(json);
-                onDataLoaded?.Invoke(_storedData);
+                Debug.LogWarning("Shop Data is Empty, using Default One!");
+                _shopData = DefaultData.MyGarageShopData;
             }
             else
             {
-                using (FileStream fileStream = new FileStream(_savePath, FileMode.Create)) { }
-                SaveData(DefaultData.GetStoredData(2)); // we have only two cars in game
+                _shopData = JsonUtility.FromJson<GarageShopData>(_shopDataTxt.text);
+            }
+
+            if (File.Exists(_loadDataPath))
+            {
+                string json = File.ReadAllText(_loadDataPath);
+                _storedData = JsonUtility.FromJson<LoadData>(json);
+                onDataLoaded?.Invoke(_storedData, _shopData);
+            }
+            else
+            {
+                using (FileStream fileStream = new FileStream(_loadDataPath, FileMode.Create)) { }
+                SaveData(DefaultData.GetLoadData(_shopData.carPriceDatas.Length)); // we have only two cars in game
             }
         }
         

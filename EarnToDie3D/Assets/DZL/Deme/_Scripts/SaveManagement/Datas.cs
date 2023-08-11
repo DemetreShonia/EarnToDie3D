@@ -1,5 +1,38 @@
+using System;
+using UnityEngine.SocialPlatforms.Impl;
+
 namespace DumbRide
 {
+    /// <summary>
+    /// There is a garage shop data in project which is read-only which stores array of price-data for each car.
+    /// </summary>
+    [System.Serializable]
+    public class GarageShopData
+    {
+        public CarPriceData[] carPriceDatas;
+    }
+
+    /// <summary>
+    /// Each car's id, price and level up prices are stored in this data
+    /// </summary>
+    [System.Serializable]
+    public class CarPriceData
+    {
+        public int carID;
+        public int price;
+        public LvlUpData[] lvlUpDatas; // engine, gear, wheel, blade, gun, turbo, fuel
+    }
+
+    /// <summary>
+    /// LvlUpData is data for each level up price for each car. There is array which holds price for each level. array id = level
+    /// </summary>
+    [System.Serializable]
+    public class LvlUpData
+    {
+        public int[] prices;
+    }
+
+
     /// <summary>
     /// Load Data is Main Data To Load and Save
     /// </summary>

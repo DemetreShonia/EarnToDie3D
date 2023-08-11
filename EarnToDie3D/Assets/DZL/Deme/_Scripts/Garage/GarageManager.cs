@@ -23,13 +23,14 @@ namespace DumbRide
         #endregion
 
         GarageCarData[] _carData;
+        GarageShopData _garageShopData;
         InGameCarData _selectedCarData; // this should be passed to car's controller to be used in car's movement
         int _selectedCarId;
 
         void OnEnable()
         {
             print("FIRST");
-            _selectedCarData = DefaultData.MyCurrentCarData;
+            _selectedCarData = DefaultData.MyIngameCarData;
             SaveManager.Instance.onDataLoaded += OnDataLoaded;
 
             InitializeSlots();
@@ -43,7 +44,7 @@ namespace DumbRide
         {
             var data = _garageDataSO[_selectedCarId];
             //var carLvlsData = _carData[_selectedCarId];
-            var carLvlsData = DefaultData.MyCarData;
+            var carLvlsData = DefaultData.MyGarageCarData;
 
             // max lvl's never change, it is taken from EarnToDie game original
             _slotEngine.Initialize(data.engineSprite, carLvlsData.engineLevel, 3);
@@ -65,10 +66,11 @@ namespace DumbRide
             _carData[id].isSelected = true;
             SaveManager.Instance.SaveData(_carData);
         }
-        void OnDataLoaded(LoadData loadedData)
+        void OnDataLoaded(LoadData loadedData, GarageShopData garageShopData)
         {
             _carData = loadedData.carData;
             _selectedCarData = TryBuildCurrentCarData();
+            _garageShopData = garageShopData;
         }
         InGameCarData TryBuildCurrentCarData()
         {
