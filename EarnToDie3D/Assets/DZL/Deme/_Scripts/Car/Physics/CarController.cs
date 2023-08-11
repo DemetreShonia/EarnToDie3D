@@ -37,7 +37,7 @@ namespace DumbRide
             _carRb.centerOfMass = _centerOfMass.localPosition;
             _gearBox.Initialize(_wheels);
 
-            CurrentCarData _selectedCarData = DefaultData.MyCurrentCarData;
+            InGameCarData _selectedCarData = DefaultData.MyCurrentCarData;
             float fuelLiter = _selectedCarData.fuelLiter;
             float turboLiter = _selectedCarData.turboData.power; // by default 0...
 

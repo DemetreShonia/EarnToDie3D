@@ -6,19 +6,19 @@ namespace DumbRide
 {
     public static class DefaultData
     {
-        public static StoredData GetStoredData(int carAmount)
+        public static LoadData GetStoredData(int carAmount)
         {
-            return new StoredData
+            return new LoadData
             {
                 gameData = MyGameData,
                 carData = GetCarDataArray(carAmount)
             };
         }
 
-        public static CarData[] GetCarDataArray(int size)
+        public static GarageCarData[] GetCarDataArray(int size)
         {
-            List<CarData> carDataList = new List<CarData>() { MyCarData }; // default is first
-            CarData iteratorData = MyCarData;
+            List<GarageCarData> carDataList = new List<GarageCarData>() { MyCarData }; // default is first
+            GarageCarData iteratorData = MyCarData;
             iteratorData.isUnlocked = iteratorData.isSelected = false;
 
             for (int i = 1; i < size; i++)
@@ -28,11 +28,11 @@ namespace DumbRide
             }
             return carDataList.ToArray();
         }
-        public static CurrentCarData MyCurrentCarData
+        public static InGameCarData MyCurrentCarData
         {
             get
             {
-                return new CurrentCarData
+                return new InGameCarData
                 {
                     bladeData = new DecoratorData { isUnlocked = false, power = 0 },
                     enginePower = 0,
@@ -56,11 +56,11 @@ namespace DumbRide
                 };
             }
         }
-        public static CarData MyCarData
+        public static GarageCarData MyCarData
         {
             get
             {
-                return new CarData
+                return new GarageCarData
                 {
                     carID = 0,
                     isUnlocked = true,

@@ -7,9 +7,9 @@ namespace DumbRide
     public class SaveManager : MonoBehaviourSingleton<SaveManager>
     {
         string _savePath;
-        StoredData _storedData;
+        LoadData _storedData;
 
-        public event Action<StoredData> onDataLoaded;
+        public event Action<LoadData> onDataLoaded;
 
         protected override void Awake()
         {
@@ -19,12 +19,12 @@ namespace DumbRide
             print(Instance);
         }
 
-        public void SaveData(CarData[] carDatas)
+        public void SaveData(GarageCarData[] carDatas)
         {
             _storedData.carData = carDatas;
             SaveData(_storedData);
         }
-        public void SaveData(CarData newCarData)
+        public void SaveData(GarageCarData newCarData)
         {
             _storedData.carData[newCarData.carID] = newCarData; // might throw error if indexes are not correctly assigned
             SaveData(_storedData);
@@ -34,7 +34,7 @@ namespace DumbRide
             _storedData.gameData = gameData;
             SaveData(_storedData);
         }
-        public void SaveData(StoredData storedData)
+        public void SaveData(LoadData storedData)
         {
             string json = JsonUtility.ToJson(storedData);
             print(json);
@@ -44,9 +44,9 @@ namespace DumbRide
         {
             if (File.Exists(_savePath))
             {
-                string json = File.ReadAllText(_savePath);
+                string json = File.ReadAllText(_savePath).Replace("\n", "");
                 print(json);
-                _storedData = JsonUtility.FromJson<StoredData>(json);
+                _storedData = JsonUtility.FromJson<LoadData>(json);
                 onDataLoaded?.Invoke(_storedData);
             }
             else

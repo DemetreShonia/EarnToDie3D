@@ -22,8 +22,8 @@ namespace DumbRide
         [SerializeField] GarageSlot _slotFuel;
         #endregion
 
-        CarData[] _carData;
-        CurrentCarData _selectedCarData; // this should be passed to car's controller to be used in car's movement
+        GarageCarData[] _carData;
+        InGameCarData _selectedCarData; // this should be passed to car's controller to be used in car's movement
         int _selectedCarId;
 
         void OnEnable()
@@ -65,17 +65,17 @@ namespace DumbRide
             _carData[id].isSelected = true;
             SaveManager.Instance.SaveData(_carData);
         }
-        void OnDataLoaded(StoredData loadedData)
+        void OnDataLoaded(LoadData loadedData)
         {
             _carData = loadedData.carData;
             _selectedCarData = TryBuildCurrentCarData();
         }
-        CurrentCarData TryBuildCurrentCarData()
+        InGameCarData TryBuildCurrentCarData()
         {
             try
             {
                 int id = _selectedCarId;
-                CarData loadedCarData = _carData[_selectedCarId];
+                GarageCarData loadedCarData = _carData[_selectedCarId];
 
                 if (loadedCarData.isUnlocked)
                 {
@@ -84,7 +84,7 @@ namespace DumbRide
                     return _selectedCarData;
                 }
 
-                var curCarData = new CurrentCarData
+                var curCarData = new InGameCarData
                 {
                     enginePower = _garageDataSO[id].engine[loadedCarData.engineLevel], // starts from 0!
                     gearPower = _garageDataSO[id].gear[loadedCarData.gearLevel],
