@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 58c67cd8e6b8b0b41b8893779a624604
+guid: 8e3cb44eede009541bed1f0721621d28
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -40,20 +40,20 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Zombie Running
+      name: Zombie Idle
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 24
+      lastFrame: 120
       wrapMode: 0
       orientationOffsetY: 0
-      level: 0.05
+      level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
-      loopBlendOrientation: 1
+      loopBlendOrientation: 0
       loopBlendPositionY: 1
       loopBlendPositionXZ: 1
       keepOriginalOrientation: 0
