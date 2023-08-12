@@ -2440,16 +2440,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3805688730799344346, guid: ff4af60cebde82e428c3152540c66cca,
-        type: 3}
-      propertyPath: _breakTorque
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3805688730799344346, guid: ff4af60cebde82e428c3152540c66cca,
-        type: 3}
-      propertyPath: _turboTorque
-      value: 3000
-      objectReference: {fileID: 0}
     - target: {fileID: 7276966450076754662, guid: ff4af60cebde82e428c3152540c66cca,
         type: 3}
       propertyPath: m_Name

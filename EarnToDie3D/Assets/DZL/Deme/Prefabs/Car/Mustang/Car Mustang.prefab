@@ -1586,6 +1586,7 @@ MonoBehaviour:
   _soundClip: {fileID: 0}
   _type: 1
   _gunHead: {fileID: 4798724519225661946}
+  _rotationSpeed: 7
 --- !u!1 &1472896692612052429
 GameObject:
   m_ObjectHideFlags: 0
@@ -7413,7 +7414,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _breakTorque: 1000
-  _turboTorque: 100
+  _turboTorque: 3000
 --- !u!1 &7287933110159229795
 GameObject:
   m_ObjectHideFlags: 0

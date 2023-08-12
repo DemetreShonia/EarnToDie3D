@@ -15,9 +15,8 @@ namespace DumbRide
 
         public event Action<LoadData, GarageShopData> onDataLoaded;
 
-        protected override void Awake()
+        void Start()
         {
-            base.Awake();
             _loadDataPath = Application.persistentDataPath + "/garageData.json";
             LoadData();
             print(Instance);

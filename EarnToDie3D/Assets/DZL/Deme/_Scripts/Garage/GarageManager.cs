@@ -1,8 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace DumbRide
 {
@@ -29,11 +26,9 @@ namespace DumbRide
 
         void OnEnable()
         {
-            print("FIRST");
             _selectedCarData = DefaultData.MyIngameCarData;
             SaveManager.Instance.onDataLoaded += OnDataLoaded;
 
-            InitializeSlots();
         }
         void OnDisable()
         {
@@ -42,18 +37,19 @@ namespace DumbRide
 
         void InitializeSlots()
         {
+            LvlUpData[] lvlUpDatas = _garageShopData.carPriceDatas[_selectedCarId].lvlUpDatas;
             var data = _garageDataSO[_selectedCarId];
             //var carLvlsData = _carData[_selectedCarId];
             var carLvlsData = DefaultData.MyGarageCarData;
-
             // max lvl's never change, it is taken from EarnToDie game original
-            _slotEngine.Initialize(data.engineSprite, carLvlsData.engineLevel, 3);
-            _slotGear.Initialize(data.gearSprite, carLvlsData.gearLevel, 3);
-            _slotWheel.Initialize(data.wheelSprite, carLvlsData.wheelLevel, 3);
-            _slotKnife.Initialize(data.bladeSprite, carLvlsData.isBladeBought? 1 : 0, 1);
-            _slotGun.Initialize(data.gunSprite, carLvlsData.gunLevel, 10);
-            _slotTurbo.Initialize(data.turboSprite, carLvlsData.turboLevel, 10);
-            _slotFuel.Initialize(data.fuelSprite, carLvlsData.fuelLevel, 10);
+            _slotEngine.Initialize(data.engineSprite, carLvlsData.engineLevel + 1, 3, lvlUpDatas[0].prices[carLvlsData.engineLevel + 1]);
+            _slotGear.Initialize(data.gearSprite, carLvlsData.gearLevel, 3, lvlUpDatas[1].prices[carLvlsData.gearLevel]);
+            _slotWheel.Initialize(data.wheelSprite, carLvlsData.wheelLevel, 3, lvlUpDatas[2].prices[carLvlsData.wheelLevel]);
+            _slotKnife.Initialize(data.bladeSprite, carLvlsData.isBladeBought ? 1 : 0, 1, lvlUpDatas[3].prices[0]);
+
+            _slotGun.Initialize(data.gunSprite, carLvlsData.gunLevel, 10, lvlUpDatas[4].prices[carLvlsData.gunLevel + 1]);
+            _slotTurbo.Initialize(data.turboSprite, carLvlsData.turboLevel, 10, lvlUpDatas[5].prices[carLvlsData.turboLevel + 1]);
+            _slotFuel.Initialize(data.fuelSprite, carLvlsData.fuelLevel, 10, lvlUpDatas[6].prices[carLvlsData.fuelLevel + 1]);
         }
 
         public void SelectCar(int id)
@@ -69,24 +65,28 @@ namespace DumbRide
         void OnDataLoaded(LoadData loadedData, GarageShopData garageShopData)
         {
             _carData = loadedData.carData;
-            _selectedCarData = TryBuildCurrentCarData();
+            _selectedCarData = TryBuildIngameCarData();
             _garageShopData = garageShopData;
+            InitializeSlots();
         }
-        InGameCarData TryBuildCurrentCarData()
+        InGameCarData TryBuildIngameCarData()
         {
             try
             {
                 int id = _selectedCarId;
                 GarageCarData loadedCarData = _carData[_selectedCarId];
 
-                if (loadedCarData.isUnlocked)
+                if (!loadedCarData.isUnlocked)
                 {
                     Debug.Log("Car Is Not Unlocked and you can not use it!");
 
                     return _selectedCarData;
                 }
 
-                var curCarData = new InGameCarData
+                // Prices =  shop price data json
+                // SO = current Level power holders to use in game
+
+                var curIngameCarData = new InGameCarData
                 {
                     enginePower = _garageDataSO[id].engine[loadedCarData.engineLevel], // starts from 0!
                     gearPower = _garageDataSO[id].gear[loadedCarData.gearLevel],
@@ -104,21 +104,21 @@ namespace DumbRide
                     },
                     gunData = new DecoratorData
                     {
-                        isUnlocked = loadedCarData.isBladeBought,
+                        isUnlocked = loadedCarData.gunLevel != 0,
                         power = _garageDataSO[id].gun[loadedCarData.gunLevel],
                         type = DecoratorType.Gun
 
                     },
                     turboData = new DecoratorData
                     {
-                        isUnlocked = loadedCarData.isBladeBought,
+                        isUnlocked = loadedCarData.turboLevel != 0,
                         power = _garageDataSO[id].turbo[loadedCarData.turboLevel],
                         type = DecoratorType.Turbo
                     },
                     fuelLiter = _garageDataSO[id].fuel[loadedCarData.fuelLevel]
                 };
 
-                return curCarData;
+                return curIngameCarData;
             }
             catch (Exception e)
             {
