@@ -9,6 +9,10 @@ namespace DumbRide
         public const string HORIZONTAL = "Horizontal";
         public const string VERTICAL = "Vertical";
     }
+    public struct AnimationStrings
+    {
+        public const string STAND_UP = "StandUp";
+    }
     public struct TagStrings
     {
         public const string CAR_TAG = "Car";

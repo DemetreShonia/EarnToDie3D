@@ -7,8 +7,9 @@ namespace DumbRide
 {
     public class DecoratorMelee : Decorator
     {
-        [SerializeField] float _defaultDamage;
-        bool _multiplyDamage;
+        [SerializeField] CarHitter _meleeHitter;
+        [SerializeField] CarHitter _defaultHitter;
+        [SerializeField] float _meleeDamage;
         // this can be called in the car controller
         public override void Animate()
         {
@@ -24,9 +25,13 @@ namespace DumbRide
         public override void SetActive(bool activeSelf)
         {
             base.SetActive(activeSelf);
+                
+            _defaultHitter.gameObject.SetActive(!activeSelf);
+            _meleeHitter.gameObject.SetActive(activeSelf);
 
-           // meaning blade is shown and multiply damage when hitting zombies else use default damage
-            _multiplyDamage = activeSelf;
+            if(activeSelf) _meleeHitter.SetDamageMultiplier(_meleeDamage);
+
+
         }
     }
 }

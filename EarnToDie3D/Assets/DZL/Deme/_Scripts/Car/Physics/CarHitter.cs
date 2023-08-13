@@ -17,6 +17,10 @@ namespace DumbRide
             _rb = rb;
             _isInitialized = true;
         }
+        public void SetDamageMultiplier(float multiplier)
+        {
+            _damageMultiplier = multiplier;
+        }
         void OnTriggerEnter(Collider other)
         {
             if (!_isInitialized) return;

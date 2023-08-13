@@ -82,7 +82,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -258,7 +258,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -402,7 +402,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -707,7 +707,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1135,7 +1135,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1374,7 +1374,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1700,7 +1700,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1863,7 +1863,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2069,7 +2069,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2213,7 +2213,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2358,7 +2358,7 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -2494,6 +2494,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2930431937648776280}
   - component: {fileID: 1111887955281158076}
+  - component: {fileID: 1401222021501933893}
   - component: {fileID: 3456774463076267442}
   m_Layer: 0
   m_Name: ZombieMan
@@ -2517,7 +2518,7 @@ Transform:
   - {fileID: 7681693009745131009}
   - {fileID: 8572178529865482365}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1111887955281158076
 Animator:
@@ -2527,7 +2528,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8480147162040187959}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 5e0612fcacd84cf4eb1de78883026889, type: 3}
   m_Controller: {fileID: 9100000, guid: 783b886334c842e429d90bd89afff645, type: 2}
   m_CullingMode: 0
@@ -2540,6 +2541,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1401222021501933893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8480147162040187959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4e099d7baaaede438658d773e8ef7b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ragdollParent: {fileID: 8572178529865482365}
+  _ragdollParts:
+  - {fileID: 6146036956687033166}
+  - {fileID: 6463805069877317242}
+  - {fileID: 5966920855292776803}
+  - {fileID: 2825711325608554552}
+  - {fileID: 2075882572583705920}
+  - {fileID: 1615404490342650070}
+  - {fileID: 6628073348488601397}
+  - {fileID: 2832463256281967884}
+  - {fileID: 1178154503329848398}
+  - {fileID: 390930104325874039}
+  - {fileID: 970338419870059178}
+  _standUpTimeAfterKick: 5
 --- !u!114 &3456774463076267442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2552,7 +2579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd4dcd7f49dd59499e5597b0277a5d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
+  _maxHealth: 100000
 --- !u!1 &8611396548759014072
 GameObject:
   m_ObjectHideFlags: 0
