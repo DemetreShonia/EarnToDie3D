@@ -1465,7 +1465,7 @@ GameObject:
   - component: {fileID: 4313462193922819342}
   - component: {fileID: 7246956970072131081}
   - component: {fileID: 985947274505940718}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Back
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1520,6 +1520,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9630a1996fb60e4ab502616983111f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageMultiplier: 3
+  _hitForceMultiplier: 3
 --- !u!1 &1325824255898234829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2581,7 +2583,7 @@ GameObject:
   - component: {fileID: 8272225151765459209}
   - component: {fileID: 863967135562354356}
   - component: {fileID: 6603981012557811641}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2636,6 +2638,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9630a1996fb60e4ab502616983111f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageMultiplier: 2
+  _hitForceMultiplier: 2
 --- !u!1 &2108714814040391140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3463,7 +3467,7 @@ GameObject:
   - component: {fileID: 2058281124206897772}
   - component: {fileID: 8573582089143578470}
   - component: {fileID: 7503651382440603681}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3518,6 +3522,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9630a1996fb60e4ab502616983111f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageMultiplier: 2
+  _hitForceMultiplier: 2
 --- !u!1 &3334717166406388864
 GameObject:
   m_ObjectHideFlags: 0
@@ -5255,6 +5261,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d344c058a8a564d878eb39f921c8a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitForce: 100
 --- !u!1 &5656451454184542676
 GameObject:
   m_ObjectHideFlags: 0
@@ -6181,7 +6188,7 @@ GameObject:
   - component: {fileID: 6929979415796194908}
   - component: {fileID: 6400427620531007901}
   - component: {fileID: 6108717948029808945}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6236,6 +6243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9630a1996fb60e4ab502616983111f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damageMultiplier: 5
+  _hitForceMultiplier: 5
 --- !u!1 &6327451066836914857
 GameObject:
   m_ObjectHideFlags: 0

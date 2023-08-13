@@ -6,6 +6,6 @@ namespace DumbRide
 {
     public interface IBodyPart 
     {
-        void AddForce(Vector3 forceDir, float force, int damage);
+        void ApplyHit(Vector3 forceDir, float force, int damage);
     }
 }

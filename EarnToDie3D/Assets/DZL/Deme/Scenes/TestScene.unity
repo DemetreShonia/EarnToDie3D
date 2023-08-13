@@ -808,10 +808,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3456774463076267442, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_Name
       value: ZombieMan (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1014,7 +1024,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843332905}
-  m_LocalRotation: {x: 0.12218327, y: -8.5595093e-16, z: 4.2265846e-17, w: 0.9925076}
+  m_LocalRotation: {x: 0.12218325, y: 0.000000029579034, z: -0.000000003641345, w: 0.9925076}
   m_LocalPosition: {x: 0, y: 2.5440001, z: -185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1893,10 +1903,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3456774463076267442, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_Name
       value: ZombieMan (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1966,10 +1986,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3456774463076267442, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_Name
       value: ZombieMan (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2382,10 +2412,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3456774463076267442, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_Name
       value: ZombieMan (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2455,10 +2495,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3456774463076267442, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_Name
       value: ZombieMan (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2527,6 +2577,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3456774463076267442, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
@@ -2729,8 +2784,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115006745}
-  m_LocalRotation: {x: 0.09438948, y: -0.43792793, z: 0.046255894, w: 0.89284384}
-  m_LocalPosition: {x: 2.7844267, y: 2.052567, z: -179.64636}
+  m_LocalRotation: {x: 0.12218325, y: 0.000000029579034, z: -0.000000003641345, w: 0.9925076}
+  m_LocalPosition: {x: 0, y: 2.5440001, z: -185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2788,7 +2843,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115006745}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
   m_Name: 
@@ -2878,10 +2933,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3456774463076267442, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: _maxHealth
+      value: 100000
+      objectReference: {fileID: 0}
     - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_Name
       value: ZombieMan (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -24,7 +24,6 @@ namespace DumbRide
 
         public virtual void TakeDamage(int amount)
         {
-            print(_currentHealth);
             _currentHealth -= amount;
             if (_currentHealth <= 0)
             {

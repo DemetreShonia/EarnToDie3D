@@ -16,9 +16,8 @@ namespace DumbRide
             _collider = GetComponent<Collider>(); // can be null
             _zombieHealth = transform.root.GetComponent<ZombieHealth>();        
         }
-        public void AddForce(Vector3 forceDir, float force, int damage)
+        public void ApplyHit(Vector3 forceDir, float force, int damage)
         {
-            print("FORCE WAS ADDED " + forceDir);
             _rb.AddForce(forceDir * force, ForceMode.Impulse);
             _zombieHealth.TakeDamage(damage);
         }

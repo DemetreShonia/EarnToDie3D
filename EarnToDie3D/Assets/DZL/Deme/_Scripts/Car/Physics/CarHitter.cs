@@ -25,10 +25,8 @@ namespace DumbRide
             if (other.gameObject.TryGetComponent(out IBodyPart bodyPartHit))
             {
                 var speed = _rb.velocity.magnitude * 3.6f; // this is formula to calculate speed of moving object
-
-                bodyPartHit.AddForce(transform.forward, _hitForceMultiplier * speed, (int)(_damageMultiplier * speed));
+                bodyPartHit.ApplyHit(transform.forward, _hitForceMultiplier * speed, (int)(_damageMultiplier * speed));
             }
-            print(gameObject.name + " hit " + other.gameObject.name);
         }
     }
 }
