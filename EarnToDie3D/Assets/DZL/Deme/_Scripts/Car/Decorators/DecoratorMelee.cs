@@ -19,28 +19,7 @@ namespace DumbRide
         {
             // ALSO SOUND TOO...
         }
-        void OnTriggerEnter(Collider other)
-        {
-            var damage = (int) (_multiplyDamage ? _data.power : _defaultDamage);
-
-            if(other.gameObject.TryGetComponent(out IBodyPart bodyPart))
-            {
-                bodyPart.AddForce(Vector3.one * 100, 1, damage); // multiplier is just 1 for now
-            }
-            // target Hit Logic
-            print(other.gameObject);
-        }
-        //void OnCollisionEnter(Collision collision)
-        //{
-        //    var damage = (int) (_multiplyDamage ? _data.power : _defaultDamage);
-
-        //    if(collision.gameObject.TryGetComponent(out IBodyPart bodyPart))
-        //    {
-        //        bodyPart.AddForce(collision.relativeVelocity, 1, damage); // multiplier is just 1 for now
-        //    }
-        //    // target Hit Logic
-        //    print(collision.gameObject);
-        //}
+       
 
         public override void SetActive(bool activeSelf)
         {

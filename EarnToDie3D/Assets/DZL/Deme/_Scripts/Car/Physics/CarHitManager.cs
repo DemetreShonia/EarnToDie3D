@@ -6,16 +6,20 @@ namespace DumbRide
 {
     public class CarHitManager : MonoBehaviour
     {
-        // Start is called before the first frame update
+        [SerializeField] float _hitForce;
+        CarHitter[] _hitters;
+        Rigidbody _rb;
+
         void Start()
         {
-        
+            _rb = GetComponentInParent<Rigidbody>();
+            _hitters = GetComponentsInChildren<CarHitter>();
+
+            foreach (var hitter in _hitters)
+            {
+                hitter.Initialize(_rb);
+            }
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }
