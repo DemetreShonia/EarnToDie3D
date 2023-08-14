@@ -720,7 +720,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &610909826
 MonoBehaviour:
@@ -756,7 +756,7 @@ PrefabInstance:
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
@@ -1025,7 +1025,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 843332905}
   m_LocalRotation: {x: 0.3303844, y: -0.40275213, z: 0.15864827, w: 0.83872974}
-  m_LocalPosition: {x: 4.0607104, y: 5.703576, z: -184.18352}
+  m_LocalPosition: {x: 4.06072, y: 5.703576, z: -184.1835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1562,38 +1562,7 @@ Transform:
   - {fileID: 1474623739}
   - {fileID: 1015887193}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1118395469
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1118395470}
-  m_Layer: 0
-  m_Name: Car Mustang
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1118395470
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118395469}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.478, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1156407962
 GameObject:
@@ -1872,7 +1841,7 @@ PrefabInstance:
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
@@ -1955,7 +1924,7 @@ PrefabInstance:
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
@@ -2381,7 +2350,7 @@ PrefabInstance:
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
@@ -2464,7 +2433,7 @@ PrefabInstance:
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
@@ -2712,7 +2681,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2115006745
 GameObject:
@@ -2801,7 +2770,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115006745}
   m_LocalRotation: {x: 0.33038443, y: -0.40275216, z: 0.15864828, w: 0.8387298}
-  m_LocalPosition: {x: 4.0607104, y: 5.703576, z: -184.18352}
+  m_LocalPosition: {x: 4.06072, y: 5.703576, z: -184.1835}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2897,7 +2866,7 @@ PrefabInstance:
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
@@ -2980,7 +2949,7 @@ PrefabInstance:
     - target: {fileID: 918966712376517103, guid: ff4af60cebde82e428c3152540c66cca,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 918966712376517103, guid: ff4af60cebde82e428c3152540c66cca,
         type: 3}
@@ -3032,16 +3001,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1396402449622762252, guid: ff4af60cebde82e428c3152540c66cca,
-        type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7276966450076754662, guid: ff4af60cebde82e428c3152540c66cca,
         type: 3}
       propertyPath: m_Name
       value: Car Mustang
       objectReference: {fileID: 0}
+    - target: {fileID: 9209793790929004770, guid: ff4af60cebde82e428c3152540c66cca,
+        type: 3}
+      propertyPath: _bloodParticle
+      value: 
+      objectReference: {fileID: 5354550226288271274, guid: cb3951d085347f44d885f97b1f67955b,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

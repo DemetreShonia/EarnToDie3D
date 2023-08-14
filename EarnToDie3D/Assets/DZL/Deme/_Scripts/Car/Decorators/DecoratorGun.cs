@@ -6,6 +6,7 @@ namespace DumbRide
 {
     public class DecoratorGun : Decorator
     {
+        [SerializeField] GameObject _bloodParticle;
         [SerializeField] Transform _gunHead;
         [SerializeField] Transform _shootPosition;
         [SerializeField] float _rotationSpeed = 7f;
@@ -31,14 +32,19 @@ namespace DumbRide
 
         void Shoot()
         {
-            if(Physics.Raycast(_shootPosition.position, _shootPosition.forward, out RaycastHit hit))
+            print("SHOOT");
+            Animate();
+
+            if (Physics.Raycast(_shootPosition.position, _shootPosition.forward, out RaycastHit hit))
             {
                 if (hit.collider.TryGetComponent(out IBodyPart bodyPart))
                 {
                     //target.TakeDamage((int)_data.power);
                     bodyPart.ApplyHit(-hit.normal, 300, 500);
+
+                    var blood = Instantiate(_bloodParticle, hit.point, Quaternion.LookRotation(hit.normal));
+                    Destroy(blood, 1f);
                     print(hit.transform.gameObject.name);
-                    Animate();
                 }
             }
             // playsound, animate on keyframe anim event
@@ -46,7 +52,6 @@ namespace DumbRide
         
         public override void CheckForInputs()
         {
-
             Quaternion targetRotation = _gunHead.rotation;
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -62,10 +67,13 @@ namespace DumbRide
             _gunHead.rotation = Quaternion.Lerp(_gunHead.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
 
 
-            if (_nextShoot > Time.timeSinceLevelLoad + _shootCooldown)
+            if (_nextShoot < Time.timeSinceLevelLoad + _shootCooldown)
             {
-                Shoot();
-                _nextShoot = Time.timeSinceLevelLoad + _shootCooldown;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    Shoot();
+                    _nextShoot = Time.timeSinceLevelLoad + _shootCooldown;
+                }
             }
 
         }

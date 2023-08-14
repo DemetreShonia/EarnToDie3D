@@ -53,7 +53,6 @@ namespace DumbRide
                 _ragdollParent.SetParent(transform);
 
                 bool isFacingUp = _animator.GetBoneTransform(HumanBodyBones.Hips).forward.y > 0f;
-                print($"{isFacingUp} is facing up");
                 _animator.SetTrigger(isFacingUp ? AnimationStrings.STAND_UP_BACK : AnimationStrings.STAND_UP_FRONT);
             }
 

@@ -118,7 +118,6 @@ namespace DumbRide
         {
             foreach (var wheel in _wheels)
                 wheel.AnimateWheel();
-
         }
     }
 
