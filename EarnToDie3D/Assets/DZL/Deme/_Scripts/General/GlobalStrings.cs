@@ -11,7 +11,9 @@ namespace DumbRide
     }
     public struct AnimationStrings
     {
-        public const string STAND_UP = "StandUp";
+        public const string STAND_UP_FRONT = "StandUpFront";
+        public const string STAND_UP_BACK = "StandUpBack";
+        public const string FIRE = "Fire";
     }
     public struct TagStrings
     {

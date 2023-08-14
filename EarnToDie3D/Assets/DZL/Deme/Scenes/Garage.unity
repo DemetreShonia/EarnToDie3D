@@ -261,7 +261,7 @@ PrefabInstance:
     - target: {fileID: 1314779709281036898, guid: 8cc948432da81b04babc1512a9271a53,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8791906187982973291, guid: 8cc948432da81b04babc1512a9271a53,
         type: 3}
@@ -1736,6 +1736,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ZombieMan
+      objectReference: {fileID: 0}
+    - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
