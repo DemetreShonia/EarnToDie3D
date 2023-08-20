@@ -68,7 +68,6 @@ namespace DumbRide
             {
                 if(clip.name == AnimationStrings.STAND_UP_BACK)
                 {
-                    print("FOUND");
                     clip.SampleAnimation(gameObject, 0f);
                     PopulateBoneTransforms(boneTransforms);
                 }
@@ -112,7 +111,6 @@ namespace DumbRide
             _ragdollParent.SetParent(transform);
 
             PopulateBoneTransforms(_ragdollBoneTransforms);
-            _animator.enabled = true; // this can be interpolated
 
             foreach (var part in _ragdollParts)
             {
@@ -133,6 +131,8 @@ namespace DumbRide
 
 
             bool isFacingUp = _animator.GetBoneTransform(HumanBodyBones.Hips).forward.y > 0f;
+            _animator.enabled = true; // this can be interpolated
+
             _animator.SetTrigger(AnimationStrings.STAND_UP_BACK);
 
             _isHitByCar = false;
