@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8909793676936384916
+--- !u!1 &8076042516682496661
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5587030670017278857}
-  - component: {fileID: 4178904831580522589}
-  - component: {fileID: 4319775842380487286}
-  - component: {fileID: 6193012921929371883}
+  - component: {fileID: 3592191510187774960}
+  - component: {fileID: 2267761394798092017}
+  - component: {fileID: 6145747125387552824}
+  - component: {fileID: 3035379687381678426}
   m_Layer: 0
   m_Name: PilarRuinBottom
   m_TagString: Untagged
@@ -19,36 +19,36 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5587030670017278857
+--- !u!4 &3592191510187774960
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8909793676936384916}
-  m_LocalRotation: {x: -0.7081191, y: -0.058450513, z: -0.47426283, w: 0.5198324}
-  m_LocalPosition: {x: -5.6782, y: 1.4228, z: -13.053}
-  m_LocalScale: {x: 107.07254, y: 107.07254, z: 107.072556}
+  m_GameObject: {fileID: 8076042516682496661}
+  m_LocalRotation: {x: -0, y: -0, z: 0.0000000037252903, w: 1}
+  m_LocalPosition: {x: -0.0028, y: -0.0027, z: -0.0206}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 5587030670017278857}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4178904831580522589
+--- !u!33 &2267761394798092017
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8909793676936384916}
+  m_GameObject: {fileID: 8076042516682496661}
   m_Mesh: {fileID: 3720805683196204514, guid: 331944dd5d6fbc3448ceadb261a76b3d, type: 3}
---- !u!23 &4319775842380487286
+--- !u!23 &6145747125387552824
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8909793676936384916}
+  m_GameObject: {fileID: 8076042516682496661}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -84,13 +84,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6193012921929371883
+--- !u!64 &3035379687381678426
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8909793676936384916}
+  m_GameObject: {fileID: 8076042516682496661}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -106,3 +106,35 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3720805683196204514, guid: 331944dd5d6fbc3448ceadb261a76b3d, type: 3}
+--- !u!1 &8909793676936384916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5587030670017278857}
+  m_Layer: 20
+  m_Name: PilarRuinBottom
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5587030670017278857
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8909793676936384916}
+  m_LocalRotation: {x: -0.7081191, y: -0.058450513, z: -0.47426283, w: 0.5198324}
+  m_LocalPosition: {x: -5.6782, y: 1.4228, z: -13.053}
+  m_LocalScale: {x: 107.07254, y: 107.07254, z: 107.072556}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3592191510187774960}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

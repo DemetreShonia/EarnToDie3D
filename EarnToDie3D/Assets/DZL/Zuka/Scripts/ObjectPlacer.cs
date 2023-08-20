@@ -84,4 +84,8 @@ public class ObjectPlacer : MonoBehaviour
         }
     }
 
+    private void PlaceGlass()
+    {
+
+    }
 }
