@@ -32,7 +32,6 @@ namespace DumbRide
 
         void Shoot()
         {
-            print("SHOOT");
             Animate();
 
             if (Physics.Raycast(_shootPosition.position, _shootPosition.forward, out RaycastHit hit))
@@ -44,7 +43,6 @@ namespace DumbRide
 
                     var blood = Instantiate(_bloodParticle, hit.point, Quaternion.LookRotation(hit.normal));
                     Destroy(blood, 1f);
-                    print(hit.transform.gameObject.name);
                 }
             }
             // playsound, animate on keyframe anim event

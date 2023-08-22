@@ -2554,19 +2554,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ragdollParent: {fileID: 8572178529865482365}
-  _ragdollParts:
-  - {fileID: 6146036956687033166}
-  - {fileID: 6463805069877317242}
-  - {fileID: 5966920855292776803}
-  - {fileID: 2825711325608554552}
-  - {fileID: 2075882572583705920}
-  - {fileID: 1615404490342650070}
-  - {fileID: 6628073348488601397}
-  - {fileID: 2832463256281967884}
-  - {fileID: 1178154503329848398}
-  - {fileID: 390930104325874039}
-  - {fileID: 970338419870059178}
   _standUpTimeAfterKick: 5
+  _resettingBonesTime: 0.5
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &3456774463076267442
 MonoBehaviour:
   m_ObjectHideFlags: 0

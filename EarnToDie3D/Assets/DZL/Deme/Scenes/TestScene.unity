@@ -1921,6 +1921,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1401222021501933893, guid: 112c86e51e4938a469c4975b87c05105,
+        type: 3}
+      propertyPath: _groundLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_RootOrder
@@ -2566,11 +2571,6 @@ PrefabInstance:
     - target: {fileID: 2930431937648776280, guid: 112c86e51e4938a469c4975b87c05105,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4009339229618022950, guid: 112c86e51e4938a469c4975b87c05105,
-        type: 3}
-      propertyPath: m_EnableCollision
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8480147162040187959, guid: 112c86e51e4938a469c4975b87c05105,

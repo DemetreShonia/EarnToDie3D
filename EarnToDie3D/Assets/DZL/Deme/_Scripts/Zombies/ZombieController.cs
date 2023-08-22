@@ -8,6 +8,7 @@ namespace DumbRide
         [SerializeField] Transform _ragdollParent;
         [SerializeField] float _standUpTimeAfterKick = 5f;
         [SerializeField] float _resettingBonesTime = 0.5f;
+        [SerializeField] LayerMask _groundLayer;
 
         ZombieRagdollPart[] _ragdollParts;
         Animator _animator;
@@ -110,7 +111,18 @@ namespace DumbRide
         }
         IEnumerator StandUp()
         {
-            transform.position = _ragdollParent.position;
+            Vector3 pos;
+
+            if(Physics.Raycast(_ragdollParent.position, Vector3.down, out RaycastHit hit, 100f, _groundLayer))
+                pos = hit.point;
+            else
+                pos = _ragdollParent.position;
+
+            //var s = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
+            //s.position = pos;
+            //s.localScale = Vector3.one * 0.1f;
+            transform.position = pos;
+
             _ragdollParent.SetParent(transform);
 
             PopulateBoneTransforms(_ragdollBoneTransforms);
