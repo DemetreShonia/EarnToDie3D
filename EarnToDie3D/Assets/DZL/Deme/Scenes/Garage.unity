@@ -170,13 +170,14 @@ MonoBehaviour:
   _garageDataSO:
   - {fileID: 11400000, guid: 949ff0fb9913fab4c89dcf3730aab5fe, type: 2}
   - {fileID: 11400000, guid: 3c4f5448f79bb6842a1523069456c0d1, type: 2}
-  _slotEngine: {fileID: 1906441496333643544}
-  _slotGear: {fileID: 1906441496333643543}
-  _slotWheel: {fileID: 1906441496333643542}
-  _slotKnife: {fileID: 1906441496333643541}
-  _slotGun: {fileID: 1906441496333643540}
-  _slotTurbo: {fileID: 1906441496333643539}
-  _slotFuel: {fileID: 1906441496333643538}
+  _slots:
+  - {fileID: 1906441496333643544}
+  - {fileID: 1906441496333643543}
+  - {fileID: 1906441496333643542}
+  - {fileID: 1906441496333643541}
+  - {fileID: 1906441496333643540}
+  - {fileID: 1906441496333643539}
+  - {fileID: 1906441496333643538}
 --- !u!1 &51359269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1361,7 +1362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7be652f10404847b27cd1e4c80b94d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shopDataTxt: {fileID: 4900000, guid: 8923433ef97dae24f8f1aee7f8535a25, type: 3}
 --- !u!1 &2070896015
 GameObject:
   m_ObjectHideFlags: 0

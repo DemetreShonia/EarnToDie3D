@@ -11,8 +11,6 @@ namespace DumbRide
         LoadData _storedData;
         GarageShopData _shopData;
 
-        [SerializeField] TextAsset _shopDataTxt; 
-
         public event Action<LoadData, GarageShopData> onDataLoaded;
 
         void Start()
@@ -45,15 +43,7 @@ namespace DumbRide
         }
         public void LoadData()
         {
-            if(string.IsNullOrEmpty(_shopDataTxt.text))
-            {
-                Debug.LogWarning("Shop Data is Empty, using Default One!");
-                _shopData = DefaultData.MyGarageShopData;
-            }
-            else
-            {
-                _shopData = JsonUtility.FromJson<GarageShopData>(_shopDataTxt.text);
-            }
+            _shopData = DefaultData.MyGarageShopData;
 
             if (File.Exists(_loadDataPath))
             {
