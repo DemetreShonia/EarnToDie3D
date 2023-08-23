@@ -23,6 +23,7 @@ namespace DumbRide
             _price = price;
             _img.sprite = sprite;
             
+            CheckIsUnlocked(curLvl);
 
             _lvlContainer.Initialize(curLvl, maxLvl, price);
 
@@ -34,16 +35,19 @@ namespace DumbRide
             //_button.onClick.AddListener
             
         }
+            
+        void CheckIsUnlocked(int curLvl) => _img.color = curLvl == 0 ? Color.gray : Color.white;
         void HandleUpgradePartButton()
         {
             if(_lvlContainer.CanUpgrade)
-                _economyManager.TryUpgradePart(_slotId, _price);
+                _economyManager.TryUpgradePart(_slotId, _price, _lvlContainer.CurrentLevel);
         }
-        void OnLevelChanged(int slotID)
+        void OnLevelChanged(int slotID, int newLevel)
         {
             if(_slotId == slotID)
             {
                 _lvlContainer.IncreaseLevel();
+                CheckIsUnlocked(newLevel);
             }
         }
     }

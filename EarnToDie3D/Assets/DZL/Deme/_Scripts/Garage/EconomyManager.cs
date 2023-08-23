@@ -5,9 +5,9 @@ namespace DumbRide
     public class EconomyManager : MonoBehaviourSingleton<EconomyManager>
     {
         /// <summary>
-        /// Event raised when the level of selected car changes. Id of part (Slot) is passed as an argument.
+        /// Event raised when the level of selected car changes. Id of part (Slot) is passed as an argument. and New Level
         /// </summary>
-        public event Action<int> onLevelChanged;
+        public event Action<int, int> onLevelChanged;
 
         /// <summary>
         /// Event raised when the money amount changes. new amount is passed as an argument.
@@ -21,13 +21,13 @@ namespace DumbRide
             Money += amount;
             onMoneyChanged?.Invoke(amount);
         }
-        public void TryUpgradePart(int slotId, int cost)
+        public void TryUpgradePart(int slotId, int cost, int currentLevel)
         {
             if (Money >= cost)
             {
                 Money -= cost;
                 onMoneyChanged?.Invoke(-cost);
-                onLevelChanged?.Invoke(slotId);
+                onLevelChanged?.Invoke(slotId, currentLevel + 1);
             }
         }
 

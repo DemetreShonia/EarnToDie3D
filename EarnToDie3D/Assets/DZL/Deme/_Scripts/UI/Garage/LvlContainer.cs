@@ -13,6 +13,7 @@ namespace DumbRide
 
         List<LvlBar> _lvlBarList = new List<LvlBar>();
 
+        public int CurrentLevel => _currentLvl;
         int _currentLvl = 1;
         int _maxLvl = 1;
         int _price = 0;
