@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace DumbRide
@@ -15,8 +13,6 @@ namespace DumbRide
                 Instance = this as T;
             else
                 Destroy(gameObject);
-
-            DontDestroyOnLoad(this);
         }
     }
 }

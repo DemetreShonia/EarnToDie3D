@@ -31,7 +31,7 @@ namespace DumbRide
 
             for(int i = 0; i < _slots.Length; i++)
             {
-                _slots[i].Initialize(so.sprites[i], 1, so.levels[i].pricesPerLevel.Length, 10);
+                _slots[i].Initialize(so.sprites[i], 1, so.levels[i].pricesPerLevel.Length, 10, i);
             }
             return;
             LvlUpData[] lvlUpDatas = _garageShopData.carPriceDatas[_selectedCarId].lvlUpDatas;

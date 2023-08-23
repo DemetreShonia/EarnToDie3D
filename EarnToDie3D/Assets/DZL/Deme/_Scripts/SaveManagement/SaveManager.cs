@@ -13,6 +13,11 @@ namespace DumbRide
 
         public event Action<LoadData, GarageShopData> onDataLoaded;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            DontDestroyOnLoad(this);
+        }
         void Start()
         {
             _loadDataPath = Application.persistentDataPath + "/garageData.json";
