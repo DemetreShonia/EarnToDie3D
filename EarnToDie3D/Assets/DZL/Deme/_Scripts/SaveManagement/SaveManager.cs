@@ -9,9 +9,8 @@ namespace DumbRide
         string _loadDataPath;
 
         LoadData _storedData;
-        GarageShopData _shopData;
 
-        public event Action<LoadData, GarageShopData> onDataLoaded;
+        public event Action<LoadData> onDataLoaded;
 
         protected override void Awake()
         {
@@ -48,18 +47,16 @@ namespace DumbRide
         }
         public void LoadData()
         {
-            _shopData = DefaultData.MyGarageShopData;
-
             if (File.Exists(_loadDataPath))
             {
                 string json = File.ReadAllText(_loadDataPath);
                 _storedData = JsonUtility.FromJson<LoadData>(json);
-                onDataLoaded?.Invoke(_storedData, _shopData);
+                onDataLoaded?.Invoke(_storedData);
             }
             else
             {
                 using (FileStream fileStream = new FileStream(_loadDataPath, FileMode.Create)) { }
-                SaveData(DefaultData.GetLoadData(_shopData.carPriceDatas.Length)); // we have only two cars in game
+                SaveData(DefaultData.GetLoadData(2)); // we have only two cars in game
             }
         }
         

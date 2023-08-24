@@ -16,7 +16,11 @@ namespace DumbRide
         int _price;
         
         // Start is called before the first frame update
-
+        public void UpdatePrice(int price)
+        {
+            _price = price;
+            _lvlContainer.UpdatePrice(price);
+        }
         public void Initialize(Sprite sprite, int curLvl, int maxLvl, int price, int id)
         {
             _slotId = id;

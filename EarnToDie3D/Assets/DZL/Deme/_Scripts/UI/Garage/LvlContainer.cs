@@ -33,6 +33,12 @@ namespace DumbRide
 
             SanityCheck();
         }
+        public void UpdatePrice(int price)
+        {
+            _priceText.SetText($"${price.ToString()}");
+            _priceText.ForceMeshUpdate(true);
+            print(price + "  IN UPDATE PRICE");
+        }
         public void IncreaseLevel()
         {
             _currentLvl++; // this is stored, no worries
