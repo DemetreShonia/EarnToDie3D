@@ -1,4 +1,5 @@
 using System;
+using TMPro;
 using UnityEngine;
 
 namespace DumbRide
@@ -6,7 +7,6 @@ namespace DumbRide
     public class GarageManager : MonoBehaviour
     {
         [SerializeField] GarageDataSO[] _garageDataSO;
-
         [SerializeField] GarageSlot[] _slots;
 
         GarageCarData[] _carDatas;

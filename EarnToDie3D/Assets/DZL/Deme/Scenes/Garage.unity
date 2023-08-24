@@ -350,6 +350,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 148640872}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &157521088 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 957340438557347990, guid: c1ca18b13e15738419cbd3708aa27726,
+    type: 3}
+  m_PrefabInstance: {fileID: 3688010072489133395}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &161901662
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,6 +1375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 355647f93d31e094ba61e46be5e45f4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moneyText: {fileID: 157521088}
 --- !u!1 &2061448610
 GameObject:
   m_ObjectHideFlags: 0
@@ -4572,6 +4585,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 787114838}
     m_Modifications:
+    - target: {fileID: 957340438557347990, guid: c1ca18b13e15738419cbd3708aa27726,
+        type: 3}
+      propertyPath: m_text
+      value: $1000
+      objectReference: {fileID: 0}
     - target: {fileID: 2676331230122525228, guid: c1ca18b13e15738419cbd3708aa27726,
         type: 3}
       propertyPath: m_Pivot.x
