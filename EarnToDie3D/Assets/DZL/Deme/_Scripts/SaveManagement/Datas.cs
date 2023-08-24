@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
 namespace DumbRide
@@ -74,32 +75,36 @@ namespace DumbRide
     /// <summary>
     /// InGameCarData is data which car will be used in game. Fuel liter, ammo amount and so on. It is calculated from GarageCarData
     /// </summary>
-    public struct InGameCarData
+    public class InGameCarData
     {
+        public int fuelLiter;
+        public DecoratorData[] decoratorDatas;
+        public int wheelMass;
         public float enginePower;
         public float gearPower;
-        public WheelData wheelData;
-        public DecoratorData bladeData;
-        public DecoratorData gunData;
-        public DecoratorData turboData;
-        public float fuelLiter;
-        public float turboLiter;
+
+        public void UnLockDecorator(DecoratorType type)
+        {
+            decoratorDatas[(int)type].isUnlocked = true;
+        }
+        public DecoratorData GetDecorator(DecoratorType type)
+        {
+            return decoratorDatas[(int)type];
+        }
+        public DecoratorData GetDecorator(int id)
+        {
+            return decoratorDatas[id];
+        }
     }
-    /// <summary>
-    /// Wheel Data is data for each wheel. Calculated from GarageCarData to be used in InGameCarData
-    /// </summary>
-    public struct WheelData
-    {
-        public float friction;
-        public float power;
-    }
+    
     /// <summary>
     /// Decorator Data is data for each decorator. Calculated from GarageCarData to be used in InGameCarData
     /// </summary>
     public struct DecoratorData
     {
         public bool isUnlocked;
-        public float power;
+        public int power;
+        public int quantity;
         public DecoratorType type;
     }
     public enum DecoratorType

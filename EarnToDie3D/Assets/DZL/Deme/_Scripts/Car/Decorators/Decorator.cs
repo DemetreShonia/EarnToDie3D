@@ -11,6 +11,7 @@ namespace DumbRide
         [SerializeField] protected AudioClip _soundClip;
         [SerializeField] protected DecoratorType _type;
 
+        public bool IsUnlocked => _data.isUnlocked;
         public DecoratorType Type => _type;
 
         public virtual void Initialize(DecoratorData data)

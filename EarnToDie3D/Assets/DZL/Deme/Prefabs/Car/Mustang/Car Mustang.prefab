@@ -1653,6 +1653,8 @@ MonoBehaviour:
   _visual: {fileID: 7287933110159229795}
   _soundClip: {fileID: 0}
   _type: 1
+  _bloodParticle: {fileID: 5354550226288271274, guid: cb3951d085347f44d885f97b1f67955b,
+    type: 3}
   _gunHead: {fileID: 4798724519225661946}
   _shootPosition: {fileID: 6680789163061363242}
   _rotationSpeed: 7
@@ -7737,7 +7739,7 @@ Transform:
   - {fileID: 2488067265498987223}
   - {fileID: 4898218973833278697}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1950870275165270840
 Rigidbody:
@@ -7786,8 +7788,8 @@ MonoBehaviour:
   - {fileID: 2504497214868803103}
   _decorators:
   - {fileID: 6345328254451251062}
-  - {fileID: 5087901731437439965}
   - {fileID: 9209793790929004770}
+  - {fileID: 5087901731437439965}
   _wheelBase: 4
   _rearTrack: 2.5
   _turnRadius: 5

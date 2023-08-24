@@ -95,13 +95,34 @@ namespace DumbRide
             {
                 return new InGameCarData
                 {
-                    bladeData = new DecoratorData { isUnlocked = false, power = 0 },
                     enginePower = 0,
                     fuelLiter = 0,
                     gearPower = 0,
-                    gunData = new DecoratorData { isUnlocked = false, power = 0 },
-                    turboData = new DecoratorData { isUnlocked = false, power = 0 },
-                    wheelData = new WheelData { friction = 0, power = 0 }
+                    wheelMass = 0,
+                    decoratorDatas = new DecoratorData[]
+                    {
+                        new DecoratorData
+                        {
+                            power = 100,
+                            quantity = 1,
+                            type = DecoratorType.Blade,
+                            isUnlocked = false
+                        },
+                        new DecoratorData
+                        {
+                            power = 100,
+                            quantity = 1,
+                            type = DecoratorType.Gun,
+                            isUnlocked = false
+                        },
+                        new DecoratorData
+                        {
+                            power = 100,
+                            quantity = 1,
+                            type = DecoratorType.Turbo,
+                            isUnlocked = false
+                        }
+                    }
                 };
             }
         }

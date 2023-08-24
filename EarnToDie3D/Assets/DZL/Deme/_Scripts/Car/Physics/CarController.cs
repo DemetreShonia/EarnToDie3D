@@ -14,7 +14,8 @@ namespace DumbRide
 
         [Header("Decorators")]
         [SerializeField]
-        Decorator[] _decorators;
+        Decorator[] _decorators; // Blade,Gun, Turbo order is necessary
+
 
         [Header("Steering Properties")]
         [SerializeField] float _wheelBase = 4f;
@@ -39,30 +40,25 @@ namespace DumbRide
 
             InGameCarData _selectedCarData = DefaultData.MyIngameCarData;
             float fuelLiter = _selectedCarData.fuelLiter;
-            float turboLiter = _selectedCarData.turboData.power; // by default 0...
+            float turboLiter = _selectedCarData.GetDecorator(DecoratorType.Turbo).power; // by default 0...
 
             fuelLiter = 10000;
             turboLiter = 100f;
 
             _carEngine.Initialize(_gearBox, _carInput, fuelLiter, turboLiter);
 
-            _selectedCarData.turboData.isUnlocked = true;
-            _selectedCarData.gunData.isUnlocked = true;
-            foreach (var decorator in _decorators)
+            _selectedCarData.UnLockDecorator(DecoratorType.Blade); // modifies decorator data
+            _selectedCarData.UnLockDecorator(DecoratorType.Gun); // modifies decorator data
+            _selectedCarData.UnLockDecorator(DecoratorType.Turbo); // modifies decorator data
+
+            for (int i = 0; i < _decorators.Length; i++)
             {
-                switch (decorator.Type)
-                {
-                    case DecoratorType.Blade:
-                        decorator.Initialize(_selectedCarData.bladeData);
-                        break;
-                    case DecoratorType.Gun:
-                        decorator.Initialize(_selectedCarData.gunData);
-                        break;
-                    case DecoratorType.Turbo:
-                        decorator.Initialize(_selectedCarData.turboData);
-                        (decorator as DecoratorTurbo).SetCarEngine(_carEngine);
-                        break;
-                }
+                var dec = _decorators[i];
+                var decData = _selectedCarData.GetDecorator(i);
+
+                dec.Initialize(decData);
+                if (dec.Type == DecoratorType.Turbo)
+                    (dec as DecoratorTurbo).SetCarEngine(_carEngine);
             }
         }
 
@@ -71,9 +67,8 @@ namespace DumbRide
             _carInput.UpdateInputs();
 
             foreach (var decorator in _decorators)
-            {
-                decorator.CheckForInputs();
-            }
+                if(decorator.IsUnlocked)
+                    decorator.CheckForInputs();
 
             AnimateWheels();
         }

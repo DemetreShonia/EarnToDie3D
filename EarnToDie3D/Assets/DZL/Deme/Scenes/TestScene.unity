@@ -3006,42 +3006,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3322385090368645610, guid: ff4af60cebde82e428c3152540c66cca,
-        type: 3}
-      propertyPath: m_Mass
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3805688730799344346, guid: ff4af60cebde82e428c3152540c66cca,
-        type: 3}
-      propertyPath: _maxTorque
-      value: 4000
-      objectReference: {fileID: 0}
-    - target: {fileID: 3976281292159325518, guid: ff4af60cebde82e428c3152540c66cca,
-        type: 3}
-      propertyPath: m_Mass
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5176724971497068613, guid: ff4af60cebde82e428c3152540c66cca,
-        type: 3}
-      propertyPath: m_Mass
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 5177919481363693145, guid: ff4af60cebde82e428c3152540c66cca,
-        type: 3}
-      propertyPath: m_Mass
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 7276966450076754662, guid: ff4af60cebde82e428c3152540c66cca,
         type: 3}
       propertyPath: m_Name
       value: Car Mustang
       objectReference: {fileID: 0}
-    - target: {fileID: 9209793790929004770, guid: ff4af60cebde82e428c3152540c66cca,
-        type: 3}
-      propertyPath: _bloodParticle
-      value: 
-      objectReference: {fileID: 5354550226288271274, guid: cb3951d085347f44d885f97b1f67955b,
-        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
