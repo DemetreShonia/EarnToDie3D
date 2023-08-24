@@ -8,6 +8,8 @@ namespace DumbRide
     {
         [SerializeField] GarageDataSO[] _garageDataSO;
         [SerializeField] GarageSlot[] _slots;
+        [SerializeField]
+        CarInGarage[] _carsInGarage;
 
         GarageCarData[] _carDatas;
         InGameCarData _selectedCarData; // this should be passed to car's controller to be used in car's movement
@@ -34,9 +36,14 @@ namespace DumbRide
             SelectedGarageCarData.partLevels[partId] = newLevel;
             SaveManager.Instance.SaveData(_carDatas);
             _slots[partId].UpdatePrice(SelectedCarDataSO.levels[partId].GetPrice(newLevel + 1)); // newlevel + 1 because, we have to show next price
+            _carsInGarage[_selectedCarId].SwitchDecorators(SelectedGarageCarData); // update decorators
         }
         public void SelectCar(int id)
         {
+
+            // WE NEED SOME KIND OF..
+
+            // ON SELECTED CAR CHANGED AND WILL BE EASY TO IMPLEMENT
             _selectedCarId = id;
             for (int i = 0; i < _carDatas.Length; i++)
             {
@@ -61,6 +68,8 @@ namespace DumbRide
             }
             _selectedCarData = TryBuildIngameCarData();
             InitializeSlots();
+
+            _carsInGarage[_selectedCarId].SwitchDecorators(SelectedGarageCarData); // update decorators
         }
         void InitializeSlots()
         {
