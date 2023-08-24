@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1237551897034031505}
   - component: {fileID: 4004652830737764252}
-  m_Layer: 0
+  m_Layer: 20
   m_Name: Pilar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ Transform:
   m_Children:
   - {fileID: 8692052912671012346}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4004652830737764252
 MeshFilter:
