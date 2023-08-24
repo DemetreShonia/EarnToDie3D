@@ -33,7 +33,7 @@ namespace DumbRide
         {
             SelectedGarageCarData.partLevels[partId] = newLevel;
             SaveManager.Instance.SaveData(_carDatas);
-            _slots[partId].UpdatePrice(SelectedCarDataSO.levels[partId].pricesPerLevel[newLevel]);
+            _slots[partId].UpdatePrice(SelectedCarDataSO.levels[partId].GetPrice(newLevel + 1)); // newlevel + 1 because, we have to show next price
         }
         public void SelectCar(int id)
         {
@@ -71,7 +71,7 @@ namespace DumbRide
             {
                 var maxLevelID = so.levels[i].pricesPerLevel.Length - 1;
                 var curLevelID = cd.partLevels[i];
-                var price = so.levels[i].pricesPerLevel[curLevelID];
+                var price = curLevelID + 1 <= maxLevelID ? so.levels[i].pricesPerLevel[curLevelID + 1] : maxLevelID;
 
                 _slots[i].Initialize(so.sprites[i], curLevelID, maxLevelID, price, i);
             }

@@ -39,7 +39,8 @@ namespace DumbRide
                 _lvlBarList.Add(bar);
             }
 
-            SanityCheck();
+            FillBarsTillCurrentLevel();
+            UpdatePrice(price);
 
             _button = GetComponentInChildren<Button>();
             _economyManager = EconomyManager.Instance;
@@ -67,23 +68,14 @@ namespace DumbRide
 
         public void UpdatePrice(int price)
         {
-            _priceText.SetText($"${price.ToString()}");
-            _priceText.ForceMeshUpdate(true);
-            print(price + "  IN UPDATE PRICE");
+            if (_currentLvl == _maxLvl || price == -1)
+                _priceText.text = "MAX";
+            else
+                _priceText.text = $"${price.ToString()}";
         }
         public void IncreaseLevel()
         {
             _currentLvl++; // this is stored, no worries
-            SanityCheck();
-            print(_currentLvl);
-        }
-        void SanityCheck()
-        {
-            if (_currentLvl == _maxLvl)
-                _priceText.text = "MAX";
-            else
-                _priceText.text = $"${_price.ToString()}";
-
             FillBarsTillCurrentLevel();
         }
 
