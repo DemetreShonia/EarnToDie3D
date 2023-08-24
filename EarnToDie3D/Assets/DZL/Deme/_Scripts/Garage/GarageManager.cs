@@ -69,11 +69,11 @@ namespace DumbRide
 
             for (int i = 0; i < _slots.Length; i++)
             {
-                var maxLevel = so.levels[i].pricesPerLevel.Length;
-                var curLevel = cd.partLevels[i];
-                var price = so.levels[i].pricesPerLevel[curLevel];
+                var maxLevelID = so.levels[i].pricesPerLevel.Length - 1;
+                var curLevelID = cd.partLevels[i];
+                var price = so.levels[i].pricesPerLevel[curLevelID];
 
-                _slots[i].Initialize(so.sprites[i], curLevel, maxLevel, price, i);
+                _slots[i].Initialize(so.sprites[i], curLevelID, maxLevelID, price, i);
             }
         }
         InGameCarData TryBuildIngameCarData()
