@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace DumbRide
 {
@@ -16,11 +18,29 @@ namespace DumbRide
         [SerializeField] InGameCarData _inGameCarData; // this should be passed to car's controller to be used in car's movement
         int _selectedCarId;
 
+
+        [SerializeField] Button _returnToMapButton;
+        [SerializeField] Button _goToGameButton;
+        void HandleButtons()
+        {
+            if(SceneSwitchManager.Instance == null)
+            {
+                _returnToMapButton.onClick.AddListener(() => SceneManager.LoadScene(0));
+                _goToGameButton.onClick.AddListener(() => SceneManager.LoadScene(2));
+
+                Debug.LogError("SceneSwitchManager is null");
+                return;
+            }
+            _returnToMapButton.onClick.AddListener(() => SceneSwitchManager.Instance.SwitchScene(0));
+            _goToGameButton.onClick.AddListener(() => SceneSwitchManager.Instance.SwitchScene(2));
+        }
+
         public GarageCarData SelectedGarageCarData => _carDatas[_selectedCarId];
         public GarageDataSO SelectedCarDataSO => _garageDataSO[_selectedCarId];
 
         void OnEnable()
         {
+            HandleButtons();
             SaveManager.Instance.onDataLoaded += OnDataLoaded;
             EconomyManager.Instance.onLevelChanged += PartWasUpgraded;
         }
