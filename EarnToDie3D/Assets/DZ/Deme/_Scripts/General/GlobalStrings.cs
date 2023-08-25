@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace DumbRide
 {
+    public struct Constants
+    {
+        public const int CAR_COUNT_IN_GAME = 2;
+    }
     public struct InputStrings
     {
         public const string HORIZONTAL = "Horizontal";

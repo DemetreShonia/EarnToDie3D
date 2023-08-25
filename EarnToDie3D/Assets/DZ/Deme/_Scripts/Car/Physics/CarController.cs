@@ -47,9 +47,9 @@ namespace DumbRide
 
             _carEngine.Initialize(_gearBox, _carInput, fuelLiter, turboLiter);
 
-            _selectedCarData.UnLockDecorator(DecoratorType.Blade); // modifies decorator data
-            _selectedCarData.UnLockDecorator(DecoratorType.Gun); // modifies decorator data
-            _selectedCarData.UnLockDecorator(DecoratorType.Turbo); // modifies decorator data
+            //_selectedCarData.UnLockDecorator(DecoratorType.Blade); // modifies decorator data
+            //_selectedCarData.UnLockDecorator(DecoratorType.Gun); // modifies decorator data
+            //_selectedCarData.UnLockDecorator(DecoratorType.Turbo); // modifies decorator data
 
             for (int i = 0; i < _decorators.Length; i++)
             {

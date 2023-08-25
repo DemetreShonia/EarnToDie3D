@@ -72,6 +72,8 @@ namespace DumbRide
                 _priceText.text = "MAX";
             else
                 _priceText.text = $"${price.ToString()}";
+
+            _price = price;
         }
         public void IncreaseLevel()
         {

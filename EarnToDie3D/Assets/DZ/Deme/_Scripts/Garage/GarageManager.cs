@@ -54,17 +54,18 @@ namespace DumbRide
         }
         void OnDataLoaded(LoadData loadedData)
         {
-            if(PlayerPrefs.GetInt("NotFirstTime") == 1)
-            {
-                _carDatas = loadedData.carData;
-                print("NOT FIRST TIME");
+            if(!loadedData.gameData.isNotFirstTime)
+            { 
+                // first time, use default data and save
+                _carDatas = DefaultData.GetGarageCarDataArray();
+                SaveManager.Instance.SaveData(_carDatas);
+                SaveManager.Instance.SaveData(isNotFirstTime: true);
+                print("FIRST TIME");
             }
             else
             {
-                _carDatas = DefaultData.GetGarageCarDataArray(_garageDataSO.Length);
-                SaveManager.Instance.SaveData(_carDatas);
-                PlayerPrefs.SetInt("NotFirstTime", 1);
-                print("FIRST TIME");
+                _carDatas = loadedData.carData; // not first time, use saved data
+                print("NOT FIRST TIME");
             }
             _selectedCarData = TryBuildIngameCarData();
             InitializeSlots();

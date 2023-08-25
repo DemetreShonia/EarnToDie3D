@@ -20,6 +20,7 @@ namespace DumbRide
     [System.Serializable]
     public struct GameData
     {
+        public bool isNotFirstTime;
         public int highScore;
         public int money;
         public int selectedCarId;

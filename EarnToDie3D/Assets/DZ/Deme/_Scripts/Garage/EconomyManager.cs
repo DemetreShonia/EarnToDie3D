@@ -14,6 +14,21 @@ namespace DumbRide
             base.Awake();
             UpdateMoneyUI();
         }
+        void OnEnable()
+        {
+            SaveManager.Instance.onDataLoaded += OnDataLoaded;
+        }
+        void OnDisable()
+        {
+            SaveManager.Instance.onDataLoaded -= OnDataLoaded;
+        }
+
+        void OnDataLoaded(LoadData data)
+        {
+            Money = data.gameData.money;
+            UpdateMoneyUI();
+        }
+
         void UpdateMoneyUI() => _moneyText.text = $"${Money}";
         /// <summary>
         /// Event raised when the level of selected car changes. Id of part (Slot) is passed as an argument. and New Level
@@ -43,17 +58,7 @@ namespace DumbRide
             Money += cost;
             UpdateMoneyUI();
             onMoneyChanged?.Invoke(cost);
+            SaveManager.Instance.SaveData(money: Money);
         }
-
-        // we might not need two similar... but for now it's ok
-        public void TrySpendMoney(int money)
-        {
-            if (Money >= money)
-            {
-                Money -= money;
-                onMoneyChanged?.Invoke(-money);
-            }
-        }
-
     }
 }

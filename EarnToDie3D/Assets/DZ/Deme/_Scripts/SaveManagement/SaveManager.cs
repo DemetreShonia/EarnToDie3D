@@ -34,9 +34,29 @@ namespace DumbRide
             _storedData.carData[newCarData.carID] = newCarData; // might throw error if indexes are not correctly assigned
             SaveData(_storedData);
         }
-        public void SaveData(GameData gameData)
+        public GameData TheGameData
         {
-            _storedData.gameData = gameData;
+            get => _storedData.gameData;
+            set
+            {
+                _storedData.gameData = value;
+                SaveData(_storedData);
+            }
+        }
+        public void SaveData(bool? isNotFirstTime = null, int? highScore = null, int? money = null, int? selectedCarId = null)
+        {
+            if (isNotFirstTime.HasValue)
+                _storedData.gameData.isNotFirstTime = isNotFirstTime.Value;
+
+            if (highScore.HasValue)
+                _storedData.gameData.highScore = highScore.Value;
+
+            if (money.HasValue)
+                _storedData.gameData.money = money.Value;
+
+            if (selectedCarId.HasValue)
+                _storedData.gameData.selectedCarId = selectedCarId.Value;
+
             SaveData(_storedData);
         }
         public void SaveData(LoadData storedData)
@@ -51,14 +71,15 @@ namespace DumbRide
             {
                 string json = File.ReadAllText(_loadDataPath);
                 _storedData = JsonUtility.FromJson<LoadData>(json);
-                onDataLoaded?.Invoke(_storedData);
             }
             else
             {
                 using (FileStream fileStream = new FileStream(_loadDataPath, FileMode.Create)) { }
-                SaveData(DefaultData.GetLoadData(2)); // we have only two cars in game
+                _storedData = DefaultData.GetLoadData();
+                SaveData(_storedData); // we have only two cars in game
             }
+            onDataLoaded?.Invoke(_storedData);
         }
-        
+
     }
 }

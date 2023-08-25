@@ -6,21 +6,21 @@ namespace DumbRide
 {
     public static class DefaultData
     {
-        public static LoadData GetLoadData(int carAmount)
+        public static LoadData GetLoadData()
         {
             return new LoadData
             {
                 gameData = MyGameData,
-                carData = GetGarageCarDataArray(carAmount)
+                carData = GetGarageCarDataArray()
             };
         }
 
-        public static GarageCarData[] GetGarageCarDataArray(int size)
+        public static GarageCarData[] GetGarageCarDataArray()
         {
             List<GarageCarData> carDataList = new List<GarageCarData>();
             // default is first
 
-            for (int i = 1; i < size; i++)
+            for (int i = 0; i < Constants.CAR_COUNT_IN_GAME; i++)
             {
                 carDataList.Add(new GarageCarData
                 {
@@ -33,6 +33,10 @@ namespace DumbRide
                     }
                 });
             }
+
+            // size will be more than 1 always
+            carDataList[0].isUnlocked = true; // unlock first car and select too
+            carDataList[0].isSelected = true;
             return carDataList.ToArray();
         }
         public static InGameCarData MyIngameCarData
@@ -79,7 +83,7 @@ namespace DumbRide
                 return new GameData
                 {
                     highScore = 0,
-                    money = 0,
+                    money = 1000,
                     selectedCarId = 0
                 };
             }
