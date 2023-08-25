@@ -83,7 +83,7 @@ namespace DumbRide
                 return new GameData
                 {
                     highScore = 0,
-                    money = 1000,
+                    money = 10000,
                     selectedCarId = 0
                 };
             }

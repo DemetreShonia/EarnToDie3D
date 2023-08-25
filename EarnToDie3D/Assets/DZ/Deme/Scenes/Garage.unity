@@ -180,6 +180,11 @@ MonoBehaviour:
   - {fileID: 1906441496333643538}
   _carsInGarage:
   - {fileID: 1903688782}
+  _inGameCarData:
+    fuelLiter: 0
+    wheelMass: 0
+    enginePower: 0
+    gearPower: 0
 --- !u!1 &51359269
 GameObject:
   m_ObjectHideFlags: 0
@@ -4761,6 +4766,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880620872093204448, guid: c1ca18b13e15738419cbd3708aa27726,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 360
+      objectReference: {fileID: 0}
+    - target: {fileID: 4880620872093204448, guid: c1ca18b13e15738419cbd3708aa27726,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 8409343478903485159, guid: c1ca18b13e15738419cbd3708aa27726,
         type: 3}

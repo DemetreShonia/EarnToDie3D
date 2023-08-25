@@ -56,6 +56,7 @@ namespace DumbRide
     /// <summary>
     /// InGameCarData is data which car will be used in game. Fuel liter, ammo amount and so on. It is calculated from GarageCarData
     /// </summary>
+    [System.Serializable]
     public class InGameCarData
     {
         public int fuelLiter;
@@ -66,6 +67,8 @@ namespace DumbRide
 
         public void UnLockDecorator(DecoratorType type)
         {
+            if(decoratorDatas == null)
+                decoratorDatas = new DecoratorData[Enum.GetNames(typeof(DecoratorType)).Length];
             decoratorDatas[(int)type].isUnlocked = true;
         }
         public DecoratorData GetDecorator(DecoratorType type)

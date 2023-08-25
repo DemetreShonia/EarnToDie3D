@@ -12,13 +12,24 @@ namespace DumbRide
         public class LevelData
         { 
             public int[] pricesPerLevel;
+            public int[] statsPerLevel;
 
+            public int GetStats(int level)
+            {
+                if (statsPerLevel.Length > level)
+                    return statsPerLevel[level];
+                return -1;
+            }
             public int GetPrice(int level)
             {
                 if (pricesPerLevel.Length > level)
                     return pricesPerLevel[level];
                 return -1;
             }
+        }
+        public LevelData GetLevelData(PartEnum part)
+        {
+            return levels[(int)part];
         }
         public LevelData[] levels; // 6 because, there is 6 car parts
         public Sprite[] sprites;

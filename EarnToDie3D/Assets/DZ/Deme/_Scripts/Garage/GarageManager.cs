@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace DumbRide
         CarInGarage[] _carsInGarage;
 
         GarageCarData[] _carDatas;
-        InGameCarData _selectedCarData; // this should be passed to car's controller to be used in car's movement
+        [SerializeField] InGameCarData _inGameCarData; // this should be passed to car's controller to be used in car's movement
         int _selectedCarId;
 
         public GarageCarData SelectedGarageCarData => _carDatas[_selectedCarId];
@@ -20,7 +21,6 @@ namespace DumbRide
 
         void OnEnable()
         {
-            _selectedCarData = DefaultData.MyIngameCarData;
             SaveManager.Instance.onDataLoaded += OnDataLoaded;
             EconomyManager.Instance.onLevelChanged += PartWasUpgraded;
         }
@@ -58,8 +58,8 @@ namespace DumbRide
             { 
                 // first time, use default data and save
                 _carDatas = DefaultData.GetGarageCarDataArray();
-                SaveManager.Instance.SaveData(_carDatas);
                 SaveManager.Instance.SaveData(isNotFirstTime: true);
+                SaveManager.Instance.SaveData(_carDatas);
                 print("FIRST TIME");
             }
             else
@@ -67,10 +67,16 @@ namespace DumbRide
                 _carDatas = loadedData.carData; // not first time, use saved data
                 print("NOT FIRST TIME");
             }
-            _selectedCarData = TryBuildIngameCarData();
-            InitializeSlots();
+
+
+            _selectedCarId = loadedData.gameData.selectedCarId; // load selected car id
+            // Call function which shows selected car
+
+            InitializeSlots(); // and it's slots
 
             _carsInGarage[_selectedCarId].SwitchDecorators(SelectedGarageCarData); // update decorators
+
+            _inGameCarData = BuildInGameCarData();
         }
         void InitializeSlots()
         {
@@ -86,27 +92,34 @@ namespace DumbRide
                 _slots[i].Initialize(so.sprites[i], curLevelID, maxLevelID, price, i);
             }
         }
-        InGameCarData TryBuildIngameCarData()
+        public InGameCarData BuildInGameCarData()
         {
-            try
-            {
-                int id = _selectedCarId;
-                GarageCarData loadedCarData = _carDatas[_selectedCarId];
+            var so = SelectedCarDataSO;
+            var cd = SelectedGarageCarData;
 
-                if (!loadedCarData.isUnlocked)
-                {
-                    Debug.Log("Car Is Not Unlocked and you can not use it!");
-
-                    return _selectedCarData;
-                }
-                return DefaultData.MyIngameCarData;
-            }
-            catch (Exception e)
+            InGameCarData data = new InGameCarData
             {
-                Debug.Log("Something Went wrong when creating current car data" + e.Message);
-                return _selectedCarData;
-            }
+                fuelLiter = so.GetLevelData(PartEnum.Fuel).GetStats(cd.GetLevel(PartEnum.Fuel)),
+                wheelMass = so.GetLevelData(PartEnum.Wheel).GetStats(cd.GetLevel(PartEnum.Wheel)),
+                enginePower = so.GetLevelData(PartEnum.Engine).GetStats(cd.GetLevel(PartEnum.Engine)),
+                gearPower = so.GetLevelData(PartEnum.Gear).GetStats(cd.GetLevel(PartEnum.Gear)),
+            };
+
+            var partToDecoratorMap = new Dictionary<PartEnum, DecoratorType>
+            {
+                { PartEnum.Gun, DecoratorType.Gun },
+                { PartEnum.Blade, DecoratorType.Blade },
+                { PartEnum.Turbo, DecoratorType.Turbo }
+            };
+
+            // check if part is unlocked, if it is, unlock decorator
+            foreach (var item in partToDecoratorMap)
+                if (cd.GetLevel(item.Key) > 0)
+                    data.UnLockDecorator(item.Value);
+
+            return data;
         }
+        
     }
 
 }
