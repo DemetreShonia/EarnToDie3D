@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/DZ/Deme/Scenes/Garage.unity
     guid: 083f107901f381f4b8ec869459cd6fe0
   - enabled: 1
-    path: Assets/DZ/Zuka/Scenes/ZukaScene.unity
-    guid: 07e151be6b313f9429681b92bfbb1885
+    path: Assets/DZ/Deme/Scenes/GameScene.unity
+    guid: cf5d8fd2275ce1b45ab7a44c46472956
   m_configObjects: {}
