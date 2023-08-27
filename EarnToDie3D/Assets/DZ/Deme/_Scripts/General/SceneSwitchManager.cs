@@ -12,6 +12,7 @@ namespace DumbRide
         {
             base.Awake();
             DontDestroyOnLoad(gameObject);
+            _currentSceneId = SceneManager.GetActiveScene().buildIndex;
             _audioSource = GetComponent<AudioSource>();
             StartBgMusic();
         }

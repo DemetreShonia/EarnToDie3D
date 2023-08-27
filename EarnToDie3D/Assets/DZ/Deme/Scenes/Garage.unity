@@ -168,6 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25c5610bdddfbc4581db8215ee49a16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _sceneSwitchManager: {fileID: 7496993829730886484, guid: c9e4b82905223c34e895aa8d08908acd,
+    type: 3}
   _garageDataSO:
   - {fileID: 11400000, guid: 949ff0fb9913fab4c89dcf3730aab5fe, type: 2}
   - {fileID: 11400000, guid: 3c4f5448f79bb6842a1523069456c0d1, type: 2}
@@ -4779,6 +4781,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556952605092016414, guid: c1ca18b13e15738419cbd3708aa27726,
+        type: 3}
+      propertyPath: m_text
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556952605092016414, guid: c1ca18b13e15738419cbd3708aa27726,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556952605092016414, guid: c1ca18b13e15738419cbd3708aa27726,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 37
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642855887625541169, guid: c1ca18b13e15738419cbd3708aa27726,
+        type: 3}
+      propertyPath: m_Name
+      value: BTN Menu
       objectReference: {fileID: 0}
     - target: {fileID: 8409343478903485159, guid: c1ca18b13e15738419cbd3708aa27726,
         type: 3}

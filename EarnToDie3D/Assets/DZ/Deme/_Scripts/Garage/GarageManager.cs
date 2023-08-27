@@ -9,6 +9,7 @@ namespace DumbRide
 {
     public class GarageManager : MonoBehaviour
     {
+        [SerializeField] SceneSwitchManager _sceneSwitchManager;
         [SerializeField] GarageDataSO[] _garageDataSO;
         [SerializeField] GarageSlot[] _slots;
         [SerializeField]
@@ -21,36 +22,40 @@ namespace DumbRide
 
         [SerializeField] Button _returnToMapButton;
         [SerializeField] Button _goToGameButton;
-        void HandleButtons()
-        {
-            if(SceneSwitchManager.Instance == null)
-            {
-                _returnToMapButton.onClick.AddListener(() => SceneManager.LoadScene(0));
-                _goToGameButton.onClick.AddListener(() => SceneManager.LoadScene(2));
-
-                Debug.LogError("SceneSwitchManager is null");
-                return;
-            }
-            _returnToMapButton.onClick.AddListener(() => SceneSwitchManager.Instance.SwitchScene(0));
-            _goToGameButton.onClick.AddListener(() => SceneSwitchManager.Instance.SwitchScene(2));
-        }
 
         public GarageCarData SelectedGarageCarData => _carDatas[_selectedCarId];
         public GarageDataSO SelectedCarDataSO => _garageDataSO[_selectedCarId];
 
         void OnEnable()
         {
-            HandleButtons();
+            if (SceneSwitchManager.Instance == null)
+            {
+                Instantiate(_sceneSwitchManager);
+            }
+            _returnToMapButton.onClick.AddListener(HandleMenuButton);
+            _goToGameButton.onClick.AddListener(HandleGoButton);
+
             SaveManager.Instance.onDataLoaded += OnDataLoaded;
             EconomyManager.Instance.onLevelChanged += PartWasUpgraded;
         }
         void OnDisable()
         {
+            _returnToMapButton.onClick.RemoveListener(HandleMenuButton);
+            _goToGameButton.onClick.RemoveListener(HandleGoButton);
+
             SaveManager.Instance.onDataLoaded -= OnDataLoaded;
             EconomyManager.Instance.onLevelChanged -= PartWasUpgraded;
         }
 
-       
+        void HandleMenuButton()
+        {
+            SceneSwitchManager.Instance.SwitchScene(0);
+        }
+        void HandleGoButton()
+        {
+            SceneSwitchManager.Instance.SwitchScene(2);
+        }
+
         public void PartWasUpgraded(int partId, int newLevel)
         {
             SelectedGarageCarData.partLevels[partId] = newLevel;
@@ -136,6 +141,34 @@ namespace DumbRide
             foreach (var item in partToDecoratorMap)
                 if (cd.GetLevel(item.Key) > 0)
                     data.UnLockDecorator(item.Value);
+
+            for (int i = 0; i < data.decoratorDatas.Length; i++)
+            {
+                var curData = data.decoratorDatas[i];
+                if (!curData.isUnlocked)
+                    continue;
+
+                switch(curData.type)
+                {
+                    case DecoratorType.Gun:
+                        var gunDamage = so.GetLevelData(PartEnum.Gun).GetStats(0);
+                        var ammoCount = cd.GetLevel(PartEnum.Gun);
+                        curData.power = gunDamage;
+                        curData.quantity = ammoCount;
+                        break;
+                    case DecoratorType.Blade:
+                        var bladeDamage = so.GetLevelData(PartEnum.Blade).GetStats(cd.GetLevel(PartEnum.Blade));
+                        curData.power = bladeDamage;
+                        curData.quantity = 1;
+                        break;
+                    case DecoratorType.Turbo:
+                        var turboLiter = so.GetLevelData(PartEnum.Turbo).GetStats(cd.GetLevel(PartEnum.Turbo));
+                        var turboPower = cd.GetLevel(PartEnum.Gun);
+                        curData.power = turboPower;
+                        curData.quantity = turboLiter;
+                        break;
+                }
+            }
 
             return data;
         }

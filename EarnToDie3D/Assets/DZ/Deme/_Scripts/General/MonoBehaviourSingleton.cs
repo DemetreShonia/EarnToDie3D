@@ -12,7 +12,10 @@ namespace DumbRide
             if (Instance == null)
                 Instance = this as T;
             else
+            {
+                Debug.Log("DESTROYED");
                 Destroy(gameObject);
+            }
         }
     }
 }
