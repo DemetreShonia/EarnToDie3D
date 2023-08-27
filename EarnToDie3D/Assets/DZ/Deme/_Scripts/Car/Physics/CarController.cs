@@ -26,8 +26,24 @@ namespace DumbRide
         CarGearBox _gearBox;
         CarInput _carInput;
         CarEngine _carEngine;
+
+        InGameCarData _dataFromGarage;
         #endregion
 
+
+        void LoadInGameCarDataFromGarage()
+        {
+            // Love this function <3
+            if(SceneSwitchManager.Instance == null)
+            {
+                _dataFromGarage = DefaultData.MyIngameCarData;
+                Debug.LogWarning("Using Default Data, Garage Data Passer was not found!");
+            }
+            else
+            {
+                _dataFromGarage = SceneSwitchManager.Instance.InGameCarData;
+            }
+        }
         void Start()
         {
             _carRb = GetComponent<Rigidbody>();
@@ -38,27 +54,31 @@ namespace DumbRide
             _carRb.centerOfMass = _centerOfMass.localPosition;
             _gearBox.Initialize(_wheels);
 
-            InGameCarData _selectedCarData = DefaultData.MyIngameCarData;
-            float fuelLiter = _selectedCarData.fuelLiter;
-            float turboLiter = _selectedCarData.GetDecorator(DecoratorType.Turbo).power; // by default 0...
+            LoadInGameCarDataFromGarage();
+            float fuelLiter = _dataFromGarage.fuelLiter;
+            float turboLiter = 1000; // _dataFromGarage.GetDecorator(DecoratorType.Turbo).quantity; // by default 0...
 
-            fuelLiter = 10000;
-            turboLiter = 100f;
 
             _carEngine.Initialize(_gearBox, _carInput, fuelLiter, turboLiter);
 
-            //_selectedCarData.UnLockDecorator(DecoratorType.Blade); // modifies decorator data
-            //_selectedCarData.UnLockDecorator(DecoratorType.Gun); // modifies decorator data
-            //_selectedCarData.UnLockDecorator(DecoratorType.Turbo); // modifies decorator data
-
-            for (int i = 0; i < _decorators.Length; i++)
+            if(_dataFromGarage.decoratorDatas != null)
             {
-                var dec = _decorators[i];
-                var decData = _selectedCarData.GetDecorator(i);
+                // if we have not purchased anything, what should we enable? Nothing!
+                for (int i = 0; i < _decorators.Length; i++)
+                {
+                    var dec = _decorators[i];
+                    var decData = _dataFromGarage.GetDecorator(i);
 
-                dec.Initialize(decData);
-                if (dec.Type == DecoratorType.Turbo)
-                    (dec as DecoratorTurbo).SetCarEngine(_carEngine);
+                    dec.Initialize(decData);
+                    if (dec.Type == DecoratorType.Turbo)
+                        (dec as DecoratorTurbo).SetCarEngine(_carEngine);
+                }
+            }
+            else
+            {
+                // disable all decorators on car
+                for (int i = 0; i < _decorators.Length; i++)
+                    _decorators[i].SetActive(false);
             }
         }
 

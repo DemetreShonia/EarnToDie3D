@@ -69,10 +69,9 @@ namespace DumbRide
         {
             if(decoratorDatas == null)
                 decoratorDatas = new DecoratorData[Enum.GetNames(typeof(DecoratorType)).Length];
-
-            var data = decoratorDatas[(int)type];
-            data.isUnlocked = true;
-            data.type = type;
+            int id = (int)type;
+            decoratorDatas[id].isUnlocked = true;
+            decoratorDatas[id].type = type;
         }
         public DecoratorData GetDecorator(DecoratorType type)
         {

@@ -16,7 +16,6 @@ namespace DumbRide
         CarInGarage[] _carsInGarage;
 
         GarageCarData[] _carDatas;
-        [SerializeField] InGameCarData _inGameCarData; // this should be passed to car's controller to be used in car's movement
         int _selectedCarId;
 
 
@@ -53,6 +52,7 @@ namespace DumbRide
         }
         void HandleGoButton()
         {
+            SceneSwitchManager.Instance.PassInGameCarData(BuildInGameCarData());
             SceneSwitchManager.Instance.SwitchScene(2);
         }
 
@@ -101,7 +101,6 @@ namespace DumbRide
 
             _carsInGarage[_selectedCarId].SwitchDecorators(SelectedGarageCarData); // update decorators
 
-            _inGameCarData = BuildInGameCarData();
         }
         void InitializeSlots()
         {
@@ -141,6 +140,10 @@ namespace DumbRide
             foreach (var item in partToDecoratorMap)
                 if (cd.GetLevel(item.Key) > 0)
                     data.UnLockDecorator(item.Value);
+
+            // meaning that we have no decorators purchased yet
+            if (data.decoratorDatas == null)
+                return data;
 
             for (int i = 0; i < data.decoratorDatas.Length; i++)
             {

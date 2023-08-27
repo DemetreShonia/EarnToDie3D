@@ -5,6 +5,8 @@ namespace DumbRide
 {
     public class SceneSwitchManager : MonoBehaviourSingleton<SceneSwitchManager>
     {
+        public InGameCarData InGameCarData { get; private set; }
+
         [SerializeField] AudioClip[] _bgMusics;
         AudioSource _audioSource;
         int _currentSceneId;
@@ -27,6 +29,10 @@ namespace DumbRide
         {
             _audioSource.clip = _bgMusics[_currentSceneId];
             _audioSource.PlayDelayed(1);
+        }
+        public void PassInGameCarData(InGameCarData inGameCarData)
+        {
+            InGameCarData = inGameCarData;
         }
     }
 }

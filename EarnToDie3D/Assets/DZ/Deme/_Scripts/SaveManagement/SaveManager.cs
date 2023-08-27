@@ -67,6 +67,7 @@ namespace DumbRide
         }
         public void LoadData()
         {
+            print("Loaded Data");
             if (File.Exists(_loadDataPath))
             {
                 string json = File.ReadAllText(_loadDataPath);
