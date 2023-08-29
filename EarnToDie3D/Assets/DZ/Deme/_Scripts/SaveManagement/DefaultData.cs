@@ -45,7 +45,7 @@ namespace DumbRide
             {
                 return new InGameCarData
                 {
-                    enginePower = 0,
+                    engineTorque = 0,
                     fuelLiter = 0,
                     gearPower = 0,
                     wheelMass = 0,

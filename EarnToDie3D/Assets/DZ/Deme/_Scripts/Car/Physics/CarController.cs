@@ -30,6 +30,21 @@ namespace DumbRide
         InGameCarData _dataFromGarage;
         #endregion
 
+        void Start()
+        {
+            SetInitialReferences();
+            LoadInGameCarDataFromGarage();
+            _gearBox.Initialize(_wheels);
+            _carEngine.Initialize(_gearBox, _carInput, _dataFromGarage.fuelLiter, _dataFromGarage.engineTorque);
+            InitializeDecorators();
+            InitializeWheels();
+        }
+
+        void InitializeWheels()
+        {
+            foreach(var wheel in _wheels)
+                wheel.InitializeWheel(_dataFromGarage.wheelMass);
+        }
 
         void LoadInGameCarDataFromGarage()
         {
@@ -44,24 +59,17 @@ namespace DumbRide
                 _dataFromGarage = SceneSwitchManager.Instance.InGameCarData;
             }
         }
-        void Start()
+        void SetInitialReferences()
         {
             _carRb = GetComponent<Rigidbody>();
             _gearBox = GetComponent<CarGearBox>();
             _carInput = GetComponent<CarInput>();
             _carEngine = GetComponent<CarEngine>();
-
             _carRb.centerOfMass = _centerOfMass.localPosition;
-            _gearBox.Initialize(_wheels);
-
-            LoadInGameCarDataFromGarage();
-            float fuelLiter = _dataFromGarage.fuelLiter;
-            float turboLiter = 1000; // _dataFromGarage.GetDecorator(DecoratorType.Turbo).quantity; // by default 0...
-
-
-            _carEngine.Initialize(_gearBox, _carInput, fuelLiter, turboLiter);
-
-            if(_dataFromGarage.decoratorDatas != null)
+        }
+        void InitializeDecorators()
+        {
+            if (_dataFromGarage.decoratorDatas != null)
             {
                 // if we have not purchased anything, what should we enable? Nothing!
                 for (int i = 0; i < _decorators.Length; i++)
@@ -71,7 +79,10 @@ namespace DumbRide
 
                     dec.Initialize(decData);
                     if (dec.Type == DecoratorType.Turbo)
+                    {
                         (dec as DecoratorTurbo).SetCarEngine(_carEngine);
+                        _carEngine.SetTurbo(decData.quantity, decData.power);
+                    }
                 }
             }
             else
@@ -81,7 +92,6 @@ namespace DumbRide
                     _decorators[i].SetActive(false);
             }
         }
-
         void Update()
         {
             _carInput.UpdateInputs();

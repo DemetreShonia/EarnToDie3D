@@ -1,6 +1,4 @@
 using System;
-using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 namespace DumbRide
 {
@@ -62,13 +60,18 @@ namespace DumbRide
         public int fuelLiter;
         public DecoratorData[] decoratorDatas;
         public int wheelMass;
-        public float enginePower;
+        public float engineTorque;
         public float gearPower;
 
         public void UnLockDecorator(DecoratorType type)
         {
             if(decoratorDatas == null)
+            {
                 decoratorDatas = new DecoratorData[Enum.GetNames(typeof(DecoratorType)).Length];
+
+                for (int i = 0; i < decoratorDatas.Length; i++)
+                    decoratorDatas[i] = new DecoratorData();
+            }
             int id = (int)type;
             decoratorDatas[id].isUnlocked = true;
             decoratorDatas[id].type = type;
@@ -86,7 +89,7 @@ namespace DumbRide
     /// <summary>
     /// Decorator Data is data for each decorator. Calculated from GarageCarData to be used in InGameCarData
     /// </summary>
-    public struct DecoratorData
+    public class DecoratorData
     {
         public bool isUnlocked;
         public int power;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace DumbRide
@@ -28,6 +26,7 @@ namespace DumbRide
 
         public override void PlaySound()
         {
+
         }
 
         void Shoot()

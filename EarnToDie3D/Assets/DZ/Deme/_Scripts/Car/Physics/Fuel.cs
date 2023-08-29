@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace DumbRide
 {
     public class Fuel
     {
-        float _maxFuelCapacity = 100f;
-        float _currentFuel = 100f;
-        float _fuelConsumptionRate = 1f;
+        float _maxFuelCapacity;
+        float _currentFuel;
+        float _fuelConsumptionRate;
         public float FuelLeftPercent => _maxFuelCapacity != 0  ? _currentFuel / _maxFuelCapacity : 0;
         public bool IsTankEmpty => _currentFuel == 0f;
 
-        public Fuel(float maxFuelCapacity, float currentFuel = 0, float fuelConsumptionRate = 1)
+        public Fuel(float maxFuelCapacity, float currentFuel = 0, float fuelConsumptionRate = 0.0625f)
         {
             if (maxFuelCapacity == 0)
                 Debug.LogWarning("Fuel capacity is 0");

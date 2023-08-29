@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace DumbRide
@@ -125,7 +122,7 @@ namespace DumbRide
             {
                 fuelLiter = so.GetLevelData(PartEnum.Fuel).GetStats(cd.GetLevel(PartEnum.Fuel)),
                 wheelMass = so.GetLevelData(PartEnum.Wheel).GetStats(cd.GetLevel(PartEnum.Wheel)),
-                enginePower = so.GetLevelData(PartEnum.Engine).GetStats(cd.GetLevel(PartEnum.Engine)),
+                engineTorque = so.GetLevelData(PartEnum.Engine).GetStats(cd.GetLevel(PartEnum.Engine)),
                 gearPower = so.GetLevelData(PartEnum.Gear).GetStats(cd.GetLevel(PartEnum.Gear)),
             };
 
@@ -166,7 +163,9 @@ namespace DumbRide
                         break;
                     case DecoratorType.Turbo:
                         var turboLiter = so.GetLevelData(PartEnum.Turbo).GetStats(cd.GetLevel(PartEnum.Turbo));
-                        var turboPower = cd.GetLevel(PartEnum.Gun);
+                        var turboPower = so.GetLevelData(PartEnum.Turbo).GetStats(0);
+                        print(turboLiter);
+                        print(turboPower);
                         curData.power = turboPower;
                         curData.quantity = turboLiter;
                         break;

@@ -41,11 +41,14 @@ namespace DumbRide
         public void ApplyMotorTorque(float torque) => _wheelCollider.motorTorque = torque;
         public void ApplyBrakeTorque(float brakeTorque) => _wheelCollider.brakeTorque = brakeTorque;
         public void ApplySteerAngle(float angle) => _wheelCollider.steerAngle = angle;
+        
+        public void InitializeWheel(int mass) => _wheelCollider.mass = mass; // this can be  wheel info in future, used for level system
         public void AnimateWheel()
         {
             _wheelCollider.GetWorldPose(out Vector3 pos, out Quaternion rot);
             _wheelMesh.transform.position = pos;
             _wheelMesh.transform.rotation = rot;
         }
+        
     }
 }
