@@ -19,7 +19,7 @@ namespace DumbRide
         }
         public void UpdateCurrentAngle(float percent)
         {
-            _currentAngle = Mathf.Lerp(_maxAngle, _minAngle, percent); // reversed
+            _currentAngle = Mathf.Lerp(_minAngle, _maxAngle, percent); // reversed
             _needleTransform.eulerAngles = new Vector3(0, 0, _currentAngle);
         }
     }

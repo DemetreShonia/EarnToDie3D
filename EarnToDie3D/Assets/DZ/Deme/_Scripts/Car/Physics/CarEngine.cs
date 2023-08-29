@@ -14,6 +14,7 @@ namespace DumbRide
         float _maxTorque;
         float _turboTorque;
 
+        const float _maxCapturedSpeed = 80f;
         public float CurrentSpeed => _rb.velocity.magnitude * 3.6f;
 
         float _currentTorque;
@@ -25,6 +26,8 @@ namespace DumbRide
         Fuel _petrol, _turbo;
 
         bool _isCarTurboEnabled;
+        CarUIManager _carUiManager;
+
         public void Initialize(CarGearBox gearBox, CarInput carInput, float maxFuel, float maxTorque)
         {
             _maxTorque = maxTorque;
@@ -36,16 +39,24 @@ namespace DumbRide
 
             _rb = GetComponent<Rigidbody>();
             _isInitialized = true;
+
+            _carUiManager = CarUIManager.Instance;
         }
         public void SetTurbo(float turboFuel, float turboTorque)
         {
             _turbo = new Fuel(turboFuel);
             _turboTorque = turboTorque;
         }
-
         public void Move()
         {
             if (!_isInitialized) return;
+
+            if(_carUiManager != null)
+            {
+                _carUiManager.UpdateFuelMeter(_petrol.FuelLeftPercent);
+                _carUiManager.UpdateSpeedoMeter(CurrentSpeed / _maxCapturedSpeed);
+                _carUiManager.UpdateTurboMeter(_turbo.FuelLeftPercent);
+            }
 
             if (_petrol.IsTankEmpty)
             {
@@ -58,14 +69,13 @@ namespace DumbRide
             _currentTorque = _rpmTorqueCurve.Evaluate(Mathf.Abs(_carInput.MoveInput)) * _maxTorque; // * GearNum
 
             float torqueSigned = Mathf.Sign(_carInput.MoveInput) * _currentTorque;
-            print(_isCarTurboEnabled);
             if (_isCarTurboEnabled)
             {
                 if(_turbo.IsTankEmpty)
                 {
                     Debug.Log("Turbo Is Out");
                 }
-                Debug.Log("CONSUMING TURBO");
+                    
                 torqueSigned += _turboTorque;
                 _turbo.ConsumeFuel(CurrentSpeed * Time.deltaTime);
             }

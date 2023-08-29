@@ -1,21 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 namespace DumbRide
 {
-    public class CarUIManager : MonoBehaviour
+    public class CarUIManager : MonoBehaviourSingleton<CarUIManager>
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        [SerializeField] NeedleMeter _fuelMeter;
+        [SerializeField] NeedleMeter _speedoMeter;
+        [SerializeField] NeedleMeter _turboMeter;
         
+        public void UpdateTurboMeter(float percent)
+        {
+            _turboMeter.UpdateCurrentAngle(percent);
         }
-
-        // Update is called once per frame
-        void Update()
+        public void UpdateFuelMeter(float percent)
         {
-        
+            _fuelMeter.UpdateCurrentAngle(percent);
+        }
+        public void UpdateSpeedoMeter(float percent)
+        {
+            _speedoMeter.UpdateCurrentAngle(percent);
         }
     }
 }
