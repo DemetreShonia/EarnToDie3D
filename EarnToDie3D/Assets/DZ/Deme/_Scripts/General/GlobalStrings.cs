@@ -21,6 +21,7 @@ namespace DumbRide
     }
     public struct TagStrings
     {
+        public const string ZOMBIE_PART = "ZombiePart";
         public const string CAR_TAG = "Car";
         public const string WHEEL_TAG = "Wheel";
         public const string PLAYER_TAG = "Player";

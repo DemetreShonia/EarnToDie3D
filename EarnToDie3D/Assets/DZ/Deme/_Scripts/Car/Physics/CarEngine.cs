@@ -55,7 +55,8 @@ namespace DumbRide
             {
                 _carUiManager.UpdateFuelMeter(_petrol.FuelLeftPercent);
                 _carUiManager.UpdateSpeedoMeter(CurrentSpeed / _maxCapturedSpeed);
-                _carUiManager.UpdateTurboMeter(_turbo.FuelLeftPercent);
+                if(_turbo != null)
+                    _carUiManager.UpdateTurboMeter(_turbo.FuelLeftPercent);
             }
 
             if (_petrol.IsTankEmpty)

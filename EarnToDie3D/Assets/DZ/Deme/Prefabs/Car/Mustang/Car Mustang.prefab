@@ -542,7 +542,7 @@ GameObject:
   - component: {fileID: 6919458815188207668}
   - component: {fileID: 5176724971497068613}
   - component: {fileID: 6406090196617123531}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wheel-Left-Rear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1126,7 +1126,7 @@ GameObject:
   - component: {fileID: 3935803462093398854}
   - component: {fileID: 3976281292159325518}
   - component: {fileID: 2504497214868803103}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wheel-Right-Rear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1379,7 +1379,7 @@ GameObject:
   - component: {fileID: 2740402095178047389}
   - component: {fileID: 5177919481363693145}
   - component: {fileID: 5663564745026211208}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wheel-Left-Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1502,7 +1502,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2625,7 +2625,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -2891,7 +2891,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3577,7 +3577,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -3783,7 +3783,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4638689292739706334
 Transform:
   m_ObjectHideFlags: 0
@@ -3792,7 +3792,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3423489372366850089}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.311}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3814,7 +3814,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -5104,7 +5104,7 @@ GameObject:
   - component: {fileID: 1310313550199033261}
   - component: {fileID: 3322385090368645610}
   - component: {fileID: 5179688172920071776}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wheel-Right-Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5359,7 +5359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6697635947374498131}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5433,7 +5433,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d344c058a8a564d878eb39f921c8a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hitForce: 100
+  _hitForce: 1
 --- !u!1 &5656451454184542676
 GameObject:
   m_ObjectHideFlags: 0
@@ -7715,6 +7715,7 @@ GameObject:
   - component: {fileID: 76574592556360127}
   - component: {fileID: 3082117883857208534}
   - component: {fileID: 3805688730799344346}
+  - component: {fileID: 6306608673240986340}
   m_Layer: 0
   m_Name: Car Mustang
   m_TagString: Untagged
@@ -7739,7 +7740,7 @@ Transform:
   - {fileID: 2488067265498987223}
   - {fileID: 4898218973833278697}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1950870275165270840
 Rigidbody:
@@ -7834,7 +7835,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029385d59e5837b4bb86b84a54f4bb02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxTorque: 1000
   _rpmTorqueCurve:
     serializedVersion: 2
     m_Curve:
@@ -7886,8 +7886,27 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _breakTorque: 1000
-  _turboTorque: 3000
+--- !u!65 &6306608673240986340
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7276966450076754662}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8, y: 1, z: 4}
+  m_Center: {x: 0, y: -0.3, z: 0.03400389}
 --- !u!1 &7287933110159229795
 GameObject:
   m_ObjectHideFlags: 0
@@ -9130,7 +9149,7 @@ GameObject:
   - component: {fileID: 2211861593970087400}
   - component: {fileID: 5558982631414641432}
   - component: {fileID: 6135356488990084271}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}

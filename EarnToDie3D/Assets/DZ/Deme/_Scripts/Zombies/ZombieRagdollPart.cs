@@ -33,5 +33,9 @@ namespace DumbRide
         {
             _rb.isKinematic = false;
         }
+        public void AdjustRBMass(float factor)
+        {
+            _rb.mass *= factor;
+        }
     }
 }

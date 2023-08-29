@@ -32,6 +32,7 @@ namespace DumbRide
         void Start()
         {
             _ragdollParts = GetComponentsInChildren<ZombieRagdollPart>();
+
             _animator = GetComponent<Animator>();
             _waitForSeconds = new WaitForSeconds(_standUpTimeAfterKick);
 
@@ -101,13 +102,19 @@ namespace DumbRide
         {
             _isHitByCar = true;
 
+            if (_animator.enabled)
+                EnableRagdoll();
+
+            _ragdollParent.SetParent(null);
+        }
+
+        public void EnableRagdoll() // called by trigger hit by a car
+        {
             _animator.enabled = false;
             foreach (var part in _ragdollParts)
             {
                 part.EnablePart();
             }
-
-            _ragdollParent.SetParent(null);
         }
         IEnumerator StandUp()
         {

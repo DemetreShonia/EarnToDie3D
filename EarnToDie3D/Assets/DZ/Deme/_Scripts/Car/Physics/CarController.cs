@@ -144,6 +144,22 @@ namespace DumbRide
             foreach (var wheel in _wheels)
                 wheel.AnimateWheel();
         }
+
+        void OnCollisionEnter(Collision collision)
+        {
+            ContactPoint firstContact = collision.GetContact(0);
+            if (firstContact.thisCollider.gameObject.TryGetComponent(out CarHitter carHitter))
+                carHitter.Hit(firstContact.otherCollider.transform);
+        }
+        void OnTriggerEnter(Collider other)
+        {
+            var go = other.gameObject;
+            if (go.CompareTag(TagStrings.ZOMBIE_PART))
+            {
+                if (go.transform.root.TryGetComponent(out ZombieController zombie))
+                    zombie.EnableRagdoll();
+            }
+        }
     }
 
 }

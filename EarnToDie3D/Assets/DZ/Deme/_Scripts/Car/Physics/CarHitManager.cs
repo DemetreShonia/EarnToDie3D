@@ -17,7 +17,7 @@ namespace DumbRide
 
             foreach (var hitter in _hitters)
             {
-                hitter.Initialize(_rb);
+                hitter.Initialize(_rb, _hitForce);
             }
         }
 
