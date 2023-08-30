@@ -109,10 +109,10 @@ namespace DumbRide
             _ragdollParent.SetParent(null);
         }
 
-        public void CarTriggersToEnableRagdoll(float carSpeed)
+        public void CarTriggersAsHit(float carSpeed)
         {
             if (carSpeed > _minimumSpeedToRagdoll)
-                EnableRagdoll();
+                CarHitsZombie();
         }
         void EnableRagdoll() // called by trigger hit by a car
         {
@@ -151,6 +151,7 @@ namespace DumbRide
             }
             _animator.enabled = true; // this can be interpolated
 
+            print("TRIGGER WAS SET");
             _animator.SetTrigger(isFacingUp ? AnimationStrings.STAND_UP_FRONT : AnimationStrings.STAND_UP_BACK);
 
             _isHitByCar = false;
