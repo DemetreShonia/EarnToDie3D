@@ -5,6 +5,7 @@ namespace DumbRide
 {
     public class ZombieController : MonoBehaviour
     {
+        [SerializeField] float _minimumSpeedToRagdoll = 5f; // minimum speed to hit by car to ragdoll
         [SerializeField] Transform _ragdollParent;
         [SerializeField] float _standUpTimeAfterKick = 5f;
         [SerializeField] float _resettingBonesTime = 0.5f;
@@ -108,7 +109,12 @@ namespace DumbRide
             _ragdollParent.SetParent(null);
         }
 
-        public void EnableRagdoll() // called by trigger hit by a car
+        public void CarTriggersToEnableRagdoll(float carSpeed)
+        {
+            if (carSpeed > _minimumSpeedToRagdoll)
+                EnableRagdoll();
+        }
+        void EnableRagdoll() // called by trigger hit by a car
         {
             _animator.enabled = false;
             foreach (var part in _ragdollParts)
@@ -125,9 +131,6 @@ namespace DumbRide
             else
                 pos = _ragdollParent.position;
 
-            //var s = GameObject.CreatePrimitive(PrimitiveType.Sphere).transform;
-            //s.position = pos;
-            //s.localScale = Vector3.one * 0.1f;
             transform.position = pos;
 
             _ragdollParent.SetParent(transform);
