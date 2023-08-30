@@ -14,6 +14,11 @@ namespace DumbRide
             public int[] pricesPerLevel;
             public int[] statsPerLevel;
 
+            public int GetMaxStat()
+            {
+                int len = statsPerLevel.Length;
+                return statsPerLevel[len - 1];
+            }
             public int GetStats(int level)
             {
                 if (statsPerLevel.Length > level)

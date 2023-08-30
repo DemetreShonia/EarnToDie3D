@@ -28,23 +28,23 @@ namespace DumbRide
         bool _isCarTurboEnabled;
         CarUIManager _carUiManager;
 
-        public void Initialize(CarGearBox gearBox, CarInput carInput, float maxFuel, float maxTorque)
+        public void Initialize(CarGearBox gearBox, CarInput carInput, Fuel petrol, float maxTorque)
         {
             _maxTorque = maxTorque;
             _gearBox = gearBox;
             _carInput = carInput;
             _breakTorque = 2 * _maxTorque;
 
-            _petrol = new Fuel(maxFuel);
+            _petrol = petrol;
 
             _rb = GetComponent<Rigidbody>();
             _isInitialized = true;
 
             _carUiManager = CarUIManager.Instance;
         }
-        public void SetTurbo(float turboFuel, float turboTorque)
+        public void SetTurbo(Fuel turbo, float turboTorque)
         {
-            _turbo = new Fuel(turboFuel);
+            _turbo = turbo;
             _turboTorque = turboTorque;
         }
         public void Move()

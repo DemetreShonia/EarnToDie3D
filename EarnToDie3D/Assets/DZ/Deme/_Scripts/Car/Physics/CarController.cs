@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Drawing;
 
 namespace DumbRide
 {
@@ -7,8 +8,9 @@ namespace DumbRide
     public class CarController : MonoBehaviour
     {
         #region Fields
-        
+
         [Header("Car Properties")]
+        [SerializeField] GarageDataSO _carData;
         [SerializeField] Transform _centerOfMass;
         [SerializeField] CarWheel[] _wheels;
 
@@ -35,7 +37,10 @@ namespace DumbRide
             SetInitialReferences();
             LoadInGameCarDataFromGarage();
             _gearBox.Initialize(_wheels);
-            _carEngine.Initialize(_gearBox, _carInput, _dataFromGarage.fuelLiter, _dataFromGarage.engineTorque);
+
+            var maxFuel = _carData.GetLevelData(PartEnum.Engine).GetMaxStat(); // fuel id
+
+            _carEngine.Initialize(_gearBox, _carInput, new Fuel(_dataFromGarage.fuelLiter, maxFuel), _dataFromGarage.engineTorque);
             InitializeDecorators();
             InitializeWheels();
         }
@@ -80,8 +85,10 @@ namespace DumbRide
                     dec.Initialize(decData);
                     if (dec.Type == DecoratorType.Turbo)
                     {
+                        var maxTurbo = _carData.GetLevelData(PartEnum.Turbo).GetMaxStat(); // turbo id
+
                         (dec as DecoratorTurbo).SetCarEngine(_carEngine);
-                        _carEngine.SetTurbo(decData.quantity, decData.power);
+                        _carEngine.SetTurbo(new Fuel(decData.quantity, maxTurbo), decData.power);
                     }
                 }
             }

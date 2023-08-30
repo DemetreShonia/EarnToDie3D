@@ -10,13 +10,13 @@ namespace DumbRide
         public float FuelLeftPercent => _maxFuelCapacity != 0  ? _currentFuel / _maxFuelCapacity : 0;
         public bool IsTankEmpty => _currentFuel == 0f;
 
-        public Fuel(float maxFuelCapacity, float currentFuel = 0, float fuelConsumptionRate = 0.0625f)
+        public Fuel(float currentFuel, float maxFuelCapacity, float fuelConsumptionRate = 0.0625f)
         {
-            if (maxFuelCapacity == 0)
+            if (currentFuel == 0)
                 Debug.LogWarning("Fuel capacity is 0");
 
             _maxFuelCapacity = maxFuelCapacity;
-            _currentFuel = currentFuel == 0 ? maxFuelCapacity : _currentFuel;
+            _currentFuel = currentFuel;
             _fuelConsumptionRate = fuelConsumptionRate;
         }
 
