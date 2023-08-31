@@ -19,6 +19,8 @@ namespace DumbRide
         ZombieMovement _zombieMovement;
 
         #region BoneBlendingStuff
+        [SerializeField] AnimationClip _standUpBack, _standUpFront;
+
         class BoneTransform
         {
             public Vector3 Position { get; set; }
@@ -73,14 +75,10 @@ namespace DumbRide
             Vector3 pos = transform.position;
             Quaternion rot = transform.rotation;
 
-            foreach (AnimationClip clip in _animator.runtimeAnimatorController.animationClips)
-            {
-                if (clip.name == clipName)
-                {
-                    clip.SampleAnimation(gameObject, 0f);
-                    PopulateBoneTransforms(boneTransforms);
-                }
-            }
+            var clip = clipName == AnimationStrings.STAND_UP_BACK ? _standUpBack : _standUpFront;
+
+            clip.SampleAnimation(gameObject, 0f);
+            PopulateBoneTransforms(boneTransforms);
 
             transform.position = pos;
             transform.rotation = rot;

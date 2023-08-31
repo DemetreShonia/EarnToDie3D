@@ -2496,7 +2496,10 @@ GameObject:
   - component: {fileID: 1111887955281158076}
   - component: {fileID: 1401222021501933893}
   - component: {fileID: 3456774463076267442}
-  m_Layer: 0
+  - component: {fileID: 5994311775722834479}
+  - component: {fileID: 8943825417249343547}
+  - component: {fileID: 8337289380447607599}
+  m_Layer: 11
   m_Name: ZombieMan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2518,7 +2521,7 @@ Transform:
   - {fileID: 7681693009745131009}
   - {fileID: 8572178529865482365}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1111887955281158076
 Animator:
@@ -2553,13 +2556,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e099d7baaaede438658d773e8ef7b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _minimumSpeedToRagdoll: 25
   _ragdollParent: {fileID: 8572178529865482365}
   _standUpTimeAfterKick: 5
   _resettingBonesTime: 0.5
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  _ragdollMassMultiplier: 1
+  _standUpBack: {fileID: 7400000, guid: cb6a756f5baf9224d866d67b5de255fc, type: 2}
+  _standUpFront: {fileID: 7400000, guid: be5deff32db7a0c4ca9ca308f8ac3d31, type: 2}
 --- !u!114 &3456774463076267442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2573,6 +2578,72 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHealth: 100000
+--- !u!114 &5994311775722834479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8480147162040187959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28002b47d82309c44b0f745fb8c1f268, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _feetPosition: {fileID: 0}
+  _target: {fileID: 0}
+  _movementSpeed: 0.8
+  _rotationSpeed: 5
+--- !u!54 &8943825417249343547
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8480147162040187959}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 0
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &8337289380447607599
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8480147162040187959}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.27245378
+  m_Height: 1.9092872
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9550638, z: 0}
 --- !u!1 &8611396548759014072
 GameObject:
   m_ObjectHideFlags: 0

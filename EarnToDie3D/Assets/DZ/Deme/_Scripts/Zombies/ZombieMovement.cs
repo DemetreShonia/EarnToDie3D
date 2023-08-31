@@ -14,14 +14,14 @@ namespace DumbRide
         Vector3 MoveDirection => _moveDir.normalized;
         Animator _animator;
 
-        void Start()
+        void Awake()
         {
+            _animator = GetComponent<Animator>();
+            _animator.CrossFade("Walk", 0, 0, Random.value);
             _rb = GetComponent<Rigidbody>();
-
         }
         void OnEnable()
         {
-            _animator = GetComponent<Animator>();
             _animator.SetBool("IsMoving", true);
         }
         void OnDisable()
