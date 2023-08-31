@@ -16,6 +16,8 @@ namespace DumbRide
         WaitForSeconds _waitForSeconds;
         bool _isHitByCar = false; // is on ground / ragdoll position
 
+        ZombieMovement _zombieMovement;
+
         #region BoneBlendingStuff
         class BoneTransform
         {
@@ -33,7 +35,7 @@ namespace DumbRide
         void Start()
         {
             _ragdollParts = GetComponentsInChildren<ZombieRagdollPart>();
-
+            _zombieMovement = GetComponent<ZombieMovement>();
             _animator = GetComponent<Animator>();
             _waitForSeconds = new WaitForSeconds(_standUpTimeAfterKick);
 
@@ -87,6 +89,7 @@ namespace DumbRide
         {
             if (_isHitByCar) return;
 
+
             IEnumerator Routine()
             {
                 ZombieIsHitByCar();
@@ -102,6 +105,8 @@ namespace DumbRide
         void ZombieIsHitByCar()
         {
             _isHitByCar = true;
+
+            _zombieMovement.enabled = false;
 
             if (_animator.enabled)
                 EnableRagdoll();
@@ -125,11 +130,15 @@ namespace DumbRide
                 part.EnablePart();
             }
         }
+        public void OnStandUp() // called by animation event
+        {
+            _zombieMovement.enabled = true;
+        }
         IEnumerator StandUp()
         {
             Vector3 pos;
 
-            if(Physics.Raycast(_ragdollParent.position, Vector3.down, out RaycastHit hit, 100f, _groundLayer))
+            if (Physics.Raycast(_ragdollParent.position, Vector3.down, out RaycastHit hit, 100f, _groundLayer))
                 pos = hit.point;
             else
                 pos = _ragdollParent.position;
@@ -157,7 +166,6 @@ namespace DumbRide
 
             _animator.Play(isFacingUp ? AnimationStrings.STAND_UP_FRONT : AnimationStrings.STAND_UP_BACK, 0, 0);
             _isHitByCar = false;
-
         }
 
         void ResettingBonesBehaviour(bool isFacingUp, float elapsedPercentage)
