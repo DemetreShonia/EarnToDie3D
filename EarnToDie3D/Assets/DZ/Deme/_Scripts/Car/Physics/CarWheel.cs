@@ -27,7 +27,7 @@ namespace DumbRide
         #endregion
 
         [SerializeField] GameObject _wheelMesh; // visual
-        [SerializeField] float wheelVisualOffset;
+        [SerializeField] float _wheelVisualOffset;
         WheelCollider _wheelCollider;
 
         void Start()
@@ -47,7 +47,7 @@ namespace DumbRide
         public void AnimateWheel()
         {
             _wheelCollider.GetWorldPose(out Vector3 pos, out Quaternion rot);
-            _wheelMesh.transform.position = pos + _wheelMesh.transform.right * wheelVisualOffset;
+            _wheelMesh.transform.position = pos + _wheelMesh.transform.right * _wheelVisualOffset;
             _wheelMesh.transform.rotation = rot;
         }
         

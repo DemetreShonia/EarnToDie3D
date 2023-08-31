@@ -68,7 +68,7 @@ Material:
     - _NormalNoiseScale: 15
     - _NormalStrength: 0.1
     - _NormalVoronoiScale: 23
-    - _OuterLineOffset: 0.36
+    - _OuterLineOffset: 0.24
     - _OuterLineWidth: 0.02
     - _QueueControl: 0
     - _QueueOffset: 0
