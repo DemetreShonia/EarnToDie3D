@@ -116,6 +116,9 @@ namespace DumbRide
         }
         void EnableRagdoll() // called by trigger hit by a car
         {
+            _animator.ResetTrigger(AnimationStrings.STAND_UP_FRONT);
+            _animator.ResetTrigger(AnimationStrings.STAND_UP_BACK);
+
             _animator.enabled = false;
             foreach (var part in _ragdollParts)
             {
@@ -151,9 +154,8 @@ namespace DumbRide
             }
             _animator.enabled = true; // this can be interpolated
 
-            print("TRIGGER WAS SET");
-            _animator.SetTrigger(isFacingUp ? AnimationStrings.STAND_UP_FRONT : AnimationStrings.STAND_UP_BACK);
 
+            _animator.Play(isFacingUp ? AnimationStrings.STAND_UP_FRONT : AnimationStrings.STAND_UP_BACK, 0, 0);
             _isHitByCar = false;
 
         }
