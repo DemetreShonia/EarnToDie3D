@@ -617,7 +617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheelType: 3
   _wheelMesh: {fileID: 4478753721521075823}
-  _wheelVisualOffset: 0
+  _wheelVisualOffset: 0.23
 --- !u!1 &679705805835552935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1202,7 +1202,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheelType: 4
   _wheelMesh: {fileID: 3579793201099554188}
-  _wheelVisualOffset: 0
+  _wheelVisualOffset: -0.23
 --- !u!1 &946975544461379781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,7 +1456,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheelType: 1
   _wheelMesh: {fileID: 9000930014465180653}
-  _wheelVisualOffset: 0
+  _wheelVisualOffset: 0.23
 --- !u!1 &1283325859872569395
 GameObject:
   m_ObjectHideFlags: 0
@@ -5182,7 +5182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheelType: 2
   _wheelMesh: {fileID: 7779714216716258920}
-  _wheelVisualOffset: 0
+  _wheelVisualOffset: -0.23
 --- !u!1 &5102116650021219380
 GameObject:
   m_ObjectHideFlags: 0
