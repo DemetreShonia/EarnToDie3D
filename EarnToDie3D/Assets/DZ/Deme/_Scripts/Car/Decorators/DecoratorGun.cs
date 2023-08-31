@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using MoreMountains.Feedbacks;
 namespace DumbRide
 {
     public class DecoratorGun : Decorator
@@ -9,9 +9,11 @@ namespace DumbRide
         [SerializeField] Transform _shootPosition;
         [SerializeField] float _rotationSpeed = 7f;
         [SerializeField] Animator _animator;
+        [SerializeField] float _shootCooldown = 0.5f;
+        [SerializeField] MMFeedbacks _shootStartFeedback;
+        [SerializeField] GameObject _bullet;
         Camera _mainCamera;
 
-        [SerializeField] float _shootCooldown = 0.5f;
         float _nextShoot;
         public override void Initialize(DecoratorData data)
         {
@@ -21,6 +23,7 @@ namespace DumbRide
 
         public override void Animate()
         {
+            _shootStartFeedback?.PlayFeedbacks();
             _animator.SetTrigger(AnimationStrings.FIRE);
         }
 
@@ -33,17 +36,21 @@ namespace DumbRide
         {
             Animate();
 
-            if (Physics.Raycast(_shootPosition.position, _shootPosition.forward, out RaycastHit hit))
-            {
-                if (hit.collider.TryGetComponent(out IBodyPart bodyPart))
-                {
-                    //target.TakeDamage((int)_data.power);
-                    bodyPart.ApplyHit(-hit.normal, 300, 500);
+            GameObject bullet = Instantiate(_bullet);
+            bullet.transform.position = _shootPosition.position;
+            bullet.transform.LookAt(_shootPosition.position + _shootPosition.forward);
 
-                    var blood = Instantiate(_bloodParticle, hit.point, Quaternion.LookRotation(hit.normal));
-                    Destroy(blood, 1f);
-                }
-            }
+            //if (Physics.Raycast(_shootPosition.position, _shootPosition.forward, out RaycastHit hit))
+            //{
+            //    if (hit.collider.TryGetComponent(out IBodyPart bodyPart))
+            //    {
+            //        //target.TakeDamage((int)_data.power);
+            //        bodyPart.ApplyHit(-hit.normal, 300, 500);
+
+            //        var blood = Instantiate(_bloodParticle, hit.point, Quaternion.LookRotation(hit.normal));
+            //        Destroy(blood, 1f);
+            //    }
+            //}
             // playsound, animate on keyframe anim event
         }
         
