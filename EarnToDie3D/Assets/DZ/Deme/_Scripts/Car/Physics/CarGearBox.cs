@@ -10,7 +10,6 @@ namespace DumbRide
     }
     public class CarGearBox : MonoBehaviour
     {
-        // TODO: Automatic Transmission
         public enum DriveType
         {
             FrontWheelDrive,
@@ -23,23 +22,14 @@ namespace DumbRide
         CarWheel[] _wheels;
         bool _isInitialized = false;
 
-        int _currentGearID = 0;
-
-        public float CurrentGear => _currentGearID >= 0 && _currentGearID < _gears.Length ? _gears[_currentGearID] : 0f;
-        public void NextGear()
-        {
-            _currentGearID++;
-            _currentGearID %= _gears.Length;
-        }
-        public void PrevGear()
-        {
-            _currentGearID--;
-            _currentGearID = _currentGearID < 0 ? _gears.Length - 1 : _currentGearID;
-        }
-        public void Initialize(CarWheel[] wheels)
+        public float CurrentGearRatio { get; private set; }
+        
+        public void Initialize(CarWheel[] wheels, float gearRatio)
         {
             _wheels = wheels;
             _isInitialized = true;
+            CurrentGearRatio = gearRatio / 10; // division is necessary to get fraction
+            print(CurrentGearRatio);
         }
         public void TryBrake(float curTorque)
         {

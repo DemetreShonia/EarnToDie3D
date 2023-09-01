@@ -36,7 +36,8 @@ namespace DumbRide
         {
             SetInitialReferences();
             LoadInGameCarDataFromGarage();
-            _gearBox.Initialize(_wheels);
+            
+            _gearBox.Initialize(_wheels, _dataFromGarage.gearPower);
 
             var maxFuel = _carData.GetLevelData(PartEnum.Engine).GetMaxStat(); // fuel id
 

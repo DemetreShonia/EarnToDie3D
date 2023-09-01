@@ -183,11 +183,6 @@ MonoBehaviour:
   - {fileID: 1906441496333643538}
   _carsInGarage:
   - {fileID: 1903688782}
-  _inGameCarData:
-    fuelLiter: 0
-    wheelMass: 0
-    enginePower: 0
-    gearPower: 0
   _returnToMapButton: {fileID: 3688010072489133397}
   _goToGameButton: {fileID: 3688010072489133396}
 --- !u!1 &51359269
@@ -339,7 +334,7 @@ PrefabInstance:
     - target: {fileID: 8791906187982973291, guid: 8cc948432da81b04babc1512a9271a53,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.58
+      value: 2.75
       objectReference: {fileID: 0}
     - target: {fileID: 8791906187982973291, guid: 8cc948432da81b04babc1512a9271a53,
         type: 3}

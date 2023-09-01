@@ -14,7 +14,7 @@ namespace DumbRide
         float _maxTorque;
         float _turboTorque;
 
-        const float _maxCapturedSpeed = 80f;
+        const float _maxCapturedSpeed = 80f; // TODO: Modify this
         public float CurrentSpeed => _rb.velocity.magnitude * 3.6f;
 
         float _currentTorque;
@@ -67,7 +67,12 @@ namespace DumbRide
             }
             //float gear = _gearBox.CurrentGear;
 
-            _currentTorque = _rpmTorqueCurve.Evaluate(Mathf.Abs(_carInput.MoveInput)) * _maxTorque; // * GearNum
+            // Instead of calculating RPM from wheels (Which is a bit strange but can be done easily),
+            // I use Input To simulate RPM.
+            // This way we are controlling wheels and not vice versa
+
+            var _rpmPercent = Mathf.Abs(_carInput.MoveInput);
+            _currentTorque = _rpmTorqueCurve.Evaluate(_rpmPercent) * _maxTorque * _gearBox.CurrentGearRatio; // * GearNum
 
             float torqueSigned = Mathf.Sign(_carInput.MoveInput) * _currentTorque;
             if (_isCarTurboEnabled)
