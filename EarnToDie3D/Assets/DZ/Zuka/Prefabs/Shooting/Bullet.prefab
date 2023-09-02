@@ -193,6 +193,6 @@ MonoBehaviour:
   _speed: 400
   _canHit:
     serializedVersion: 2
-    m_Bits: 5243968
+    m_Bits: 1049664
   _raySphereRadius: 0.3
   _hitFeedback: {fileID: 0}

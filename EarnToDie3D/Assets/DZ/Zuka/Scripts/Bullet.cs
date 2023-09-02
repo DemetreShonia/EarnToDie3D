@@ -22,7 +22,7 @@ namespace DumbRide
             }
             else
             {
-
+                // it hit, chill
             }
         }
 
@@ -38,13 +38,16 @@ namespace DumbRide
                 transform.position = hit.point;
                 didHit = true;
                 _hitFeedback?.PlayFeedbacks();
-                DealDamage();
+                DealDamage(hit);
             }
         }
 
-        private void DealDamage()
+        private void DealDamage(RaycastHit hit)
         {
-
+            if (hit.collider.TryGetComponent(out IBodyPart bodyPart))
+            {
+                bodyPart.ApplyHit(-hit.normal, 300, 500);
+            }
         }
     }
 }

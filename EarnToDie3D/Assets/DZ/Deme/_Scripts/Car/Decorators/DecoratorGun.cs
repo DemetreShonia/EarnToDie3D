@@ -12,6 +12,10 @@ namespace DumbRide
         [SerializeField] float _shootCooldown = 0.5f;
         [SerializeField] MMFeedbacks _shootStartFeedback;
         [SerializeField] GameObject _bullet;
+        [SerializeField] float _sphereCastRadius = 1;
+        [SerializeField] LayerMask _enemyLayer;
+        [SerializeField] float _aimGroundYOffset = 1;
+        [SerializeField] LayerMask _cameraRayCanHit;
         Camera _mainCamera;
 
         float _nextShoot;
@@ -60,16 +64,26 @@ namespace DumbRide
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
+            
+
+
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity,_cameraRayCanHit))
             {
-                Vector3 direction = hit.point - _gunHead.position;
-                direction.y = 0f;
-
-                targetRotation = Quaternion.LookRotation(direction.normalized);
+                Vector3 direction = hit.point + Vector3.up * _aimGroundYOffset - _gunHead.position;
+              
+                //direction.y = 0f;
+                if (Physics.SphereCast(_gunHead.position, _sphereCastRadius, direction.normalized, out hit, Mathf.Infinity, _enemyLayer))
+                {
+                    targetRotation = Quaternion.LookRotation((hit.point - _gunHead.position).normalized);
+                    _gunHead.rotation = targetRotation;
+                }
+                else
+                {
+                    targetRotation = Quaternion.LookRotation(direction.normalized);
+                }
             }
-
-            _gunHead.rotation = Quaternion.Lerp(_gunHead.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-
+            float blend = 1 - Mathf.Pow(0.5f, Time.deltaTime * _rotationSpeed);
+            _gunHead.rotation = Quaternion.Lerp(_gunHead.rotation, targetRotation, blend);
 
             if (_nextShoot < Time.timeSinceLevelLoad + _shootCooldown)
             {
