@@ -29,7 +29,7 @@ namespace DumbRide
             _wheels = wheels;
             _isInitialized = true;
             CurrentGearRatio = gearRatio / 10; // division is necessary to get fraction
-            print(CurrentGearRatio);
+            //print(CurrentGearRatio);
         }
         public void TryBrake(float curTorque)
         {

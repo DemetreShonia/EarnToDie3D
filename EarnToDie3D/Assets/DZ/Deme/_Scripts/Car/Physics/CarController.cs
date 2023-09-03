@@ -23,7 +23,11 @@ namespace DumbRide
         [SerializeField] float _wheelBase = 4f;
         [SerializeField] float _rearTrack = 2.5f;
         [SerializeField] float _turnRadius = 5.0f;
-        
+
+        [Header("Prevent Car From Flipping Properties")]
+        [SerializeField] float _preventCarFlipForce = 10;
+
+
         Rigidbody _carRb;
         CarGearBox _gearBox;
         CarInput _carInput;
@@ -113,9 +117,40 @@ namespace DumbRide
         void FixedUpdate()
         {
             _carEngine.Move();
+            PreventCarFlip();
             SteerAckerman();
         }
         
+        void PreventCarFlip()
+        {
+            int left = 0;
+            int right = 0;
+
+            foreach(CarWheel wheel in _wheels)
+            {
+                if (wheel.IsGrounded())
+                {
+                    if (wheel.IsLeft())
+                    {
+                        left++;
+                    }
+                    else
+                    {
+                        right++;
+                    }
+                }
+            }
+
+            if ((left == 2 && right == 0) || (left == 0 && right == 2))
+            {
+                if (true || _carRb.velocity.y < 0)
+                {
+                    _carRb.AddForce(-transform.up * _preventCarFlipForce, ForceMode.Acceleration);
+                    print("Force : " + left + " : " + right);
+                }
+            }
+        }
+
         void SteerAckerman()
         {
             float ackermanLeft = 0f;
