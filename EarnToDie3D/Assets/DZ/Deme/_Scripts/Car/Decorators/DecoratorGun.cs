@@ -16,6 +16,8 @@ namespace DumbRide
         [SerializeField] LayerMask _enemyLayer;
         [SerializeField] float _aimGroundYOffset = 1;
         [SerializeField] LayerMask _cameraRayCanHit;
+        [SerializeField] float _minGunAngleWhenNearShooting = 20;
+
         Camera _mainCamera;
 
         float _nextShoot;
@@ -55,10 +57,9 @@ namespace DumbRide
             _currentAmmoCount--;
             UpdateUI();
         }
-        
+
         public override void CheckForInputs()
         {
-
             Quaternion targetRotation = _gunHead.rotation;
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
@@ -67,10 +68,8 @@ namespace DumbRide
             if (Physics.Raycast(ray, out hit, Mathf.Infinity,_cameraRayCanHit))
             {
                 Vector3 direction = hit.point + Vector3.up * _aimGroundYOffset - _gunHead.position;
-              
-                //direction.y = 0f;
                 if (Physics.SphereCast(_gunHead.position, _sphereCastRadius, direction.normalized, out hit, Mathf.Infinity, _enemyLayer))
-                {
+                { 
                     targetRotation = Quaternion.LookRotation((hit.point - _gunHead.position).normalized);
                     _gunHead.rotation = targetRotation;
                 }
@@ -81,6 +80,12 @@ namespace DumbRide
             }
             float blend = 1 - Mathf.Pow(0.5f, Time.deltaTime * _rotationSpeed);
             _gunHead.rotation = Quaternion.Lerp(_gunHead.rotation, targetRotation, blend);
+
+            var eu = _gunHead.localEulerAngles;
+            if (eu.x > _minGunAngleWhenNearShooting)
+                eu.x = _minGunAngleWhenNearShooting;
+
+            _gunHead.localEulerAngles = eu;
 
             if (_nextShoot < Time.timeSinceLevelLoad + _shootCooldown)
             {
