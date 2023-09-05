@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace DumbRide
@@ -51,16 +48,7 @@ namespace DumbRide
             _wheelMesh.transform.rotation = rot;
         }
         
-        public bool IsGrounded()
-        {
-            return _wheelCollider.isGrounded;
-        }
-
-        public bool IsLeft()
-        {
-            return _wheelType == WheelType.FrontLeft || _wheelType == WheelType.RearLeft;
-        }
-
-       
+        public bool IsGrounded => _wheelCollider.isGrounded;
+        public bool IsLeft => _wheelType == WheelType.FrontLeft || _wheelType == WheelType.RearLeft;
     }
 }

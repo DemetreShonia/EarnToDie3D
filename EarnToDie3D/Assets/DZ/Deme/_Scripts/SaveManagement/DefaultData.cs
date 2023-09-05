@@ -45,9 +45,9 @@ namespace DumbRide
             {
                 return new InGameCarData
                 {
-                    engineTorque = 500,
+                    engineTorque = 900,
                     fuelLiter = 1000,
-                    gearPower = 1,
+                    gearPower = 18,
                     wheelMass = 20,
                     decoratorDatas = new DecoratorData[]
                     {
@@ -61,7 +61,7 @@ namespace DumbRide
                         new DecoratorData
                         {
                             power = 100,
-                            quantity = 20,
+                            quantity = 300,
                             type = DecoratorType.Gun,
                             isUnlocked = true
                         },

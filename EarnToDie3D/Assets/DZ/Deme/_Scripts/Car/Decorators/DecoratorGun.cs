@@ -19,10 +19,14 @@ namespace DumbRide
         Camera _mainCamera;
 
         float _nextShoot;
+
+        int _currentAmmoCount;
         public override void Initialize(DecoratorData data)
         {
             base.Initialize(data);
             _mainCamera = Camera.main;
+            _currentAmmoCount = _data.quantity;
+            UpdateUI();
         }
 
         public override void Animate()
@@ -35,7 +39,11 @@ namespace DumbRide
         {
 
         }
-
+        void UpdateUI()
+        {
+            if(CarUIManager.Instance != null)
+                CarUIManager.Instance.UpdateAmmoCount(_currentAmmoCount);
+        }
         void Shoot()
         {
             Animate();
@@ -44,27 +52,16 @@ namespace DumbRide
             bullet.transform.position = _shootPosition.position;
             bullet.transform.LookAt(_shootPosition.position + _shootPosition.forward);
 
-            //if (Physics.Raycast(_shootPosition.position, _shootPosition.forward, out RaycastHit hit))
-            //{
-            //    if (hit.collider.TryGetComponent(out IBodyPart bodyPart))
-            //    {
-            //        //target.TakeDamage((int)_data.power);
-            //        bodyPart.ApplyHit(-hit.normal, 300, 500);
-
-            //        var blood = Instantiate(_bloodParticle, hit.point, Quaternion.LookRotation(hit.normal));
-            //        Destroy(blood, 1f);
-            //    }
-            //}
-            // playsound, animate on keyframe anim event
+            _currentAmmoCount--;
+            UpdateUI();
         }
         
         public override void CheckForInputs()
         {
+
             Quaternion targetRotation = _gunHead.rotation;
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-
-            
 
 
             if (Physics.Raycast(ray, out hit, Mathf.Infinity,_cameraRayCanHit))
@@ -87,7 +84,7 @@ namespace DumbRide
 
             if (_nextShoot < Time.timeSinceLevelLoad + _shootCooldown)
             {
-                if (Input.GetMouseButtonDown(0))
+                if (Input.GetMouseButtonDown(0) && _currentAmmoCount > 0)
                 {
                     Shoot();
                     _nextShoot = Time.timeSinceLevelLoad + _shootCooldown;

@@ -128,27 +128,18 @@ namespace DumbRide
 
             foreach(CarWheel wheel in _wheels)
             {
-                if (wheel.IsGrounded())
+                if (wheel.IsGrounded)
                 {
-                    if (wheel.IsLeft())
-                    {
+                    if (wheel.IsLeft)
                         left++;
-                    }
                     else
-                    {
                         right++;
-                    }
                 }
             }
 
+            // if either side is not grounded, we need to prevent flip
             if ((left == 2 && right == 0) || (left == 0 && right == 2))
-            {
-                if (true || _carRb.velocity.y < 0)
-                {
-                    _carRb.AddForce(-transform.up * _preventCarFlipForce, ForceMode.Acceleration);
-                    print("Force : " + left + " : " + right);
-                }
-            }
+                _carRb.AddForce(-transform.up * _preventCarFlipForce, ForceMode.Acceleration);
         }
 
         void SteerAckerman()
