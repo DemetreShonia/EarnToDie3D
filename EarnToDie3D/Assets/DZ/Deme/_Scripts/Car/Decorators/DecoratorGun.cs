@@ -17,6 +17,8 @@ namespace DumbRide
         [SerializeField] float _aimGroundYOffset = 1;
         [SerializeField] LayerMask _cameraRayCanHit;
         [SerializeField] float _minGunAngleWhenNearShooting = 20;
+        [SerializeField] float _crossHairSphereRadius = 2f;
+
 
         Camera _mainCamera;
 
@@ -58,34 +60,40 @@ namespace DumbRide
             UpdateUI();
         }
 
+
         public override void CheckForInputs()
         {
             Quaternion targetRotation = _gunHead.rotation;
             Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
+            var rotSpeed = _rotationSpeed;
 
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity,_cameraRayCanHit))
+            if (Physics.SphereCast(ray, _crossHairSphereRadius, out hit, Mathf.Infinity, _cameraRayCanHit))
             {
+                bool cursorIsNearZombie = hit.transform.CompareTag(TagStrings.ZOMBIE_PART);
+
                 Vector3 direction = hit.point + Vector3.up * _aimGroundYOffset - _gunHead.position;
-                if (Physics.SphereCast(_gunHead.position, _sphereCastRadius, direction.normalized, out hit, Mathf.Infinity, _enemyLayer))
-                { 
-                    targetRotation = Quaternion.LookRotation((hit.point - _gunHead.position).normalized);
-                    _gunHead.rotation = targetRotation;
-                }
-                else
+
+                if (cursorIsNearZombie)
                 {
-                    targetRotation = Quaternion.LookRotation(direction.normalized);
+                    rotSpeed *= 3f; // rotate 3x faster when cursor is near zombie
+                    Debug.DrawLine(_gunHead.position, hit.transform.position);
+                    direction = (hit.transform.position - _gunHead.position).normalized;
                 }
+                targetRotation = Quaternion.LookRotation(direction.normalized);
             }
-            float blend = 1 - Mathf.Pow(0.5f, Time.deltaTime * _rotationSpeed);
+
+            //var eu = targetRotation.eulerAngles;
+            //if (eu.x > _minGunAngleWhenNearShooting)
+            //    eu.x = _minGunAngleWhenNearShooting;
+
+            //targetRotation = Quaternion.Euler(eu);
+            //_gunHead.rotation = targetRotation;
+
+            float blend = 1 - Mathf.Pow(0.5f, Time.deltaTime * rotSpeed);
             _gunHead.rotation = Quaternion.Lerp(_gunHead.rotation, targetRotation, blend);
 
-            var eu = _gunHead.localEulerAngles;
-            if (eu.x > _minGunAngleWhenNearShooting)
-                eu.x = _minGunAngleWhenNearShooting;
-
-            _gunHead.localEulerAngles = eu;
 
             if (_nextShoot < Time.timeSinceLevelLoad + _shootCooldown)
             {
