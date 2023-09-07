@@ -7,6 +7,8 @@ namespace DumbRide
         [SerializeField] protected int _maxHealth;
         protected int _currentHealth;
 
+        protected bool _isDead = false;
+
         protected virtual void Awake()
         {
             _currentHealth  = _maxHealth;
@@ -18,13 +20,14 @@ namespace DumbRide
 
         public virtual void Die()
         {
-            print("DEAD");
-            Destroy(gameObject);
+            _isDead = true;
         }
 
         public virtual void TakeDamage(int amount)
         {
+            if (_isDead) return;
             _currentHealth -= amount;
+            print(_currentHealth);
             if (_currentHealth <= 0)
             {
                 Die();

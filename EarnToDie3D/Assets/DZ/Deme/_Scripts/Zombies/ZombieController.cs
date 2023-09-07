@@ -117,7 +117,7 @@ namespace DumbRide
             if (carSpeed > _minimumSpeedToRagdoll)
                 CarHitsZombie();
         }
-        void EnableRagdoll() // called by trigger hit by a car
+        public void EnableRagdoll() // called by trigger hit by a car
         {
             _animator.ResetTrigger(AnimationStrings.STAND_UP_FRONT);
             _animator.ResetTrigger(AnimationStrings.STAND_UP_BACK);

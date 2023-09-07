@@ -11,7 +11,7 @@ namespace DumbRide
         [SerializeField] Animator _animator;
         [SerializeField] float _shootCooldown = 0.5f;
         [SerializeField] MMFeedbacks _shootStartFeedback;
-        [SerializeField] GameObject _bullet;
+        [SerializeField] Bullet _bullet;
         [SerializeField] float _sphereCastRadius = 1;
         [SerializeField] LayerMask _enemyLayer;
         [SerializeField] float _aimGroundYOffset = 1;
@@ -52,10 +52,10 @@ namespace DumbRide
         {
             Animate();
 
-            GameObject bullet = Instantiate(_bullet);
+            var bullet = Instantiate(_bullet);
             bullet.transform.position = _shootPosition.position;
             bullet.transform.LookAt(_shootPosition.position + _shootPosition.forward);
-
+            bullet.Initialize(_data.power);
             _currentAmmoCount--;
             UpdateUI();
         }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using MoreMountains.Feedbacks;
 namespace DumbRide
@@ -11,42 +9,47 @@ namespace DumbRide
         [SerializeField] float _raySphereRadius = .3f;
         [SerializeField] MMFeedbacks _hitFeedback;
         Vector3 _lastPosition;
-        bool didHit = false;
+        bool _targetWasHit = false;
+
+        Vector3 _dir;
+        Transform _transform;
+
+        bool _isInitialized = false;
+
+        int _bulletDamage;
+
+        public void Initialize(int damage)
+        {
+            _isInitialized = true;
+            _transform = transform;
+            _dir = _transform.forward;
+            _bulletDamage = damage;
+        }
+        
         void Update()
         {
-            if (!didHit)
+            if (_isInitialized && !_targetWasHit)
             {
-                _lastPosition = transform.position;
-
-                transform.position += transform.forward * _speed * Time.deltaTime;
-            }
-            else
-            {
-                // it hit, chill
+                _lastPosition = _transform.position;
+                _transform.position += _dir * _speed * Time.deltaTime;
             }
         }
 
-        private void LateUpdate()
+        void LateUpdate()
         {
-            if (didHit)
-            {
-                return;
-            }
+            if (!_isInitialized || _targetWasHit) return;
+
             RaycastHit hit;
             if(Physics.SphereCast(_lastPosition, _raySphereRadius, transform.forward, out hit, (transform.position - _lastPosition).magnitude, _canHit))
             {
                 transform.position = hit.point;
-                didHit = true;
+                _targetWasHit = true;
                 _hitFeedback?.PlayFeedbacks();
-                DealDamage(hit);
-            }
-        }
 
-        private void DealDamage(RaycastHit hit)
-        {
-            if (hit.collider.TryGetComponent(out IBodyPart bodyPart))
-            {
-                bodyPart.ApplyHit(-hit.normal, 300, 500);
+                if (hit.collider.TryGetComponent(out IBodyPart bodyPart))
+                {
+                    bodyPart.ApplyHit(-hit.normal, _bulletDamage * 10, _bulletDamage); // add 10x force and damage
+                }
             }
         }
     }
