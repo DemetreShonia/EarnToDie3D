@@ -98,7 +98,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.20227514, y: 0.23822701, z: -0.005095624}
+  m_ConnectedAnchor: {x: -0.20227511, y: 0.23822725, z: -0.0050956425}
   serializedVersion: 2
   m_SwingAxis: {x: 1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -274,7 +274,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000088475645, y: 0.46314517, z: 0.00000012782402}
+  m_ConnectedAnchor: {x: -0.0000000018626451, y: 0.46314505, z: 2.3283064e-10}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -418,7 +418,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000016344711, y: 0.2586252, z: -0.000000059604645}
+  m_ConnectedAnchor: {x: -0.000000018626451, y: 0.25862527, z: -0.00000014901161}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -723,7 +723,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.085484974, y: -0.055691347, z: -0.0062255887}
+  m_ConnectedAnchor: {x: -0.08548496, y: -0.055691347, z: -0.0062254453}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1151,7 +1151,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 0, y: 0, z: -1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.20227493, y: 0.23830688, z: -0.0057924916}
+  m_ConnectedAnchor: {x: 0.202275, y: 0.23830685, z: -0.005792443}
   serializedVersion: 2
   m_SwingAxis: {x: -1, y: 0, z: 0}
   m_TwistLimitSpring:
@@ -1390,7 +1390,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.000004614916, y: 0.21687579, z: -0.025004968}
+  m_ConnectedAnchor: {x: 0.0000047253725, y: 0.21687579, z: -0.025005043}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -1879,7 +1879,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.000000034458935, y: 0.46315596, z: -0.0000001686858}
+  m_ConnectedAnchor: {x: 0.000000008381903, y: 0.46315607, z: -5.820766e-10}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2085,7 +2085,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.00000011045583, y: 0.3544517, z: 0.039334502}
+  m_ConnectedAnchor: {x: 4.124371e-12, y: 0.35445192, z: 0.039334696}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2229,7 +2229,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: -1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.08548499, y: -0.055691376, z: -0.006158091}
+  m_ConnectedAnchor: {x: 0.08548495, y: -0.055691376, z: -0.00615792}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: 1}
   m_TwistLimitSpring:
@@ -2374,7 +2374,7 @@ CharacterJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.00000011594966, y: 0.25861576, z: 0.00000008568168}
+  m_ConnectedAnchor: {x: -0.00000002142042, y: 0.25861588, z: 0.000000078231096}
   serializedVersion: 2
   m_SwingAxis: {x: 0, y: 0, z: -1}
   m_TwistLimitSpring:
@@ -2521,7 +2521,7 @@ Transform:
   - {fileID: 7681693009745131009}
   - {fileID: 8572178529865482365}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1111887955281158076
 Animator:
@@ -2591,7 +2591,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _feetPosition: {fileID: 0}
-  _target: {fileID: 0}
   _movementSpeed: 0.8
   _rotationSpeed: 5
 --- !u!54 &8943825417249343547
