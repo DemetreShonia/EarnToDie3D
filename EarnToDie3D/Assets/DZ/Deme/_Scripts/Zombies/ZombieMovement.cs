@@ -1,4 +1,3 @@
-using Cinemachine.Utility;
 using UnityEngine;
 
 namespace DumbRide
@@ -6,19 +5,20 @@ namespace DumbRide
     public class ZombieMovement : MonoBehaviour
     {
         [SerializeField] Transform _feetPosition;
-        [SerializeField] Transform _target;
         [SerializeField] float _movementSpeed = 10f;
         [SerializeField] float _rotationSpeed = 10f;
         Rigidbody _rb;
         Vector3 _moveDir;
         Vector3 MoveDirection => _moveDir.normalized;
         Animator _animator;
+        Transform _target;
 
         void Awake()
         {
             _animator = GetComponent<Animator>();
             _animator.CrossFade("Walk", 0, 0, Random.value);
             _rb = GetComponent<Rigidbody>();
+            _target = CarManager.Instance.CarTransform;
         }
         void OnEnable()
         {
@@ -54,6 +54,7 @@ namespace DumbRide
         {
             var dir = MoveDirection;
             dir.y = 0;
+            if (dir == Vector3.zero) return;
             Quaternion targetRotation = Quaternion.LookRotation(dir);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
         }

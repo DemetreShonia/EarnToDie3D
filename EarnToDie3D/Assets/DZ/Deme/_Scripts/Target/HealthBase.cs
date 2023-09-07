@@ -27,7 +27,6 @@ namespace DumbRide
         {
             if (_isDead) return;
             _currentHealth -= amount;
-            print(_currentHealth);
             if (_currentHealth <= 0)
             {
                 Die();

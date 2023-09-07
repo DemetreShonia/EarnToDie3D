@@ -10,7 +10,6 @@ namespace DumbRide
         {
             base.Die();
             GetComponent<ZombieController>().EnableRagdoll();
-            print("DEAD");
             Destroy(gameObject, 3f);
         }
     }
