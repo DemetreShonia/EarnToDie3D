@@ -142,7 +142,12 @@ namespace DumbRide
             else
                 pos = _ragdollParent.position;
 
+            bool isFacingUp = _animator.GetBoneTransform(HumanBodyBones.Hips).forward.y < 0f;
+
+
+            Vector3 dirToFace = Vector3.ProjectOnPlane(_ragdollParent.up, Vector3.up).normalized;
             transform.position = pos;
+            transform.forward = isFacingUp ? dirToFace : -dirToFace;
 
             _ragdollParent.SetParent(transform);
 
@@ -152,7 +157,6 @@ namespace DumbRide
             {
                 part.DisablePart();
             }
-            bool isFacingUp = _animator.GetBoneTransform(HumanBodyBones.Hips).forward.y < 0f;
 
 
             for (float i = 0f; i < _resettingBonesTime; i += Time.deltaTime) // 0.5 time

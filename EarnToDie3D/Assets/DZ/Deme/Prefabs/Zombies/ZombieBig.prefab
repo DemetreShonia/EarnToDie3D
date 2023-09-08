@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4e099d7baaaede438658d773e8ef7b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minimumSpeedToRagdoll: 100
+  _minimumSpeedToRagdoll: 1
   _ragdollParent: {fileID: 4507868075171251818}
   _standUpTimeAfterKick: 5
   _resettingBonesTime: 0.5
@@ -1131,7 +1131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fd4dcd7f49dd59499e5597b0277a5d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 300
+  _maxHealth: 100000
 --- !u!114 &7658303573523364932
 MonoBehaviour:
   m_ObjectHideFlags: 0
