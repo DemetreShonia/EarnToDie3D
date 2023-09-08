@@ -14,7 +14,7 @@ namespace DumbRide
         ZombieRagdollPart[] _ragdollParts;
         Animator _animator;
         WaitForSeconds _waitForSeconds;
-        bool _isHitByCar = false; // is on ground / ragdoll position
+        bool _isZombieRagdoll = false; // is on ground / ragdoll position
 
         ZombieMovement _zombieMovement;
 
@@ -83,14 +83,20 @@ namespace DumbRide
             transform.position = pos;
             transform.rotation = rot;
         }
-        public void CarHitsZombie()
+        bool _isEnoughSpeedToRagdoll = false;
+        public void CarTriggerCrashedZombie(float carSpeed)
         {
-            if (_isHitByCar) return;
+            _isEnoughSpeedToRagdoll = carSpeed > _minimumSpeedToRagdoll;
+            TryToHurtZombie();
+        }
 
+        public void TryToHurtZombie()
+        {
+            if (_isZombieRagdoll || !_isEnoughSpeedToRagdoll) return;
 
             IEnumerator Routine()
             {
-                ZombieIsHitByCar();
+                RagdollizeZombie();
 
                 yield return _waitForSeconds;
 
@@ -100,9 +106,9 @@ namespace DumbRide
             StartCoroutine(Routine());
         }
 
-        void ZombieIsHitByCar()
+        void RagdollizeZombie()
         {
-            _isHitByCar = true;
+            _isZombieRagdoll = true;
 
             _zombieMovement.enabled = false;
 
@@ -111,12 +117,7 @@ namespace DumbRide
 
             _ragdollParent.SetParent(null);
         }
-
-        public void CarTriggersAsHit(float carSpeed)
-        {
-            if (carSpeed > _minimumSpeedToRagdoll)
-                CarHitsZombie();
-        }
+        
         public void EnableRagdoll() // called by trigger hit by a car
         {
             _animator.ResetTrigger(AnimationStrings.STAND_UP_FRONT);
@@ -163,7 +164,7 @@ namespace DumbRide
 
 
             _animator.Play(isFacingUp ? AnimationStrings.STAND_UP_FRONT : AnimationStrings.STAND_UP_BACK, 0, 0);
-            _isHitByCar = false;
+            _isZombieRagdoll = false;
         }
 
         void ResettingBonesBehaviour(bool isFacingUp, float elapsedPercentage)

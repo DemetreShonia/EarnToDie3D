@@ -23,7 +23,7 @@ namespace DumbRide
         {
             _rb.AddForce(forceDir * force, ForceMode.Impulse);
             _zombieHealth.TakeDamage(damage);
-            _zombieController.CarHitsZombie();
+            _zombieController.TryToHurtZombie(); // useful when zombie is being shot by gun
         }
         public void DisablePart()
         {

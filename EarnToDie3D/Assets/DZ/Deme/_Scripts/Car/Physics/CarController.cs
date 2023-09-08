@@ -191,7 +191,7 @@ namespace DumbRide
             if (go.CompareTag(TagStrings.ZOMBIE_PART))
             {
                 if (go.transform.root.TryGetComponent(out ZombieController zombie))
-                    zombie.CarTriggersAsHit(_carEngine.CurrentSpeed);
+                    zombie.CarTriggerCrashedZombie(_carEngine.CurrentSpeed);
             }
         }
     }
