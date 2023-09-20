@@ -43,7 +43,7 @@ VisualEffect:
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: ccb2c87bab4ae0a469a84c111c355f9f, type: 3}
   m_InitialEventName: 
-  m_InitialEventNameOverriden: 1
+  m_InitialEventNameOverriden: 0
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -74,6 +74,12 @@ VisualEffect:
         m_Overridden: 1
       - m_Value: 85
         m_Name: MeshSize
+        m_Overridden: 1
+      - m_Value: 25
+        m_Name: DustMeshSize
+        m_Overridden: 1
+      - m_Value: 5
+        m_Name: DustSpeedMult
         m_Overridden: 1
     m_Vector2f:
       m_Array:
@@ -572,7 +578,7 @@ Transform:
   - {fileID: 5492044377437157621}
   - {fileID: 6407755066455720016}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &221900811233852366
 MonoBehaviour:
