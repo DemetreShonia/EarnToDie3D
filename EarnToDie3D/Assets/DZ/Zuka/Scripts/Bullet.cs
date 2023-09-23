@@ -7,7 +7,7 @@ namespace DumbRide
         [SerializeField] float _speed;
         [SerializeField] LayerMask _canHit;
         [SerializeField] float _raySphereRadius = .3f;
-        [SerializeField] MMFeedbacks _hitFeedback;
+        
         Vector3 _lastPosition;
         bool _targetWasHit = false;
 
@@ -18,12 +18,15 @@ namespace DumbRide
 
         int _bulletDamage;
 
-        public void Initialize(int damage)
+
+        GroundHitParticlesController _hitParticlesController;
+        public void Initialize(int damage, GroundHitParticlesController hitControllerScript)
         {
             _isInitialized = true;
             _transform = transform;
             _dir = _transform.forward;
             _bulletDamage = damage;
+            _hitParticlesController = hitControllerScript;
         }
         
         void Update()
@@ -44,11 +47,19 @@ namespace DumbRide
             {
                 transform.position = hit.point;
                 _targetWasHit = true;
-                _hitFeedback?.PlayFeedbacks();
+
+                
 
                 if (hit.collider.TryGetComponent(out IBodyPart bodyPart))
                 {
                     bodyPart.ApplyHit(-hit.normal, _bulletDamage * 10, _bulletDamage); // add 10x force and damage
+                }
+                else
+                {
+                    Vector3 towards = transform.position - _lastPosition;
+                    towards.y = 0;
+                    towards.Normalize();
+                    _hitParticlesController.PlayEffect(hit.point, hit.normal, towards);
                 }
             }
         }

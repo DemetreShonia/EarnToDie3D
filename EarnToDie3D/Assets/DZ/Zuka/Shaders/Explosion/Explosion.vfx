@@ -25311,7 +25311,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615795}
   m_ExposedName: ShaderSpeedBetween
   m_Exposed: 1
-  m_Order: 20
+  m_Order: 21
   m_Category: 
   m_Min:
     m_Type:
@@ -25463,7 +25463,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615799}
   m_ExposedName: ShaderSpeedDissolveBetween
   m_Exposed: 1
-  m_Order: 20
+  m_Order: 22
   m_Category: 
   m_Min:
     m_Type:
@@ -25615,7 +25615,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615803}
   m_ExposedName: ShaderScaleBetween
   m_Exposed: 1
-  m_Order: 20
+  m_Order: 23
   m_Category: 
   m_Min:
     m_Type:

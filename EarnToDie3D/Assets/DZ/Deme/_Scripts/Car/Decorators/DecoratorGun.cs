@@ -18,7 +18,7 @@ namespace DumbRide
         [SerializeField] LayerMask _cameraRayCanHit;
         [SerializeField] float _minGunAngleWhenNearShooting = 20;
         [SerializeField] float _crossHairSphereRadius = 2f;
-
+        [SerializeField] private GroundHitParticlesController _globalGroundHitParticlePlayer;
 
         Camera _mainCamera;
 
@@ -55,7 +55,7 @@ namespace DumbRide
             var bullet = Instantiate(_bullet);
             bullet.transform.position = _shootPosition.position;
             bullet.transform.LookAt(_shootPosition.position + _shootPosition.forward);
-            bullet.Initialize(_data.power);
+            bullet.Initialize(_data.power, _globalGroundHitParticlePlayer);
             _currentAmmoCount--;
             UpdateUI();
         }
