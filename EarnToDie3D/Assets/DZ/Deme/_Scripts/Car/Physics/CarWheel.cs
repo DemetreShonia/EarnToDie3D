@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.VFX;
 namespace DumbRide
 {
     [RequireComponent(typeof(WheelCollider))]
@@ -25,8 +25,13 @@ namespace DumbRide
 
         [SerializeField] GameObject _wheelMesh; // visual
         [SerializeField] float _wheelVisualOffset;
-        WheelCollider _wheelCollider;
 
+        [SerializeField] VisualEffect _wheelSmoke;
+        [SerializeField] AnimationCurve _rateAnimationCurve;
+        [SerializeField] float _rateMultiplayer = 10;
+        [SerializeField] string _sandTag;
+        WheelCollider _wheelCollider;
+        bool _wheelTouchesSand;
         void Start()
         {
             if(_wheelType == WheelType.None)
@@ -50,5 +55,43 @@ namespace DumbRide
         
         public bool IsGrounded => _wheelCollider.isGrounded;
         public bool IsLeft => _wheelType == WheelType.FrontLeft || _wheelType == WheelType.RearLeft;
+
+        void Update()
+        {
+            WheelHit hit;
+
+            if (_wheelCollider.GetGroundHit(out hit))
+            {
+                if (hit.collider.CompareTag(_sandTag))
+                {
+                    if (!_wheelTouchesSand)
+                    {
+                        _wheelSmoke.Play();
+                    }
+                    _wheelTouchesSand = true;
+                }
+                else
+                {
+                    if (_wheelTouchesSand)
+                    {
+                        _wheelSmoke.Stop();
+                    }
+                    _wheelTouchesSand = false;
+                }
+            }
+            else
+            {
+                if (_wheelTouchesSand)
+                {
+                    _wheelSmoke.Stop();
+                }
+                _wheelTouchesSand = false;
+            }
+        }
+
+        public void UpdateSmokeVariables(float speed)
+        {
+            _wheelSmoke.SetFloat("rate", _rateAnimationCurve.Evaluate(speed) * _rateMultiplayer);
+        }
     }
 }

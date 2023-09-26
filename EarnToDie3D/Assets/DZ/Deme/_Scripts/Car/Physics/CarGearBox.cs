@@ -43,6 +43,13 @@ namespace DumbRide
                 wheel.ApplyBrakeTorque(currentTorque);
             }
         }
+        public void ChangeWheelSmokeVariables(float speed)
+        {
+            foreach (var wheel in _wheels)
+            {
+                wheel.UpdateSmokeVariables(speed);
+            }
+        }
         public void TryApplyMotorTorque(float torque)
         {
             if (!_isInitialized) return;

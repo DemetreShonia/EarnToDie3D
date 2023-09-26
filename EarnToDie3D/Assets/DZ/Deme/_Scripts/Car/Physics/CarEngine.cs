@@ -91,6 +91,8 @@ namespace DumbRide
             _gearBox.TryBrake(_carInput.IsBrakePressed ? _breakTorque : 0);
 
             _gearBox.TryApplyMotorTorque(torqueSigned);
+
+            _gearBox.ChangeWheelSmokeVariables(CurrentSpeed / _maxCapturedSpeed);
         }
 
         public void SetIsCarTurboEnabled(bool enabled) => _isCarTurboEnabled = _turbo.IsTankEmpty ? false : enabled;
