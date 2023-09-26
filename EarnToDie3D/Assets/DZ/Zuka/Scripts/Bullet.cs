@@ -18,15 +18,16 @@ namespace DumbRide
 
         int _bulletDamage;
 
-
+        ZombieHitParticlesController _zombieHitParticlesController;
         GroundHitParticlesController _hitParticlesController;
-        public void Initialize(int damage, GroundHitParticlesController hitControllerScript)
+        public void Initialize(int damage, GroundHitParticlesController hitControllerScript, ZombieHitParticlesController zombieHitParticleControllerScript)
         {
             _isInitialized = true;
             _transform = transform;
             _dir = _transform.forward;
             _bulletDamage = damage;
             _hitParticlesController = hitControllerScript;
+            _zombieHitParticlesController = zombieHitParticleControllerScript;
         }
         
         void Update()
@@ -48,17 +49,17 @@ namespace DumbRide
                 transform.position = hit.point;
                 _targetWasHit = true;
 
-                
 
+                Vector3 towards = transform.position - _lastPosition;
+                towards.y = 0;
+                towards.Normalize();
                 if (hit.collider.TryGetComponent(out IBodyPart bodyPart))
                 {
                     bodyPart.ApplyHit(-hit.normal, _bulletDamage * 10, _bulletDamage); // add 10x force and damage
+                    _zombieHitParticlesController.PlayEffect(hit.point, hit.normal, towards);
                 }
                 else
                 {
-                    Vector3 towards = transform.position - _lastPosition;
-                    towards.y = 0;
-                    towards.Normalize();
                     _hitParticlesController.PlayEffect(hit.point, hit.normal, towards);
                 }
             }
