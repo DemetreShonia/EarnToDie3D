@@ -7,6 +7,8 @@ Welcome to **Earn to Die 3D**, a modern recreation of the classic 2D action game
 [![Watch the Gameplay Video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://github.com/user-attachments/assets/4334cfa6-2c90-4d61-8af1-76447b253104)
 
 
+
+
 ## 🕹️ Game Overview
 
 In **Earn to Die 3D**, you must navigate through zombie-infested wastelands, smashing through obstacles with your customized vehicles. The further you drive, the more money you earn to upgrade your ride, making it stronger, faster, and deadlier!
@@ -17,6 +19,9 @@ In **Earn to Die 3D**, you must navigate through zombie-infested wastelands, sma
 - 🌍 Immersive post-apocalyptic environments
 - 🏎️ **Physics-based gameplay** for a realistic driving experience
 - 🎮 Optimized for performance with smooth controls
+
+## 🎥 Gameplay Scene!
+[![Watch the Gameplay Video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://github.com/user-attachments/assets/9f0a3c15-51e8-490b-82b2-a60b5ad35f61)
 
 ## 🚀 Getting Started
 
