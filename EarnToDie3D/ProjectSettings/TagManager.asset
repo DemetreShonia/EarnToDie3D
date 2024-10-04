@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Road
+  - ZombiePart
+  - Sand
   layers:
   - Default
   - TransparentFX
@@ -11,6 +14,12 @@ TagManager:
   - 
   - Water
   - UI
+  - Ground
+  - CarHitter
+  - Target
+  - Car
+  - ZombiePart
+  - ZombieMove
   - 
   - 
   - 
@@ -19,16 +28,10 @@ TagManager:
   - 
   - 
   - 
+  - DesertProps
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Grass
+  - AfterTransparent
   - 
   - 
   - 

@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/URP/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+    path: Assets/DZ/Deme/Scenes/Menu.unity
+    guid: 28c75761556304c4bae518d5d55027bc
+  - enabled: 1
+    path: Assets/DZ/Deme/Scenes/Garage.unity
+    guid: 083f107901f381f4b8ec869459cd6fe0
+  - enabled: 1
+    path: Assets/DZ/Deme/Scenes/GameScene.unity
+    guid: cf5d8fd2275ce1b45ab7a44c46472956
   m_configObjects: {}
