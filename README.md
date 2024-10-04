@@ -2,7 +2,7 @@
 
 Welcome to **Earn to Die 3D**, a modern recreation of the classic 2D action game in 3D! Made with love in Unity by me and [JustZuka](https://github.com/justzuka). Drive through hordes of zombies, upgrade your vehicles, and escape the apocalypse in this thrilling 3D version of the game!
 
-## 🎥 Garage View
+## 🎥 Sound on!
 
 [![Watch the Gameplay Video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://github.com/user-attachments/assets/4334cfa6-2c90-4d61-8af1-76447b253104)
 
