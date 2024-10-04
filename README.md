@@ -26,8 +26,11 @@ In **Earn to Die 3D**, you must navigate through zombie-infested wastelands, sma
 
 We had an awesome dev-journey while working on this project, learnt a lot and had a very good fun! 💖
 
-[![Watch the Gameplay Video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://github.com/user-attachments/assets/aa4347a8-aca1-400e-a1dc-00595537561d)
-[![Watch the Gameplay Video](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://github.com/user-attachments/assets/27b81d82-7190-4c4f-a7b2-f7a4f0fba2e6)
+# Debugging ghost zombies 🤔
+[![Ghost Zombies!](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://github.com/user-attachments/assets/aa4347a8-aca1-400e-a1dc-00595537561d)
+
+# Zombie horde fightning for life 🧟‍♀️🧟‍♂️
+[![Zombie Horde!](https://img.youtube.com/vi/VIDEO_ID/maxresdefault.jpg)](https://github.com/user-attachments/assets/27b81d82-7190-4c4f-a7b2-f7a4f0fba2e6)
 
 ## 🚀 Getting Started
 
