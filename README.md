@@ -51,9 +51,9 @@ You’ll need the following tools to build and run the project:
 
 
 ## 🛠️ Built With
-Unity Engine - Game development platform
-C# - Primary programming language
-Blender - For 3D model creation
+- Unity Engine - Game development platform
+- C# - Primary programming language
+- Blender - For 3D model creation
 
 ## 🧑‍💻 Contributing
 We welcome contributions! If you’d like to suggest improvements, report bugs, or contribute code, please create a pull request or open an issue.
